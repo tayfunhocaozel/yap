@@ -25,7 +25,12 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { getExamAnalysis, type ExamAnalysis, type RiskLevel } from '../../../services/analysisService';
+import {
+  getExamAnalysis,
+  RISK_HEX_COLOR,
+  type ExamAnalysis,
+  type RiskLevel,
+} from '../../../services/analysisService';
 import { examService } from '../../../services/examService';
 import { classService } from '../../../services/classService';
 import { subjectRepository } from '../../../repositories/subjectRepository';
@@ -265,15 +270,7 @@ export function AnalysisPage() {
                   {
                     label: 'Başarı %',
                     data: analysis.outcomeAnalyses.map((o) => Math.round(o.successRate)),
-                    backgroundColor: analysis.outcomeAnalyses.map(
-                      (o) =>
-                        ({
-                          'Çok İyi': '#2E7D32',
-                          İyi: '#0288D1',
-                          Geliştirilmeli: '#EF6C00',
-                          Kritik: '#C62828',
-                        })[o.riskLevel],
-                    ),
+                    backgroundColor: analysis.outcomeAnalyses.map((o) => RISK_HEX_COLOR[o.riskLevel]),
                   },
                 ],
               }}

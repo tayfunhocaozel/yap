@@ -11,13 +11,16 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@expo-google-fonts/noto-sans": "^0.4.2",
     "@mui/icons-material": "^9.2.0",
     "@mui/material": "^9.2.0",
+    "@react-pdf/renderer": "^4.5.1",
     "chart.js": "^4.5.1",
     "dexie": "^4.4.4",
     "dexie-react-hooks": "^4.4.0",
@@ -39,6 +42,7 @@
     "fake-indexeddb": "^6.2.5",
     "jsdom": "^29.1.1",
     "oxlint": "^1.71.0",
+    "patch-package": "^8.0.1",
     "prettier": "^3.9.4",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",

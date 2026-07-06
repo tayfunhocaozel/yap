@@ -44,6 +44,68 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.9.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+PDF Raporları eklendi (FR-010, AC-009).
+
+### Added
+
+-   `@react-pdf/renderer` ve `@expo-google-fonts/noto-sans` kuruldu.
+    Varsayılan Helvetica fontu Türkçe karakterleri (ğ, ş, ı, İ, ö, ü, ç)
+    render edemediği için Noto Sans TTF olarak `Font.register` ile
+    kaydedildi.
+-   `analysisService`: `calculateStudentDetails` ile öğrenci bazlı
+    konu/kazanım kırılımı, güçlü/zayıf yönler eklendi (Analiz Motoru
+    diliminde eksik kalan bir parça). `RISK_HEX_COLOR` sabiti
+    grafik/PDF renklerinde tekrar kullanılmak üzere dışa aktarıldı.
+-   `chartImageService`: Chart.js grafiklerini DOM dışı bir `<canvas>`
+    üzerinde PNG'ye çevirip PDF içine gömülebilir hale getirir.
+-   "Raporlar" ekranı (`/yazililar/:examId/raporlar`): Sınıf Raporu ve
+    Öğrenci Raporu (öğrenci başına ayrı sayfa) arasında geçiş, canlı
+    önizleme (`PDFViewer`) ve indirme (`PDFDownloadLink`). Sınıf
+    Raporu; sınıf özeti, soru/konu/kazanım analizi ve (varsa) Telafi
+    Planı'nı içerir. Rapor üretimi `reportService` ile loglanır.
+-   Telafi Planlama ekranına "Raporlara Geç" butonu eklendi.
+
+### Fixed
+
+-   **react-pdf/textkit glyph kaybı (patches/@react-pdf+textkit+6.3.0.patch)**:
+    Tarayıcıda üretilen PDF'lerde bazı kelimelerin ilk karakteri
+    (örn. "Toplam" → "oplam") rastgele kayboluyordu. Kök neden,
+    react-pdf'in üstündeki `@react-pdf/textkit` paketinin, fontkit'in
+    bir glyph'i önce ID ile (cache'ten) sonra `layout()` ile boş
+    `codePoints` ile döndürdüğü durumlarda kaynak karakteri kaybetmesi
+    (yukarı akış: [react-pdf#3404](https://github.com/diegomura/react-pdf/issues/3404),
+    henüz üst akışta düzeltilmedi). `patch-package` ile eksik
+    `codePoints` orijinal metinden geri kazanılacak şekilde yamalandı;
+    `postinstall` script'i her `npm install` sonrası otomatik uygular.
+-   Font dosyası tarayıcıda asenkron indirildiği için, render
+    tetiklenmeden önce `Font.load()` ile yüklemenin tamamlanması
+    beklenir (`ensureFontsLoaded`).
+
+### Doğrulama
+
+-   Tarayıcıda gerçek 27 öğrencilik veriyle test edildi: hem Sınıf hem
+    Öğrenci Raporu indirilip PDF metin katmanı programatik olarak
+    (pdfjs-dist ile) incelendi; Türkçe karakterler (ı, ş, ğ, ü, ö, ç,
+    İ) ve önceden bozuk çıkan "Toplam Puan" gibi ifadeler 27 sayfanın
+    tamamında doğru render edildiği doğrulandı. Telafi Planı verisi
+    (kazanım, yöntem, tarih, not) Sınıf Raporu'na doğru yansıdı.
+-   `npx vitest run`, `npm run lint`, `npm run build`, `npx playwright
+    test` tamamı yeşil.
+
+------------------------------------------------------------------------
+
 # v0.8.0
 
 ## Yayın Tarihi

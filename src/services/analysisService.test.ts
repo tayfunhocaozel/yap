@@ -5,6 +5,7 @@ import {
   calculateQuestionAnalyses,
   calculateTopicAnalyses,
   calculateOutcomeAnalyses,
+  calculateStudentDetails,
   riskLevelFor,
 } from './analysisService';
 import type { Question, Student, StudentScore, Topic, CurriculumOutcome } from '../types/entities';
@@ -110,5 +111,27 @@ describe('calculateOutcomeAnalyses', () => {
     // Ayşe %25 < %50 -> başarısız
     expect(o2.riskLevel).toBe('Geliştirilmeli');
     expect(o2.failingStudentCount).toBe(1);
+  });
+});
+
+describe('calculateStudentDetails', () => {
+  it('güçlü ve geliştirilmesi gereken konuları doğru sınıflandırır', () => {
+    const result = calculateStudentDetails(students, questions, scores, topics, outcomes);
+
+    const ali = result.find((r) => r.studentId === 's1')!;
+    expect(ali.strongTopics).toEqual(['Konu A', 'Konu B']);
+    expect(ali.weakTopics).toEqual([]);
+
+    const ayse = result.find((r) => r.studentId === 's3')!;
+    expect(ayse.weakTopics).toEqual(['Konu A', 'Konu B']);
+    expect(ayse.strongTopics).toEqual([]);
+  });
+
+  it('hiç puanlanmamış konu/kazanımı null olarak işaretler (0 değil)', () => {
+    const result = calculateStudentDetails(students, questions, scores, topics, outcomes);
+    const veli = result.find((r) => r.studentId === 's2')!;
+    const topicB = veli.topicBreakdown.find((t) => t.topicId === 't2')!;
+
+    expect(topicB.successRate).toBeNull();
   });
 });

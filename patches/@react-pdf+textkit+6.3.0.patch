@@ -1,0 +1,40 @@
+diff --git a/node_modules/@react-pdf/textkit/lib/textkit.js b/node_modules/@react-pdf/textkit/lib/textkit.js
+index 0b8b6fa..665d5c2 100644
+--- a/node_modules/@react-pdf/textkit/lib/textkit.js
++++ b/node_modules/@react-pdf/textkit/lib/textkit.js
+@@ -1157,6 +1157,35 @@ const layoutRun = (string) => {
+             throw new Error('Invalid font');
+         // passing LTR To force fontkit to not reverse the string
+         const glyphRun = font[0].layout(runString, undefined, undefined, undefined, 'ltr');
++        // PATCH (react-pdf issue #3404): fontkit bazen bir glyph'i (genelde
++        // run'ın ilk glyph'i) daha önce ID ile (getGlyph) yüklenmiş cache'ten
++        // döndürüyor ve bu glyph'in codePoints alanı boş kalıyor. Bu durumda
++        // stringIndices hesaplaması o karakteri atlıyor ve render'dan düşüyor
++        // (örn. "Toplam" -> "oplam"). Eksik codePoints'i orijinal run
++        // string'inden geri kazanıyoruz.
++        if (glyphRun.glyphs.length > 0) {
++            const expectedCodePoints = Array.from(runString).length;
++            const actualCodePoints = glyphRun.glyphs.reduce((sum, g) => sum + (g?.codePoints?.length || 0), 0);
++            if (actualCodePoints < expectedCodePoints) {
++                const runChars = Array.from(runString);
++                let charIdx = 0;
++                let missing = expectedCodePoints - actualCodePoints;
++                for (let i = 0; i < glyphRun.glyphs.length && missing > 0; i += 1) {
++                    const g = glyphRun.glyphs[i];
++                    const len = g?.codePoints?.length || 0;
++                    if (len === 0 && g) {
++                        const ch = runChars[charIdx];
++                        if (ch !== undefined) {
++                            g.codePoints = [ch.codePointAt(0)];
++                            charIdx += 1;
++                            missing -= 1;
++                            continue;
++                        }
++                    }
++                    charIdx += len;
++                }
++            }
++        }
+         const positions = scalePositions(run, glyphRun.positions);
+         const stringIndices = resolve$1(glyphRun.glyphs);
+         const glyphIndices = resolve(glyphRun.glyphs);

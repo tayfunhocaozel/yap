@@ -177,10 +177,17 @@ export function InterventionPlanPage() {
         Analize Dön
       </Button>
 
-      <Typography variant="h5">{exam.title} — Telafi Planlama</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        {schoolClass?.name} — {subjectName} — {exam.examDate}
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+        <Box>
+          <Typography variant="h5">{exam.title} — Telafi Planlama</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {schoolClass?.name} — {subjectName} — {exam.examDate}
+          </Typography>
+        </Box>
+        <Button variant="contained" onClick={() => navigate(`/yazililar/${exam.id}/raporlar`)}>
+          Raporlara Geç
+        </Button>
+      </Box>
 
       {needsIntervention.length === 0 ? (
         <Alert severity="success">Telafi gerektiren bir kazanım bulunmuyor.</Alert>

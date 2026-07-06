@@ -50,9 +50,31 @@ export interface OutcomeAnalysis {
   riskLevel: RiskLevel;
 }
 
+export interface StudentTopicBreakdown {
+  topicId: string;
+  topicName: string;
+  successRate: number | null;
+}
+
+export interface StudentOutcomeBreakdown {
+  outcomeId: string;
+  code: string;
+  successRate: number | null;
+}
+
+export interface StudentDetail extends StudentAnalysis {
+  topicBreakdown: StudentTopicBreakdown[];
+  outcomeBreakdown: StudentOutcomeBreakdown[];
+  strongTopics: string[];
+  weakTopics: string[];
+  strongOutcomes: string[];
+  weakOutcomes: string[];
+}
+
 export interface ExamAnalysis {
   classAnalysis: ClassAnalysis;
   studentAnalyses: StudentAnalysis[];
+  studentDetails: StudentDetail[];
   questionAnalyses: QuestionAnalysis[];
   topicAnalyses: TopicAnalysis[];
   outcomeAnalyses: OutcomeAnalysis[];
@@ -65,6 +87,13 @@ export function riskLevelFor(successRate: number): RiskLevel {
   if (successRate >= 50) return 'Geliştirilmeli';
   return 'Kritik';
 }
+
+export const RISK_HEX_COLOR: Record<RiskLevel, string> = {
+  'Çok İyi': '#2E7D32',
+  İyi: '#0288D1',
+  Geliştirilmeli: '#EF6C00',
+  Kritik: '#C62828',
+};
 
 function buildScoreLookup(scores: StudentScore[]): Map<string, number> {
   const map = new Map<string, number>();
@@ -229,6 +258,85 @@ export function calculateOutcomeAnalyses(
   });
 }
 
+// 04_ANALYSIS_ENGINE.md Bölüm 3.A - Öğrenci Analizi: güçlü/geliştirilmesi
+// gereken konu ve kazanımlar. successRate=null, öğrencinin o konu/kazanıma
+// ait sorularının hiçbirinin henüz puanlanmadığı anlamına gelir (0 değil).
+export function calculateStudentDetails(
+  students: Student[],
+  questions: Question[],
+  scores: StudentScore[],
+  topics: Topic[],
+  outcomes: CurriculumOutcome[],
+): StudentDetail[] {
+  const lookup = buildScoreLookup(scores);
+  const studentAnalyses = calculateStudentAnalyses(students, questions, scores);
+  const topicIds = Array.from(new Set(questions.map((q) => q.topicId)));
+  const outcomeIds = Array.from(new Set(questions.map((q) => q.outcomeId)));
+
+  function breakdown(
+    studentId: string,
+    ids: string[],
+    getQuestions: (id: string) => Question[],
+    resolveLabel: (id: string) => string,
+  ): { id: string; label: string; successRate: number | null }[] {
+    return ids.map((id) => {
+      let earned = 0;
+      let max = 0;
+      let hasScore = false;
+      for (const q of getQuestions(id)) {
+        const value = lookup.get(`${studentId}:${q.id}`);
+        if (value !== undefined) {
+          earned += value;
+          max += q.score;
+          hasScore = true;
+        }
+      }
+      return {
+        id,
+        label: resolveLabel(id),
+        successRate: hasScore && max > 0 ? (earned / max) * 100 : null,
+      };
+    });
+  }
+
+  return studentAnalyses.map((analysis) => {
+    const topicBreakdown: StudentTopicBreakdown[] = breakdown(
+      analysis.studentId,
+      topicIds,
+      (topicId) => questions.filter((q) => q.topicId === topicId),
+      (topicId) => {
+        const topic = topics.find((t) => t.id === topicId);
+        return topic ? (topic.unit ? `${topic.unit} — ${topic.name}` : topic.name) : '-';
+      },
+    ).map(({ id, label, successRate }) => ({ topicId: id, topicName: label, successRate }));
+
+    const outcomeBreakdown: StudentOutcomeBreakdown[] = breakdown(
+      analysis.studentId,
+      outcomeIds,
+      (outcomeId) => questions.filter((q) => q.outcomeId === outcomeId),
+      (outcomeId) => outcomes.find((o) => o.id === outcomeId)?.code ?? '-',
+    ).map(({ id, label, successRate }) => ({ outcomeId: id, code: label, successRate }));
+
+    return {
+      ...analysis,
+      topicBreakdown,
+      outcomeBreakdown,
+      strongTopics: topicBreakdown
+        .filter((t) => t.successRate !== null && t.successRate >= 70)
+        .map((t) => t.topicName),
+      weakTopics: topicBreakdown
+        .filter((t) => t.successRate !== null && t.successRate < 50)
+        .map((t) => t.topicName),
+      strongOutcomes: outcomeBreakdown
+        .filter((o) => o.successRate !== null && o.successRate >= 70)
+        .map((o) => o.code),
+      weakOutcomes: outcomeBreakdown
+        .filter((o) => o.successRate !== null && o.successRate < 50)
+        .map((o) => o.code),
+    };
+  });
+}
+
 export async function getExamAnalysis(examId: string): Promise<ExamAnalysis | null> {
   const exam = await examService.getById(examId);
   if (!exam) return null;
@@ -253,6 +361,7 @@ export async function getExamAnalysis(examId: string): Promise<ExamAnalysis | nu
   return {
     classAnalysis: calculateClassAnalysis(studentAnalyses),
     studentAnalyses,
+    studentDetails: calculateStudentDetails(students, questions, scores, topics, outcomes),
     questionAnalyses: calculateQuestionAnalyses(students, questions, scores),
     topicAnalyses: calculateTopicAnalyses(students, questions, scores, topics),
     outcomeAnalyses: calculateOutcomeAnalyses(students, questions, scores, outcomes),

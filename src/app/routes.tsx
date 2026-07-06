@@ -7,6 +7,7 @@ import { QuestionListPage } from '../features/exams/pages/QuestionListPage';
 import { ScoreEntryPage } from '../features/exams/pages/ScoreEntryPage';
 import { AnalysisPage } from '../features/exams/pages/AnalysisPage';
 import { InterventionPlanPage } from '../features/exams/pages/InterventionPlanPage';
+import { ReportsPage } from '../features/exams/pages/ReportsPage';
 
 export function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ export function AppRoutes() {
       <Route path="/yazililar/:examId/puanlar" element={<ScoreEntryPage />} />
       <Route path="/yazililar/:examId/analiz" element={<AnalysisPage />} />
       <Route path="/yazililar/:examId/telafi" element={<InterventionPlanPage />} />
+      <Route path="/yazililar/:examId/raporlar" element={<ReportsPage />} />
       <Route path="*" element={<Navigate to="/siniflar" replace />} />
     </Routes>
   );
