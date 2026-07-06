@@ -1,0 +1,246 @@
+{
+  "subject": "Matematik",
+  "grade": 6,
+  "topics": [
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (1)",
+      "name": "Doğal Sayıların Çarpanları ve Katları",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.1.",
+          "description": "Karşılaştığı problem durumlarında bir doğal sayının çarpan ve katlarına yönelik muhakeme yapabilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (1)",
+      "name": "Bölünebilme Kriterleri",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.2.",
+          "description": "Bir doğal sayının 2, 3, 4, 5, 6, 9 ve 10 ile tam bölünebilme kriterlerine ilişkin çıkarım yapabilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (1)",
+      "name": "Asal Sayılar ve Asal Çarpanlar",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.3.",
+          "description": "Bir doğal sayının asal olma durumunu ve asal çarpanlarını çözümleyebilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (1)",
+      "name": "Ortak Kat ve Ortak Bölen",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.4.",
+          "description": "Günlük hayat problemleri ya da matematiksel durumlar üzerinden ortak kat ve ortak böleni yorumlayabilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (2)",
+      "name": "Ondalık Gösterimleri Çözümleme",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.5.",
+          "description": "Gerçek yaşam durumlarında ondalık gösterimlerin basamak değerlerini kesirlerden yararlanarak yorumlayabilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (2)",
+      "name": "Kesir-Bölme İlişkisi",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.6.",
+          "description": "Kesir ve bölme işlemi arasındaki ilişkiye yönelik tümevarımsal akıl yürütebilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (2)",
+      "name": "Uzunluk Ölçme",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.7.",
+          "description": "Karşılaştığı günlük hayat ya da matematiksel durumlarda standart uzunluk ölçme birimlerini değerlendirebilme."
+        }
+      ]
+    },
+    {
+      "unit": "1. Tema: Sayılar ve Nicelikler (2)",
+      "name": "Kesirlerle Dört İşlem İçeren Problem Çözme",
+      "outcomes": [
+        {
+          "code": "MAT.6.1.8.",
+          "description": "Gerçek yaşam durumlarında karşılaşılan kesir, ondalık ve yüzde gösterimleri ile ilgili dört işlem gerektiren problemleri çözebilme."
+        }
+      ]
+    },
+    {
+      "unit": "2. Tema: İşlemlerle Cebirsel Düşünme ve Değişimler",
+      "name": "Cebirsel İfadeler: Bilinmeyen Nicelikler",
+      "outcomes": [
+        {
+          "code": "MAT.6.2.1.",
+          "description": "Gerçek yaşam durumlarında bilinen niceliklerden bilinmeyen niceliklere ilişkin muhakeme yapabilme."
+        }
+      ]
+    },
+    {
+      "unit": "2. Tema: İşlemlerle Cebirsel Düşünme ve Değişimler",
+      "name": "Örüntü",
+      "outcomes": [
+        {
+          "code": "MAT.6.2.2.",
+          "description": "Sayı ve şekil örüntülerini yorumlayabilme."
+        }
+      ]
+    },
+    {
+      "unit": "2. Tema: İşlemlerle Cebirsel Düşünme ve Değişimler",
+      "name": "Cebirsel İfadeler ve Algoritma",
+      "outcomes": [
+        {
+          "code": "MAT.6.2.3.",
+          "description": "Cebirsel ifadeler içeren durumlardaki algoritmaları yorumlayabilme."
+        }
+      ]
+    },
+    {
+      "unit": "3. Tema: Geometrik Şekiller",
+      "name": "İki Paralel Doğrunun Bir Kesen ile Oluşturduğu Açılar",
+      "outcomes": [
+        {
+          "code": "MAT.6.3.1.",
+          "description": "Düzlemde iki paralel doğru ve bir kesen ile oluşan açıları sınıflandırabilme."
+        }
+      ]
+    },
+    {
+      "unit": "3. Tema: Geometrik Şekiller",
+      "name": "Üçgenin Açıları ve Dörtgenlerin Özellikleri",
+      "outcomes": [
+        {
+          "code": "MAT.6.3.2.",
+          "description": "Matematiksel araç ve teknolojiden yararlanarak iki paralel doğrunun iki kesenle oluşturduğu şekillerin özelliklerine dair çıkarım yapabilme."
+        }
+      ]
+    },
+    {
+      "unit": "3. Tema: Geometrik Şekiller",
+      "name": "Dörtgenlerin Köşegen Özellikleri",
+      "outcomes": [
+        {
+          "code": "MAT.6.3.3.",
+          "description": "Matematiksel araç ve teknolojiden yararlanarak birbirlerini ortalayan doğru parçalarını köşegen kabul eden dörtgenlere yönelik çıkarım yapabilme."
+        }
+      ]
+    },
+    {
+      "unit": "3. Tema: Geometrik Şekiller",
+      "name": "Üçgen ve Dörtgenlerin Açı Problemleri",
+      "outcomes": [
+        {
+          "code": "MAT.6.3.4.",
+          "description": "Üçgen, yamuk, paralelkenar, eşkenar dörtgen, dikdörtgen ve karenin açıları ile ilgili problemleri çözebilme."
+        }
+      ]
+    },
+    {
+      "unit": "4. Tema: Geometrik Nicelikler",
+      "name": "Uzunluk ve Alan Ölçme Birimleri Arasındaki İlişki",
+      "outcomes": [
+        {
+          "code": "MAT.6.4.1.",
+          "description": "Uzunluk ve alan ölçme birimleri arasındaki ilişkilerle ilgili analojik akıl yürütebilme."
+        }
+      ]
+    },
+    {
+      "unit": "4. Tema: Geometrik Nicelikler",
+      "name": "Paralelkenar ve Üçgenin Alanı",
+      "outcomes": [
+        {
+          "code": "MAT.6.4.2.",
+          "description": "Dikdörtgenin alan bağıntısına yönelik deneyimlerini paralelkenar ve üçgenin alan bağıntılarına yansıtabilme."
+        }
+      ]
+    },
+    {
+      "unit": "4. Tema: Geometrik Nicelikler",
+      "name": "Alan Modelleme ve Problem Çözme",
+      "outcomes": [
+        {
+          "code": "MAT.6.4.3.",
+          "description": "Geometrik şekillerin alanları ile modellenen gerçek yaşam durumlarına yönelik problem çözebilme."
+        }
+      ]
+    },
+    {
+      "unit": "4. Tema: Geometrik Nicelikler",
+      "name": "Çemberin ve Çapın Uzunlukları Arasındaki İlişki",
+      "outcomes": [
+        {
+          "code": "MAT.6.4.4.",
+          "description": "Çemberin uzunluğu ile çap uzunluğu arasındaki ilişkiye yönelik çıkarım yapabilme."
+        }
+      ]
+    },
+    {
+      "unit": "4. Tema: Geometrik Nicelikler",
+      "name": "Çember Uzunluğu Problemleri",
+      "outcomes": [
+        {
+          "code": "MAT.6.4.5.",
+          "description": "Çap veya yarıçap uzunluğu verilen bir çemberin uzunluğu ile ilgili problemlerini çözebilme."
+        }
+      ]
+    },
+    {
+      "unit": "4. Tema: Geometrik Nicelikler",
+      "name": "Çemberde Merkez Açı ve Yay Uzunluğu",
+      "outcomes": [
+        {
+          "code": "MAT.6.4.6.",
+          "description": "Çemberde merkez açının ölçüsü ile gördüğü yayın uzunluğu arasındaki ilişkiye dair tümevarımsal akıl yürütebilme."
+        }
+      ]
+    },
+    {
+      "unit": "5. Tema: İstatistiksel Araştırma Süreci",
+      "name": "Kategorik ve Nicel (Kesikli) Veri Dağılımları",
+      "outcomes": [
+        {
+          "code": "MAT.6.5.1.",
+          "description": "Kategorik veya nicel (kesikli) veri ile çalışabilme ve veriye dayalı karar verebilme."
+        }
+      ]
+    },
+    {
+      "unit": "5. Tema: İstatistiksel Araştırma Süreci",
+      "name": "Veri Sonuçlarını Tartışma",
+      "outcomes": [
+        {
+          "code": "MAT.6.5.2.",
+          "description": "Başkaları tarafından oluşturulan kategorik veya nicel (kesikli) veriye dayalı istatistiksel sonuç veya yorumları tartışabilme."
+        }
+      ]
+    },
+    {
+      "unit": "6. Tema: Veriden Olasılığa",
+      "name": "Deneysel Olasılık",
+      "outcomes": [
+        {
+          "code": "MAT.6.6.1.",
+          "description": "Bir olayın olasılığını gözleme dayalı tahmin edebilme."
+        }
+      ]
+    }
+  ]
+}

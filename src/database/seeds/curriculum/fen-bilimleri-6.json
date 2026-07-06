@@ -1,0 +1,185 @@
+{
+  "subject": "Fen Bilimleri",
+  "grade": 6,
+  "topics": [
+    {
+      "name": "Güneş Sistemi ve Tutulmalar",
+      "outcomes": [
+        {
+          "code": "FB.6.1.1.1",
+          "description": "Güneş sistemindeki gezegenleri niteliklerine göre sınıflandırabilme"
+        },
+        {
+          "code": "FB.6.1.1.2",
+          "description": "Güneş sistemi ile ilgili bilimsel model oluşturabilme"
+        },
+        {
+          "code": "FB.6.1.2.1",
+          "description": "Güneş ve Ay tutulması ile ilgili bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.6.1.2.2",
+          "description": "Güneş ve Ay tutulması ile ilgili bilimsel model oluşturabilme"
+        }
+      ]
+    },
+    {
+      "name": "Kuvvetin Etkisinde Hareket",
+      "outcomes": [
+        {
+          "code": "FB.6.2.1.1",
+          "description": "Bir cisme etki eden aynı doğrultudaki kuvvetler arasındaki ilişkileri açıklayarak bileşke kuvveti yapılandırabilme"
+        },
+        {
+          "code": "FB.6.2.1.2",
+          "description": "Dengelenmiş ve dengelenmemiş kuvvetlerin etkisi altındaki bir cismin hareketine yönelik deney yapabilme"
+        },
+        {
+          "code": "FB.6.2.2.1",
+          "description": "Sürat ve hız kavramlarını karşılaştırabilme"
+        }
+      ]
+    },
+    {
+      "name": "Canlılarda Sistemler",
+      "outcomes": [
+        {
+          "code": "FB.6.3.1.1",
+          "description": "Eşeyli ve eşeysiz üremeyi karşılaştırabilme"
+        },
+        {
+          "code": "FB.6.3.1.2",
+          "description": "Bitkilerde üreme, büyüme ve gelişme hakkında bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.6.3.1.3",
+          "description": "Tohumun çimlenmesine etki eden faktörlere ilişkin hipotez oluşturabilme"
+        },
+        {
+          "code": "FB.6.3.1.4",
+          "description": "Hayvanlarda üreme, büyüme ve gelişme hakkında bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.6.3.1.5",
+          "description": "İnsanda üremeyi sağlayan yapı ve organlar arasındaki ilişkileri çözümleyebilme"
+        },
+        {
+          "code": "FB.6.3.2.1",
+          "description": "Sinir sisteminin görevlerini model üzerinde gözlemleyebilme"
+        },
+        {
+          "code": "FB.6.3.2.2",
+          "description": "İç salgı bezlerinin vücut için önemini yapılandırabilme"
+        },
+        {
+          "code": "FB.6.3.2.3",
+          "description": "Çocukluktan ergenliğe geçişte oluşan bedensel ve ruhsal değişimleri genelleyebilme"
+        },
+        {
+          "code": "FB.6.3.2.4",
+          "description": "Denetleyici ve düzenleyici sistemlerin sağlığı için yapılması gerekenlerle ilgili bilgi toplayabilme"
+        }
+      ]
+    },
+    {
+      "name": "Işığın Yansıması ve Renkler",
+      "outcomes": [
+        {
+          "code": "FB.6.4.1.1",
+          "description": "Işığın farklı yüzeylerdeki yansıma olaylarına ilişkin bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.6.4.1.2",
+          "description": "Işığın yansımasında gelen ışın, yansıyan ışın ve yüzeyin normali arasındaki ilişkiyi kanıt kullanarak açıklayabilme"
+        },
+        {
+          "code": "FB.6.4.2.1",
+          "description": "Günlük hayattaki ayna çeşitlerine ilişkin bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.6.4.3.1",
+          "description": "Işığın madde ile etkileşimi sonucunda soğurulabileceğini gözlemleyebilme"
+        },
+        {
+          "code": "FB.6.4.3.2",
+          "description": "Beyaz ışığın tüm ışık renklerinin bileşiminden oluştuğuna ilişkin bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.6.4.3.3",
+          "description": "Cisimlerin siyah, beyaz ve renkli görünmesinin nedenini gözlem verileriyle açıklayabilme"
+        },
+        {
+          "code": "FB.6.4.3.4",
+          "description": "Güneş enerjisinin günlük hayat ve teknolojideki yenilikçi uygulamalarına ilişkin eleştirel düşünebilme"
+        }
+      ]
+    },
+    {
+      "name": "Maddenin Ayırt Edici Özellikleri",
+      "outcomes": [
+        {
+          "code": "FB.6.5.1.1",
+          "description": "Isı etkisiyle maddelerin genleşip büzüleceğine yönelik bilimsel gözleme dayalı tahmin edebilme"
+        },
+        {
+          "code": "FB.6.5.2.1",
+          "description": "Maddelerin erime, donma ve kaynama noktasını gösteren deney yapabilme"
+        },
+        {
+          "code": "FB.6.5.3.1",
+          "description": "Yoğunluğa ilişkin hesaplamalar yaparak bilimsel veriye dayalı tahmin edebilme"
+        },
+        {
+          "code": "FB.6.5.3.2",
+          "description": "Deneyler sonucunda çeşitli maddelerin yoğunluklarına ilişkin tümdengelimsel akıl yürütebilme"
+        },
+        {
+          "code": "FB.6.5.3.3",
+          "description": "Suyun katı ve sıvı hâllerine ait yoğunlukları karşılaştırarak bu durumun canlılar için önemi hakkında bilimsel çıkarımlar yapabilme"
+        },
+        {
+          "code": "FB.6.5.3.4",
+          "description": "Yoğunluk ile ilgili bilimsel model oluşturabilme"
+        }
+      ]
+    },
+    {
+      "name": "Elektriğin İletimi ve Direnç",
+      "outcomes": [
+        {
+          "code": "FB.6.6.1.1",
+          "description": "Maddelerin elektriği iletme durumlarını gösteren deney yapabilme"
+        },
+        {
+          "code": "FB.6.6.2.1",
+          "description": "Elektrik devresindeki ampulün parlaklığının bağlı olduğu değişkenleri belirlemeye yönelik deney yapabilme"
+        },
+        {
+          "code": "FB.6.6.2.2",
+          "description": "Ayarlanabilir direncin ampulün parlaklığına etkilerine yönelik bilimsel çıkarım yapabilme"
+        }
+      ]
+    },
+    {
+      "name": "Sürdürülebilir Yaşam ve Etkileşim",
+      "outcomes": [
+        {
+          "code": "FB.6.7.1.1",
+          "description": "Biyoçeşitliliğin doğal yaşam için önemini sorgulayabilme"
+        },
+        {
+          "code": "FB.6.7.1.2",
+          "description": "Biyoçeşitliliği tehdit eden faktörleri araştırma verilerine dayalı tahmin edebilme"
+        },
+        {
+          "code": "FB.6.7.2.1",
+          "description": "Isınma amaçlı yakıt kullanımının insan ve çevre üzerine etkilerini tartışabilme"
+        },
+        {
+          "code": "FB.6.7.2.2",
+          "description": "Yakın çevresindeki veya ülkemizdeki bir çevre problemine ilişkin çözüm üretebilme"
+        }
+      ]
+    }
+  ]
+}

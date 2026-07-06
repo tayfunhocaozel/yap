@@ -1,0 +1,108 @@
+{
+  "subject": "Sosyal Bilgiler",
+  "grade": 6,
+  "topics": [
+    {
+      "name": "Birlikte Yaşamak",
+      "outcomes": [
+        {
+          "code": "SB.6.1.1.",
+          "description": "Dâhil olduğu grupların ve bu gruplardaki rollerinin zaman içerisinde değişebileceğine ilişkin çıkarım yapabilme"
+        },
+        {
+          "code": "SB.6.1.2.",
+          "description": "Kültürel bağlarımızın ve millî değerlerimizin toplumsal birliğe etkisini yorumlayabilme"
+        },
+        {
+          "code": "SB.6.1.3.",
+          "description": "Toplumsal hayatta karşılaşılan sorunlara yönelik çözüm önerilerini müzakere edebilme"
+        }
+      ]
+    },
+    {
+      "name": "Evimiz Dünya",
+      "outcomes": [
+        {
+          "code": "SB.6.2.1.",
+          "description": "Ülkemizin, kıtaların ve okyanusların konum özelliklerini belirleyebilme"
+        },
+        {
+          "code": "SB.6.2.2.",
+          "description": "Ülkemizin doğal ve beşerî çevre özellikleri arasındaki ilişkiyi çözümleyebilme"
+        },
+        {
+          "code": "SB.6.2.3.",
+          "description": "Ülkemizin Türk dünyasıyla kültürel iş birliklerini yorumlayabilme"
+        }
+      ]
+    },
+    {
+      "name": "Ortak Mirasımız",
+      "outcomes": [
+        {
+          "code": "SB.6.3.1.",
+          "description": "Türkistan’da kurulan ilk Türk devletlerinin medeniyetimize katkılarını sorgulayabilme"
+        },
+        {
+          "code": "SB.6.3.2.",
+          "description": "VII-XIII. yüzyıllar arasında İslam medeniyetinin eğitim, bilim, hukuk, kültür, sanat ve mimari alanlarında insanlığın ortak mirasına katkılarına dair akıl yürütebilme"
+        },
+        {
+          "code": "SB.6.3.3.",
+          "description": "İslamiyet’in kabulüyle Türklerin sosyal ve kültürel hayatlarında meydana gelen değişimi dönemin bakış açısıyla değerlendirebilme"
+        },
+        {
+          "code": "SB.6.3.4.",
+          "description": "XI-XIII. yüzyıllar arasında meydana gelen siyasi faaliyetler ve askerî mücadelelerin Anadolu’nun Türkleşmesi ve İslamlaşmasına etkisini özetleyebilme"
+        }
+      ]
+    },
+    {
+      "name": "Yaşayan Demokrasimiz",
+      "outcomes": [
+        {
+          "code": "SB.6.4.1.",
+          "description": "Yönetimin karar alma sürecini etkileyen unsurları çözümleyebilme"
+        },
+        {
+          "code": "SB.6.4.2.",
+          "description": "Toplumsal düzenin sürdürülmesinde temel hak ve sorumlulukların önemini yorumlayabilme"
+        },
+        {
+          "code": "SB.6.4.3.",
+          "description": "Vatandaşlık haklarının kullanımında dijitalleşme ve teknolojik gelişmelerin etkilerini sorgulayabilme"
+        }
+      ]
+    },
+    {
+      "name": "Hayatımızdaki Ekonomi",
+      "outcomes": [
+        {
+          "code": "SB.6.5.1.",
+          "description": "Ülkemizin kaynakları ile ekonomik faaliyetler arasındaki ilişkiyi çözümleyebilme"
+        },
+        {
+          "code": "SB.6.5.2.",
+          "description": "Ekonomik faaliyetler ve meslekler arasındaki ilişki hakkında çıkarımda bulunabilme"
+        },
+        {
+          "code": "SB.6.5.3.",
+          "description": "Tasarladığı bir ürün için yatırım ve pazarlama proje önerisi hazırlayabilme"
+        }
+      ]
+    },
+    {
+      "name": "Teknoloji ve Sosyal Bilimler",
+      "outcomes": [
+        {
+          "code": "SB.6.6.1.",
+          "description": "Ulaşım ve iletişim teknolojilerindeki gelişmelerin kültürel etkileşimdeki rolünü yapılandırabilme"
+        },
+        {
+          "code": "SB.6.6.2.",
+          "description": "Bir ürün veya fikrin telif ve patent süreçleriyle ilgili bilgi toplayabilme"
+        }
+      ]
+    }
+  ]
+}

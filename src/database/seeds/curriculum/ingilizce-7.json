@@ -1,0 +1,814 @@
+{
+  "subject": "İngilizce",
+  "grade": 7,
+  "topics": [
+    {
+      "name": "School Life & Education",
+      "outcomes": [
+        {
+          "code": "ENG.7.1.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.1.2.",
+          "description": "Students can bring together the information in the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.1.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.1.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.1.R1.",
+          "description": "Students can prepare for reading the content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.1.R2.",
+          "description": "Students can bring information together about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.1.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.1.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.S2.",
+          "description": "Students can analyse and understand the model content related to \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.1.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.S4.",
+          "description": "Students can construct meaningful spoken content about \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.1.S5.",
+          "description": "Students can reconstruct the information about \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.1.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.1.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.1.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.W3.",
+          "description": "Students can construct new written content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.1.W4.",
+          "description": "Students can practise producing written content based on the current theme \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\"."
+        },
+        {
+          "code": "ENG.7.1.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.1.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"school life and education with extra-curricular activities at school; competitions and celebrations at school; national days and celebrations\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Classroom Life & Learning",
+      "outcomes": [
+        {
+          "code": "ENG.7.2.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.1.2.",
+          "description": "Students can bring together the information in the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.2.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.2.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.2.R1.",
+          "description": "Students can prepare for reading the content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.2.R2.",
+          "description": "Students can bring information together about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.2.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.2.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.S2.",
+          "description": "Students can analyse and understand the model content related to \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.2.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.S4.",
+          "description": "Students can construct meaningful spoken content about \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.2.S5.",
+          "description": "Students can reconstruct the information about \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.2.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.2.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.2.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.W3.",
+          "description": "Students can construct new written content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.2.W4.",
+          "description": "Students can practise producing written content based on the current theme \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\"."
+        },
+        {
+          "code": "ENG.7.2.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.2.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"classroom life and learning with technological tools for learning; learning activities in the classroom; cardinal numbers (500-1000); ordinal numbers (50-100)\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Personal Life & Well-Being",
+      "outcomes": [
+        {
+          "code": "ENG.7.3.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.1.2.",
+          "description": "Students can bring together the information in the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.3.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.3.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.3.R1.",
+          "description": "Students can prepare for reading the content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.3.R2.",
+          "description": "Students can bring information together about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.3.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.3.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.S2.",
+          "description": "Students can analyse and understand the model content related to \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.3.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.S4.",
+          "description": "Students can construct meaningful spoken content about \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.3.S5.",
+          "description": "Students can reconstruct the information about \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.3.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.3.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.3.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.W3.",
+          "description": "Students can construct new written content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.3.W4.",
+          "description": "Students can practise producing written content based on the current theme \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\"."
+        },
+        {
+          "code": "ENG.7.3.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.3.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"personal life and well-being with body parts, illnesses, and keeping good health; the place of technology in people's lives\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Family Life & Home",
+      "outcomes": [
+        {
+          "code": "ENG.7.4.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.1.2.",
+          "description": "Students can bring together the information in the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.4.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.4.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.4.R1.",
+          "description": "Students can prepare for reading the content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.4.R2.",
+          "description": "Students can bring information together about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.4.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.4.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.S2.",
+          "description": "Students can analyse and understand the model content related to \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.4.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.S4.",
+          "description": "Students can construct meaningful spoken content about \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.4.S5.",
+          "description": "Students can reconstruct the information about \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.4.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.4.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.4.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.W3.",
+          "description": "Students can construct new written content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.4.W4.",
+          "description": "Students can practise producing written content based on the current theme \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\"."
+        },
+        {
+          "code": "ENG.7.4.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.4.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"family life and home with family members' hobbies (sports, books, films, music, cooking); generation gap in the family: problems and solutions\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Life in the Neighbourhood & City and Social Life",
+      "outcomes": [
+        {
+          "code": "ENG.7.5.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.1.2.",
+          "description": "Students can bring together the information in the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.5.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.5.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.5.R1.",
+          "description": "Students can prepare for reading the content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.5.R2.",
+          "description": "Students can bring information together about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.5.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.5.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.S2.",
+          "description": "Students can analyse and understand the model content related to \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.5.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.S4.",
+          "description": "Students can construct meaningful spoken content about \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.5.S5.",
+          "description": "Students can reconstruct the information about \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.5.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.5.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.5.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.W3.",
+          "description": "Students can construct new written content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.5.W4.",
+          "description": "Students can practise producing written content based on the current theme \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\"."
+        },
+        {
+          "code": "ENG.7.5.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.5.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"life in the neighbourhood and city including social life with public services in the neighbourhood and city; life in different kinds of cities\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Life in the World & Culture",
+      "outcomes": [
+        {
+          "code": "ENG.7.6.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.1.2.",
+          "description": "Students can bring together the information in the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.6.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.6.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.6.R1.",
+          "description": "Students can prepare for reading the content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.6.R2.",
+          "description": "Students can bring information together about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.6.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.6.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.S2.",
+          "description": "Students can analyse and understand the model content related to \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.6.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.S4.",
+          "description": "Students can construct meaningful spoken content about \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.6.S5.",
+          "description": "Students can reconstruct the information about \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.6.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.6.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.6.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.W3.",
+          "description": "Students can construct new written content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.6.W4.",
+          "description": "Students can practise producing written content based on the current theme \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\"."
+        },
+        {
+          "code": "ENG.7.6.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.6.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Life in Nature",
+      "outcomes": [
+        {
+          "code": "ENG.7.7.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.1.2.",
+          "description": "Students can bring together the information in the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.7.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"life in nature with animals and natural resources in nature; protecting animals and nature\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.7.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"life in nature with animals and natural resources in nature; protecting animals and nature\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.7.R1.",
+          "description": "Students can prepare for reading the content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.7.R2.",
+          "description": "Students can bring information together about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.7.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.7.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.S2.",
+          "description": "Students can analyse and understand the model content related to \"life in nature with animals and natural resources in nature; protecting animals and nature\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.7.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.S4.",
+          "description": "Students can construct meaningful spoken content about \"life in nature with animals and natural resources in nature; protecting animals and nature\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.7.S5.",
+          "description": "Students can reconstruct the information about \"life in nature with animals and natural resources in nature; protecting animals and nature\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.7.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.7.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"life in nature with animals and natural resources in nature; protecting animals and nature\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.7.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.W3.",
+          "description": "Students can construct new written content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.7.W4.",
+          "description": "Students can practise producing written content based on the current theme \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"life in nature with animals and natural resources in nature; protecting animals and nature\"."
+        },
+        {
+          "code": "ENG.7.7.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"life in nature with animals and natural resources in nature; protecting animals and nature\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.7.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"life in nature with animals and natural resources in nature; protecting animals and nature\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    },
+    {
+      "name": "Life in the Universe & Future",
+      "outcomes": [
+        {
+          "code": "ENG.7.8.1.1.",
+          "description": "Students can prepare and get ready for listening (to)/watching about the current content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.1.2.",
+          "description": "Students can bring together the information in the current content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.1.3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.1.4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the listening (to)/watching process about the current content on \"life in the universe and future with space technology; life in the future with robots\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.8.G1.",
+          "description": "Students can select and use target grammatical language items efficiently, effectively, and accurately, based on the current content about \"life in the universe and future with space technology; life in the future with robots\", after recognising them in context and developing their conscious and inductive grammaring skills through consciousness-raising and discovery."
+        },
+        {
+          "code": "ENG.7.8.P1.",
+          "description": "Students can select and use target phonological aspects such as pronunciation and intonation of target sounds, words, phrases, clauses, and sentences in utterances authentically, naturally, and accurately in the current content about \"life in the universe and future with space technology; life in the future with robots\" to develop holistic and conscious pronunciation skills after recognising them in context."
+        },
+        {
+          "code": "ENG.7.8.R1.",
+          "description": "Students can prepare for reading the content on \"life in the universe and future with space technology; life in the future with robots\" efficiently and effectively."
+        },
+        {
+          "code": "ENG.7.8.R2.",
+          "description": "Students can bring information together about the current content on \"life in the universe and future with space technology; life in the future with robots\" through skimming, scanning and detailed reading."
+        },
+        {
+          "code": "ENG.7.8.R3.",
+          "description": "Students can make sense of and derive meaning from the current content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.R4.",
+          "description": "Students can reflect on the information, experiences, thoughts, ideas, and feelings related to the reading process about the current content on \"life in the universe and future with space technology; life in the future with robots\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.8.S1.",
+          "description": "Students can prepare themselves to speak meaningfully, fluently, and efficiently about the current content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.S2.",
+          "description": "Students can analyse and understand the model content related to \"life in the universe and future with space technology; life in the future with robots\" to support the production of spoken language."
+        },
+        {
+          "code": "ENG.7.8.S3.",
+          "description": "Students can produce meaningful and accurate spoken content related to the current theme on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.S4.",
+          "description": "Students can construct meaningful spoken content about \"life in the universe and future with space technology; life in the future with robots\" through efficient and meaningful practice."
+        },
+        {
+          "code": "ENG.7.8.S5.",
+          "description": "Students can reconstruct the information about \"life in the universe and future with space technology; life in the future with robots\" when communicating with others."
+        },
+        {
+          "code": "ENG.7.8.S6.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the speaking process about the current content on \"life in the universe and future with space technology; life in the future with robots\" in relation to themselves or others, both individually and/or with others."
+        },
+        {
+          "code": "ENG.7.8.V1.",
+          "description": "Students can select and use target vocabulary efficiently, effectively, and accurately, based on the current content about \"life in the universe and future with space technology; life in the future with robots\" after recognising them in context and developing their conscious and inductive vocabulary learning skills."
+        },
+        {
+          "code": "ENG.7.8.W1.",
+          "description": "Students can prepare for writing efficiently and accurately based on the current content about \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.W2.",
+          "description": "Students can analyse and understand a provided model to guide them in producing similar writing tasks related to the content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.W3.",
+          "description": "Students can construct new written content on \"life in the universe and future with space technology; life in the future with robots\" based on their understanding of the model(s) provided."
+        },
+        {
+          "code": "ENG.7.8.W4.",
+          "description": "Students can practise producing written content based on the current theme \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.W5.",
+          "description": "Students can engage in the process of writing related to the content on \"life in the universe and future with space technology; life in the future with robots\"."
+        },
+        {
+          "code": "ENG.7.8.W6.",
+          "description": "Students can reconstruct their writing about the current theme on \"life in the universe and future with space technology; life in the future with robots\" to communicate effectively about it."
+        },
+        {
+          "code": "ENG.7.8.W7.",
+          "description": "Students can reflect on their experiences, thoughts, ideas, and feelings related to the writing process about the current content on \"life in the universe and future with space technology; life in the future with robots\" in relation to themselves or others, both individually and/or with others."
+        }
+      ]
+    }
+  ]
+}

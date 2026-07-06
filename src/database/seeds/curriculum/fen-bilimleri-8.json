@@ -1,0 +1,379 @@
+{
+  "subject": "Fen Bilimleri",
+  "grade": 8,
+  "topics": [
+    {
+      "unit": "Mevsimler ve İklim",
+      "name": "Mevsimlerin Oluşumu",
+      "outcomes": [
+        {
+          "code": "F.8.1.1.1",
+          "description": "Mevsimlerin oluşumuna yönelik tahminlerde bulunur"
+        }
+      ]
+    },
+    {
+      "unit": "Mevsimler ve İklim",
+      "name": "İklim ve Hava Hareketleri",
+      "outcomes": [
+        {
+          "code": "F.8.1.2.1",
+          "description": "İklim ve hava olayları arasındaki farkı açıklar"
+        },
+        {
+          "code": "F.8.1.2.2",
+          "description": "İklim biliminin bir bilim dalı olduğunu ve bu alanda çalışan uzmanlara iklim bilimci adı verildiğini söyler"
+        }
+      ]
+    },
+    {
+      "name": "DNA ve Genetik Kod",
+      "outcomes": [
+        {
+          "code": "F.8.2.1.1",
+          "description": "Nükleotid, gen, DNA ve kromozom kavramlarını açıklayarak bu kavramlar arasında ilişki kurar"
+        },
+        {
+          "code": "F.8.2.1.2",
+          "description": "DNA'nın yapısını model üzerinde gösterir"
+        },
+        {
+          "code": "F.8.2.1.3",
+          "description": "DNA'nın kendini nasıl eşlediğini ifade eder"
+        }
+      ]
+    },
+    {
+      "unit": "DNA ve Genetik Kod",
+      "name": "Kalıtım",
+      "outcomes": [
+        {
+          "code": "F.8.2.2.1",
+          "description": "Kalıtım ile ilgili kavramları tanımlar"
+        },
+        {
+          "code": "F.8.2.2.2",
+          "description": "Tek karakter çaprazlamaları ile ilgili problemler çözerek sonuçlar hakkında yorum yapar"
+        },
+        {
+          "code": "F.8.2.2.3",
+          "description": "Akraba evliliklerinin genetik sonuçlarını tartışır"
+        }
+      ]
+    },
+    {
+      "unit": "DNA ve Genetik Kod",
+      "name": "Mutasyon ve Modifikasyon",
+      "outcomes": [
+        {
+          "code": "F.8.2.3.1",
+          "description": "Örneklerden yola çıkarak mutasyonu açıklar"
+        },
+        {
+          "code": "F.8.2.3.2",
+          "description": "Örneklerden yola çıkarak modifikasyonu açıklar"
+        },
+        {
+          "code": "F.8.2.3.3",
+          "description": "Mutasyonla modifikasyon arasındaki farklar ile ilgili çıkarımda bulunur"
+        }
+      ]
+    },
+    {
+      "unit": "DNA ve Genetik Kod",
+      "name": "Adaptasyon",
+      "outcomes": [
+        {
+          "code": "F.8.2.4.1",
+          "description": "Canlıların yaşadıkları çevreye uyumlarını gözlem yaparak açıklar"
+        }
+      ]
+    },
+    {
+      "unit": "DNA ve Genetik Kod",
+      "name": "Biyoteknoloji",
+      "outcomes": [
+        {
+          "code": "F.8.2.5.1",
+          "description": "Genetik mühendisliğini ve biyoteknolojiyi ilişkilendirir"
+        },
+        {
+          "code": "F.8.2.5.2",
+          "description": "Biyoteknolojik uygulamalar kapsamında oluşturulan ikilemlerle bu uygulamaların insanlık için yararlı ve zararlı yönlerini tartışır"
+        },
+        {
+          "code": "F.8.2.5.3",
+          "description": "Gelecekteki genetik mühendisliği ve biyoteknoloji uygulamalarının neler olabileceği hakkında tahminde bulunur"
+        }
+      ]
+    },
+    {
+      "name": "Basınç",
+      "outcomes": [
+        {
+          "code": "F.8.3.1.1",
+          "description": "Katı basıncını etkileyen değişkenleri deneyerek keşfeder"
+        },
+        {
+          "code": "F.8.3.1.2",
+          "description": "Sıvı basıncını etkileyen değişkenleri tahmin eder ve tahminlerini test eder"
+        },
+        {
+          "code": "F.8.3.1.3",
+          "description": "Katı, sıvı ve gazların basınç özelliklerinin günlük yaşam ve teknolojideki uygulamalarına örnekler verir"
+        }
+      ]
+    },
+    {
+      "unit": "Madde ve Endüstri",
+      "name": "Periyodik Sistem",
+      "outcomes": [
+        {
+          "code": "F.8.4.1.1",
+          "description": "Periyodik sistemde, grup ve periyotların nasıl oluşturulduğunu açıklar"
+        },
+        {
+          "code": "F.8.4.1.2",
+          "description": "Elementleri periyodik tablo üzerinde metal, yarımetal ve ametal olarak sınıflandırır"
+        }
+      ]
+    },
+    {
+      "unit": "Madde ve Endüstri",
+      "name": "Fiziksel ve Kimyasal Değişimler",
+      "outcomes": [
+        {
+          "code": "F.8.4.2.1",
+          "description": "Fiziksel ve kimyasal değişim arasındaki farkları, çeşitli olayları gözlemleyerek açıklar"
+        }
+      ]
+    },
+    {
+      "unit": "Madde ve Endüstri",
+      "name": "Kimyasal Tepkimeler",
+      "outcomes": [
+        {
+          "code": "F.8.4.3.1",
+          "description": "Bileşiklerin kimyasal tepkime sonucunda oluştuğunu bilir"
+        }
+      ]
+    },
+    {
+      "unit": "Madde ve Endüstri",
+      "name": "Asitler ve Bazlar",
+      "outcomes": [
+        {
+          "code": "F.8.4.4.1",
+          "description": "Asit ve bazların genel özelliklerini ifade eder"
+        },
+        {
+          "code": "F.8.4.4.2",
+          "description": "Asit ve bazlara günlük yaşamdan örnekler verir"
+        },
+        {
+          "code": "F.8.4.4.3",
+          "description": "Günlük hayatta ulaşılabilecek malzemeleri asit-baz ayracı olarak kullanır"
+        },
+        {
+          "code": "F.8.4.4.4",
+          "description": "Maddelerin asitlik ve bazlık durumlarına ilişkin pH değerlerini kullanarak çıkarımda bulunur"
+        },
+        {
+          "code": "F.8.4.4.5",
+          "description": "Asit ve bazların çeşitli maddeler üzerindeki etkilerini gözlemler"
+        },
+        {
+          "code": "F.8.4.4.6",
+          "description": "Asit ve bazların temizlik malzemesi olarak kullanılması esnasında oluşabilecek tehlikelerle ilgili gerekli tedbirleri alır"
+        },
+        {
+          "code": "F.8.4.4.7",
+          "description": "Asit yağmurlarının önlenmesine yönelik çözüm önerileri sunar"
+        }
+      ]
+    },
+    {
+      "unit": "Madde ve Endüstri",
+      "name": "Maddenin Isı ile Etkileşimi",
+      "outcomes": [
+        {
+          "code": "F.8.4.5.1",
+          "description": "Isınmanın maddenin cinsine, kütlesine ve sıcaklık değişimine bağlı olduğunu deney yaparak keşfeder"
+        },
+        {
+          "code": "F.8.4.5.2",
+          "description": "Hâl değiştirmek için gerekli ısının maddenin cinsi ve kütlesiyle ilişkili olduğunu deney yaparak keşfeder"
+        },
+        {
+          "code": "F.8.4.5.3",
+          "description": "Maddelerin hâl değişimi ve ısınma grafiğini çizerek yorumlar"
+        },
+        {
+          "code": "F.8.4.5.4",
+          "description": "Günlük yaşamda meydana gelen hâl değişimleri ile ısı alışverişini ilişkilendirir"
+        }
+      ]
+    },
+    {
+      "unit": "Madde ve Endüstri",
+      "name": "Türkiye'de Kimya Endüstrisi",
+      "outcomes": [
+        {
+          "code": "F.8.4.6.1",
+          "description": "Geçmişten günümüze Türkiye'deki kimya endüstrisinin gelişimini araştırır"
+        },
+        {
+          "code": "F.8.4.6.2",
+          "description": "Kimya endüstrisinde meslek dallarını araştırır ve gelecekteki yeni meslek alanları hakkında öneriler sunar"
+        }
+      ]
+    },
+    {
+      "name": "Basit Makineler",
+      "outcomes": [
+        {
+          "code": "F.8.5.1.1",
+          "description": "Basit makinelerin sağladığı avantajları örnekler üzerinden açıklar"
+        },
+        {
+          "code": "F.8.5.1.2",
+          "description": "Basit makinelerden yararlanarak günlük yaşamda iş kolaylığı sağlayacak bir düzenek tasarlar"
+        }
+      ]
+    },
+    {
+      "unit": "Enerji Dönüşümleri ve Çevre Bilimi",
+      "name": "Besin Zinciri ve Enerji Akışı",
+      "outcomes": [
+        {
+          "code": "F.8.6.1.1",
+          "description": "Besin zincirindeki üretici, tüketici, ayrıştırıcılara örnekler verir"
+        }
+      ]
+    },
+    {
+      "unit": "Enerji Dönüşümleri ve Çevre Bilimi",
+      "name": "Enerji Dönüşümleri",
+      "outcomes": [
+        {
+          "code": "F.8.6.2.1",
+          "description": "Bitkilerde besin üretiminde fotosentezin önemini fark eder"
+        },
+        {
+          "code": "F.8.6.2.2",
+          "description": "Fotosentez hızını etkileyen faktörler ile ilgili çıkarımlarda bulunur"
+        },
+        {
+          "code": "F.8.6.2.3",
+          "description": "Canlılarda solunumun önemini belirtir"
+        }
+      ]
+    },
+    {
+      "unit": "Enerji Dönüşümleri ve Çevre Bilimi",
+      "name": "Madde Döngüleri ve Çevre Sorunları",
+      "outcomes": [
+        {
+          "code": "F.8.6.3.1",
+          "description": "Madde döngülerini şema üzerinde göstererek açıklar"
+        },
+        {
+          "code": "F.8.6.3.2",
+          "description": "Madde döngülerinin yaşam açısından önemini sorgular"
+        },
+        {
+          "code": "F.8.6.3.3",
+          "description": "Küresel iklim değişikliklerinin nedenlerini ve olası sonuçlarını tartışır"
+        }
+      ]
+    },
+    {
+      "unit": "Enerji Dönüşümleri ve Çevre Bilimi",
+      "name": "Sürdürülebilir Kalkınma",
+      "outcomes": [
+        {
+          "code": "F.8.6.4.1",
+          "description": "Kaynakların kullanımında tasarruflu davranmaya özen gösterir"
+        },
+        {
+          "code": "F.8.6.4.2",
+          "description": "Kaynakların tasarruflu kullanımına yönelik proje tasarlar"
+        },
+        {
+          "code": "F.8.6.4.3",
+          "description": "Geri dönüşüm için katı atıkların ayrıştırılmasının önemini açıklar"
+        },
+        {
+          "code": "F.8.6.4.4",
+          "description": "Geri dönüşümün ülke ekonomisine katkısına ilişkin araştırma verilerini kullanarak çözüm önerileri sunar"
+        },
+        {
+          "code": "F.8.6.4.5",
+          "description": "Kaynakların tasarruflu kullanılmaması durumunda gelecekte karşılaşılabilecek problemleri belirterek çözüm önerileri sunar"
+        }
+      ]
+    },
+    {
+      "unit": "Elektrik Yükleri ve Elektrik Enerjisi",
+      "name": "Elektrik Yükleri ve Elektriklenme",
+      "outcomes": [
+        {
+          "code": "F.8.7.1.1",
+          "description": "Elektriklenmeyi, bazı doğa olayları ve teknolojideki uygulama örnekleri ile açıklar"
+        },
+        {
+          "code": "F.8.7.1.2",
+          "description": "Elektrik yüklerini sınıflandırarak aynı ve farklı cins elektrik yüklerinin birbirlerine etkisini açıklar"
+        },
+        {
+          "code": "F.8.7.1.3",
+          "description": "Deneyler yaparak elektriklenme çeşitlerini fark eder"
+        }
+      ]
+    },
+    {
+      "unit": "Elektrik Yükleri ve Elektrik Enerjisi",
+      "name": "Elektrik Yüklü Cisimler",
+      "outcomes": [
+        {
+          "code": "F.8.7.2.1",
+          "description": "Cisimleri, sahip oldukları elektrik yükleri bakımından sınıflandırır"
+        },
+        {
+          "code": "F.8.7.2.2",
+          "description": "Topraklamayı açıklar"
+        }
+      ]
+    },
+    {
+      "unit": "Elektrik Yükleri ve Elektrik Enerjisi",
+      "name": "Elektrik Enerjisinin Dönüşümü",
+      "outcomes": [
+        {
+          "code": "F.8.7.3.1",
+          "description": "Elektrik enerjisinin ısı, ışık ve hareket enerjisine dönüştüğü uygulamalara örnekler verir"
+        },
+        {
+          "code": "F.8.7.3.2",
+          "description": "Elektrik enerjisinin ısı, ışık veya hareket enerjisine dönüşümü temel alan bir model tasarlar"
+        },
+        {
+          "code": "F.8.7.3.3",
+          "description": "Güç santrallerinde elektrik enerjisinin nasıl üretildiğini açıklar"
+        },
+        {
+          "code": "F.8.7.3.4",
+          "description": "Güç santrallerinin avantaj ve dezavantajları konusunda fikirler üretir"
+        },
+        {
+          "code": "F.8.7.3.5",
+          "description": "Elektrik enerjisinin bilinçli ve tasarruflu kullanılmasının aile ve ülke ekonomisi bakımından önemini tartışır"
+        },
+        {
+          "code": "F.8.7.3.6",
+          "description": "Evlerde elektriği tasarruflu kullanmaya özen gösterir"
+        }
+      ]
+    }
+  ]
+}

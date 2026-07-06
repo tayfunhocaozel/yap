@@ -44,6 +44,53 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.3.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Müfredat verisi `docs/kazanimlar_rows.csv`'den beslenecek şekilde
+uygulamaya bağlandı (bkz. 01_DATA_MODEL.md Bölüm 7).
+
+### Added
+
+-   `scripts/convert-curriculum-csv.mjs`: kaynak CSV'yi ders/sınıf
+    bazında JSON seed dosyalarına dönüştürür (İnkılâp Tarihi hariç,
+    "İlköğretim Matematik" → "Matematik" eşlemesiyle). Yeni kaynak veri
+    (Din Kültürü, İngilizce 8. sınıf) geldiğinde yeniden çalıştırılabilir.
+-   `src/database/seeds/curriculum/*.json`: 18 seed dosyası (5 ders ×
+    ilgili sınıf seviyeleri).
+-   Subject/Topic/CurriculumOutcome için Repository katmanı.
+-   `curriculumSeedService`: seed dosyalarını idempotent şekilde
+    veritabanına yükler; uygulama her açıldığında çalışır, kazanım
+    kodu zaten varsa tekrar oluşturmaz.
+-   Unit testler: seed'in veri oluşturduğu, iki kez çalıştırıldığında
+    kopya oluşturmadığı, İnkılâp Tarihi'nin içe aktarılmadığı doğrulandı.
+
+### Doğrulama
+
+-   Tarayıcıda IndexedDB doğrudan sorgulanarak teyit edildi: 5 ders,
+    163 konu, 1310 kazanım (1349 kaynak satır − 39 İnkılâp Tarihi satırı).
+-   Sayfa yenilendiğinde kayıt sayılarının değişmediği (idempotency)
+    doğrulandı.
+
+### Bilinen Sorunlar
+
+-   Din Kültürü ve Ahlak Bilgisi, İngilizce 8. sınıf verisi hâlâ
+    eksik (bkz. v0.1.2).
+-   Müfredatı görüntüleyen bir ekran henüz yok; veri yalnızca
+    veritabanında mevcut (Müfredat modülü sonraki bir adımda
+    geliştirilecek).
+
+------------------------------------------------------------------------
+
 # v0.2.0
 
 ## Yayın Tarihi

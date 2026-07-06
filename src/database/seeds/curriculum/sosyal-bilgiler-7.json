@@ -1,0 +1,104 @@
+{
+  "subject": "Sosyal Bilgiler",
+  "grade": 7,
+  "topics": [
+    {
+      "name": "Birlikte Yaşamak",
+      "outcomes": [
+        {
+          "code": "SB.7.1.1.",
+          "description": "Dâhil olduğu gruplarda ve sosyal hayatta etkili iletişimin önemini sorgulayabilme"
+        },
+        {
+          "code": "SB.7.1.2.",
+          "description": "Özel gereksinimli bireyler için fırsat eşitliğini sürdürmeye yönelik fikir üretebilme"
+        },
+        {
+          "code": "SB.7.1.3.",
+          "description": "Türk toplumunun millî meseleler karşısında gösterdiği tutum ve davranışlara ilişkin çıkarım yapabilme"
+        }
+      ]
+    },
+    {
+      "name": "Evimiz Dünya",
+      "outcomes": [
+        {
+          "code": "SB.7.2.1.",
+          "description": "Küreselleşmenin insan ve toplum hayatında meydana getirdiği değişimi yorumlayabilme"
+        },
+        {
+          "code": "SB.7.2.2.",
+          "description": "Bölgesel ve küresel sorunların çözümünde ülkemizin rolünü özetleyebilme"
+        }
+      ]
+    },
+    {
+      "name": "Ortak Mirasımız",
+      "outcomes": [
+        {
+          "code": "SB.7.3.1.",
+          "description": "Osmanlı Devleti’nin cihan devleti hâline gelmesini sağlayan politikaları sorgulayabilme"
+        },
+        {
+          "code": "SB.7.3.2.",
+          "description": "Değişen dünya dengeleri karşısında Osmanlı Devleti’nin uyguladığı yenilikleri neden ve sonuçlarıyla yorumlayabilme"
+        },
+        {
+          "code": "SB.7.3.3.",
+          "description": "Osmanlı kültür ve medeniyet unsurlarına ilişkin oluşturduğu ürünü paylaşabilme"
+        }
+      ]
+    },
+    {
+      "name": "Yaşayan Demokrasimiz",
+      "outcomes": [
+        {
+          "code": "SB.7.4.1.",
+          "description": "Türkiye Cumhuriyeti’nin temel niteliklerini özetleyebilme"
+        },
+        {
+          "code": "SB.7.4.2.",
+          "description": "Türkiye Cumhuriyeti Devleti’nin yönetim yapısını çözümleyebilme"
+        },
+        {
+          "code": "SB.7.4.3.",
+          "description": "Ülkemizdeki demokrasinin gelişimini, demokrasinin temel ilkeleri açısından yorumlayabilme"
+        },
+        {
+          "code": "SB.7.4.4.",
+          "description": "Demokrasinin uygulama sürecinde karşılaşılan sorunları özetleyebilme"
+        }
+      ]
+    },
+    {
+      "name": "Hayatımızdaki Ekonomi",
+      "outcomes": [
+        {
+          "code": "SB.7.5.1.",
+          "description": "Millî kalkınma hamlelerini neden ve sonuçlarıyla yorumlayabilme"
+        },
+        {
+          "code": "SB.7.5.2.",
+          "description": "Ekonomik gelişmişlik ile üretim, dağıtım ve tüketim döngüsü arasındaki ilişkiyi çözümleyebilme"
+        }
+      ]
+    },
+    {
+      "name": "Teknoloji ve Sosyal Bilimler",
+      "outcomes": [
+        {
+          "code": "SB.7.6.1.",
+          "description": "Bilimsel ve teknolojik gelişmelerin gelecekteki toplum hayatına etkilerine ilişkin öngörüde bulunabilme"
+        },
+        {
+          "code": "SB.7.6.2.",
+          "description": "Örnek metinler üzerinden sosyal bilimlerin çalışma alanlarına dair genelleme yapabilme"
+        },
+        {
+          "code": "SB.7.6.3.",
+          "description": "Toplumsal hayatta karşılaşabileceği bir probleme yönelik bilimsel sorgulama yapabilme"
+        }
+      ]
+    }
+  ]
+}

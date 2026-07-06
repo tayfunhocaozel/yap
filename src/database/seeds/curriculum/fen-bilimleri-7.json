@@ -1,0 +1,185 @@
+{
+  "subject": "Fen Bilimleri",
+  "grade": 7,
+  "topics": [
+    {
+      "name": "Uzay Çağı",
+      "outcomes": [
+        {
+          "code": "FB.7.1.1.1",
+          "description": "Uzay araştırmaları için geliştirilen teknolojileri karşılaştırabilme"
+        },
+        {
+          "code": "FB.7.1.1.2",
+          "description": "Uzay gözlem araçları ile ilgili bilimsel model oluşturabilme"
+        },
+        {
+          "code": "FB.7.1.1.3",
+          "description": "Uzay araştırmalarının yol açabileceği problemleri çözebilme"
+        },
+        {
+          "code": "FB.7.1.2.1",
+          "description": "Yıldızların yaşamını açıklayarak yapılandırabilme"
+        },
+        {
+          "code": "FB.7.1.2.2",
+          "description": "Yıldız, galaksi ve evren kavramlarını açıklayarak yapılandırabilme"
+        }
+      ]
+    },
+    {
+      "name": "Kuvvet ve Enerjiyi Keşfedelim",
+      "outcomes": [
+        {
+          "code": "FB.7.2.1.1",
+          "description": "Fiziksel anlamda yapılan işin bağlı olduğu faktörlere ilişkin bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.7.2.1.2",
+          "description": "Enerji çeşitlerinden kinetik ve potansiyel enerjiyi karşılaştırabilme"
+        },
+        {
+          "code": "FB.7.2.2.1",
+          "description": "Enerji dönüşümünden hareketle enerjinin korunduğu tümevarımsal akıl yürütebilme"
+        }
+      ]
+    },
+    {
+      "name": "Vücudumuzdaki Sistemler",
+      "outcomes": [
+        {
+          "code": "FB.7.3.1.1",
+          "description": "Sindirim sistemini oluşturan yapı ve organların görevlerini model üzerinde gözlemleyebilme"
+        },
+        {
+          "code": "FB.7.3.1.2",
+          "description": "Sindirim sisteminin sağlığı için yapılması gerekenler konusunda bilgi toplayabilme"
+        },
+        {
+          "code": "FB.7.3.2.1",
+          "description": "Dolaşım sistemini oluşturan yapı ve organların görevlerini model üzerinde gözlemleyebilme"
+        },
+        {
+          "code": "FB.7.3.2.2",
+          "description": "Kan bağışının toplumsal dayanışma açısından önemini tartışabilme"
+        },
+        {
+          "code": "FB.7.3.2.3",
+          "description": "Dolaşım sisteminin sağlığı için yapılması gerekenler konusunda bilgi toplayabilme"
+        },
+        {
+          "code": "FB.7.3.3.1",
+          "description": "Solunum sistemini oluşturan yapı ve organların görevlerini model üzerinde gözlemleyebilme"
+        },
+        {
+          "code": "FB.7.3.3.2",
+          "description": "Solunum sisteminin sağlığı için yapılması gerekenler konusunda bilgi toplayabilme"
+        },
+        {
+          "code": "FB.7.3.4.1",
+          "description": "Boşaltım sistemini oluşturan yapı ve organları model üzerinde gözlemleyebilme"
+        },
+        {
+          "code": "FB.7.3.4.2",
+          "description": "Boşaltım sisteminin sağlığı için yapılması gerekenler konusunda bilgi toplayabilme"
+        }
+      ]
+    },
+    {
+      "name": "Işığın Kırılması ve Mercekler",
+      "outcomes": [
+        {
+          "code": "FB.7.4.1.1",
+          "description": "Ortam değiştiren ışığın izlediği yolu gözlemleyerek kırılma olayına yönelik bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.7.4.2.1",
+          "description": "Mercek çeşitlerine yönelik bilimsel çıkarım yapabilme"
+        },
+        {
+          "code": "FB.7.4.2.2",
+          "description": "Merceklerin günlük hayatta kullanım alanlarını örneklerle sınıflandırabilme"
+        }
+      ]
+    },
+    {
+      "name": "Maddenin Doğasına Yolculuk",
+      "outcomes": [
+        {
+          "code": "FB.7.5.1.1",
+          "description": "Atomun yapısını ve yapısındaki temel parçacıkları çözümleyebilme"
+        },
+        {
+          "code": "FB.7.5.1.2",
+          "description": "Geçmişten günümüze atom kavramı ile ilgili bilimsel bilgilerin değişebileceğini sorgulayabilme"
+        },
+        {
+          "code": "FB.7.5.1.3",
+          "description": "Farklı molekül modelleri oluşturabilme"
+        },
+        {
+          "code": "FB.7.5.1.4",
+          "description": "Atomların elektron dizilimlerini yapılandırabilme"
+        },
+        {
+          "code": "FB.7.5.2.1",
+          "description": "Saf maddeleri element ve bileşik olarak sınıflandırabilme"
+        },
+        {
+          "code": "FB.7.5.2.2",
+          "description": "Periyodik tablodaki ilk 18 elementin isimlerini sembolleriyle ifade edebilme"
+        },
+        {
+          "code": "FB.7.5.2.3",
+          "description": "Periyodik tabloda grup ve periyotları karşılaştırabilme"
+        },
+        {
+          "code": "FB.7.5.2.4",
+          "description": "Bileşiklerin isimlerini formülleriyle yapılandırabilme"
+        },
+        {
+          "code": "FB.7.5.3.1",
+          "description": "Karışımları homojen ve heterojen olarak sınıflandırabilme"
+        },
+        {
+          "code": "FB.7.5.3.2",
+          "description": "Çözünme hızına etki eden faktörler ile ilgili hipotez oluşturabilme"
+        },
+        {
+          "code": "FB.7.5.4.1",
+          "description": "Karışımları ayırmak için çeşitli deneyler yapabilme"
+        }
+      ]
+    },
+    {
+      "name": "Elektriklenme",
+      "outcomes": [
+        {
+          "code": "FB.7.6.1.1",
+          "description": "Elektriklenme ile ilgili bilgi toplayabilme"
+        },
+        {
+          "code": "FB.7.6.1.2",
+          "description": "Elektriklenme çeşitlerini belirlemeye yönelik deney yapabilme"
+        },
+        {
+          "code": "FB.7.6.1.3",
+          "description": "Cisimlerin elektrik yüklerini sınıflandırabilme"
+        }
+      ]
+    },
+    {
+      "name": "Sürdürülebilir Yaşam ve Enerji",
+      "outcomes": [
+        {
+          "code": "FB.7.7.1.1",
+          "description": "Besin zincirindeki canlıları arasındaki ilişkileri yapılandırabilme"
+        },
+        {
+          "code": "FB.7.7.2.1",
+          "description": "Kaynakların tasarruflu kullanımının önemini sorgulayabilme."
+        }
+      ]
+    }
+  ]
+}

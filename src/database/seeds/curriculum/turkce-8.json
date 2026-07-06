@@ -1,0 +1,438 @@
+{
+  "subject": "Türkçe",
+  "grade": 8,
+  "topics": [
+    {
+      "name": "Dinleme/İzleme",
+      "outcomes": [
+        {
+          "code": "T.D.8.1.",
+          "description": "Dinlemede/izlemede materyal seçimini yönetebilme"
+        },
+        {
+          "code": "T.D.8.10.",
+          "description": "Dinledikleri/izledikleri arasında karşılaştırma yapabilme"
+        },
+        {
+          "code": "T.D.8.11.",
+          "description": "Dinlediğindeki/izlediğindeki unsurları sınıflandırabilme"
+        },
+        {
+          "code": "T.D.8.12.",
+          "description": "Dinlediğini/izlediğini yorumlayabilme"
+        },
+        {
+          "code": "T.D.8.13.",
+          "description": "Öyküleyici metinlerdeki hikâye unsurlarını belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.14.",
+          "description": "Bilgilendirici metinlerde metin yapılarından hareketle önemli bilgileri belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.15.",
+          "description": "Bilgilendirici metinde anahtar kelimeleri belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.16.",
+          "description": "Metnin bölümlerini belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.17.",
+          "description": "Bilgilendirici metinde düşünceyi geliştirme yollarını belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.18.",
+          "description": "Dinlediğindeki/izlediğindeki söz sanatlarını belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.19.",
+          "description": "Dinlediğinde/izlediğinde kullanılan ikna etme tekniklerini belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.2.",
+          "description": "Dinlemede/izlemede strateji ve yöntem seçimlerini yönetebilme"
+        },
+        {
+          "code": "T.D.8.20.",
+          "description": "Dinlediğinden/izlediğinden hareketle söz varlığını geliştirmeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.21.",
+          "description": "Çoklu ortam ögelerine yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.D.8.22.",
+          "description": "Dinlediğini/izlediğini özetleyebilme"
+        },
+        {
+          "code": "T.D.8.23.",
+          "description": "Dinlediğini/izlediğini değerlendirebilme"
+        },
+        {
+          "code": "T.D.8.24.",
+          "description": "Medya içeriğini değerlendirebilme"
+        },
+        {
+          "code": "T.D.8.25.",
+          "description": "Dinlediğini/izlediğini eleştirebilme"
+        },
+        {
+          "code": "T.D.8.26.",
+          "description": "Dinlediğindeki/izlediğindeki probleme çözüm üretebilme"
+        },
+        {
+          "code": "T.D.8.27.",
+          "description": "Dinleme/izleme sürecine yönelik öz yansıtma yapabilme/kendini uyarlayabilme"
+        },
+        {
+          "code": "T.D.8.3.",
+          "description": "Dinleyeceğinin/izleyeceğinin içeriğine yönelik tahminde bulunabilme"
+        },
+        {
+          "code": "T.D.8.4.",
+          "description": "Dinlediğinde/izlediğinde geçen anlamını bilmediği söz varlığı unsurlarının anlamını tahmin edebilme"
+        },
+        {
+          "code": "T.D.8.5.",
+          "description": "Dinlediğinin/izlediğinin yüzey anlamını belirleyebilme"
+        },
+        {
+          "code": "T.D.8.6.",
+          "description": "Görselle iletilen anlamı belirleyebilme"
+        },
+        {
+          "code": "T.D.8.7.",
+          "description": "Dinlediğinin/izlediğinin derin anlamını belirlemeye yönelik basit çıkarımlar yapabilme"
+        },
+        {
+          "code": "T.D.8.8.",
+          "description": "Dinlediğinin/izlediğinin derin anlamını belirlemeye yönelik üst düzey çıkarımlar yapabilme"
+        },
+        {
+          "code": "T.D.8.9.",
+          "description": "Dinlediğini/izlediğini kendi içinde karşılaştırabilme"
+        }
+      ]
+    },
+    {
+      "name": "Konuşma",
+      "outcomes": [
+        {
+          "code": "T.K.8.1.",
+          "description": "Konuşma sürecini yönetebilme"
+        },
+        {
+          "code": "T.K.8.10.",
+          "description": "Sözlü sunum yapabilme"
+        },
+        {
+          "code": "T.K.8.11.",
+          "description": "Konuşmasında tahminlerinden yararlanabilme"
+        },
+        {
+          "code": "T.K.8.12.",
+          "description": "Konuşmasında karşılaştırma yapabilme"
+        },
+        {
+          "code": "T.K.8.13.",
+          "description": "Konuşmasında sınıflandırma yapabilme"
+        },
+        {
+          "code": "T.K.8.14.",
+          "description": "Yorumunu sözlü olarak ifade edebilme"
+        },
+        {
+          "code": "T.K.8.15.",
+          "description": "Sözlü olarak özetleyebilme"
+        },
+        {
+          "code": "T.K.8.16.",
+          "description": "Değerlendirmesini sözlü olarak ifade edebilme"
+        },
+        {
+          "code": "T.K.8.17.",
+          "description": "Sözlü olarak tartışmaya katılabilme"
+        },
+        {
+          "code": "T.K.8.18.",
+          "description": "Eleştirisini sözlü olarak ifade edebilme"
+        },
+        {
+          "code": "T.K.8.19.",
+          "description": "Problem çözümüne yönelik konuşma yapabilme"
+        },
+        {
+          "code": "T.K.8.2.",
+          "description": "Konuşma yöntem ve tekniklerine yönelik seçimlerini yönetebilme"
+        },
+        {
+          "code": "T.K.8.20.",
+          "description": "Hazırlıklı konuşmasını yapılandırabilme"
+        },
+        {
+          "code": "T.K.8.21.",
+          "description": "Konuşmasında düşünceyi geliştirme yollarını kullanabilme"
+        },
+        {
+          "code": "T.K.8.22.",
+          "description": "Konuşmasını zenginleştirecek biçimde söz varlığını kullanabilme"
+        },
+        {
+          "code": "T.K.8.23.",
+          "description": "Konuşmasında açık ve örtük ifadeleri kullanabilme"
+        },
+        {
+          "code": "T.K.8.24.",
+          "description": "Uygun geçiş ve bağlantı ifadelerini kullanabilme"
+        },
+        {
+          "code": "T.K.8.25.",
+          "description": "Konuşmasında beden dilini ve mekânı etkili kullanabilme"
+        },
+        {
+          "code": "T.K.8.26.",
+          "description": "Konuşma sürecine yönelik öz yansıtma yapabilme/kendini uyarlayabilme"
+        },
+        {
+          "code": "T.K.8.3.",
+          "description": "Konuşmasında amaç ve içeriğe yönelik seçimlerini yönetebilme"
+        },
+        {
+          "code": "T.K.8.4.",
+          "description": "Konuşmasında ön bilgilerinden yararlanabilme"
+        },
+        {
+          "code": "T.K.8.5.",
+          "description": "Konuşmasında uygun tepki verebilme"
+        },
+        {
+          "code": "T.K.8.6.",
+          "description": "Konuşmasında çoklu ortam ögeleriyle içerik oluşturabilme"
+        },
+        {
+          "code": "T.K.8.7.",
+          "description": "Yaratıcı konuşma yapabilme"
+        },
+        {
+          "code": "T.K.8.8.",
+          "description": "Hazırlıksız konuşma yapabilme"
+        },
+        {
+          "code": "T.K.8.9.",
+          "description": "Konuşmasında sesini uygun şekilde kullanabilme"
+        }
+      ]
+    },
+    {
+      "name": "Okuma",
+      "outcomes": [
+        {
+          "code": "T.O.8.1.",
+          "description": "Okumada materyal seçimini yönetebilme"
+        },
+        {
+          "code": "T.O.8.10.",
+          "description": "Metinler arası karşılaştırma yapabilme"
+        },
+        {
+          "code": "T.O.8.11.",
+          "description": "Metindeki unsurları sınıflandırabilme"
+        },
+        {
+          "code": "T.O.8.12.",
+          "description": "Metni yorumlayabilme"
+        },
+        {
+          "code": "T.O.8.13.",
+          "description": "Öyküleyici metinlerdeki hikâye unsurlarını belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.14.",
+          "description": "Bilgilendirici metinlerde metin yapılarından hareketle önemli bilgileri belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.15.",
+          "description": "Bilgilendirici metinde anahtar kelimeleri belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.16.",
+          "description": "Metnin bölümlerini belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.17.",
+          "description": "Şiirin biçim özelliklerini belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.18.",
+          "description": "Bilgilendirici metinde düşünceyi geliştirme yollarını belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.19.",
+          "description": "Metindeki söz sanatlarını belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.2.",
+          "description": "Okumada strateji ve yöntem seçimlerini yönetebilme"
+        },
+        {
+          "code": "T.O.8.20.",
+          "description": "Metinde kullanılan ikna etme tekniklerini belirlemeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.21.",
+          "description": "Metinden hareketle söz varlığını geliştirmeye yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.22.",
+          "description": "Çoklu ortam ögelerine yönelik çözümleme yapabilme"
+        },
+        {
+          "code": "T.O.8.23.",
+          "description": "Okuduğunu özetleyebilme"
+        },
+        {
+          "code": "T.O.8.24.",
+          "description": "Okuduğunu değerlendirebilme"
+        },
+        {
+          "code": "T.O.8.25.",
+          "description": "Basılı ve dijital medya metinlerini değerlendirebilme"
+        },
+        {
+          "code": "T.O.8.26.",
+          "description": "Metni eleştirebilme"
+        },
+        {
+          "code": "T.O.8.27.",
+          "description": "Metindeki probleme çözüm üretebilme"
+        },
+        {
+          "code": "T.O.8.28.",
+          "description": "Okuma sürecine yönelik öz yansıtma yapabilme/kendini uyarlayabilme"
+        },
+        {
+          "code": "T.O.8.3.",
+          "description": "Okuyacağı metnin içeriğine yönelik tahminde bulunabilme"
+        },
+        {
+          "code": "T.O.8.4.",
+          "description": "Metinde geçen anlamını bilmediği söz varlığı unsurlarının anlamını tahmin edebilme"
+        },
+        {
+          "code": "T.O.8.5.",
+          "description": "Metnin yüzey anlamını belirleyebilme"
+        },
+        {
+          "code": "T.O.8.6.",
+          "description": "Görselle iletilen anlamı belirleyebilme"
+        },
+        {
+          "code": "T.O.8.7.",
+          "description": "Metnin derin anlamını belirlemeye yönelik basit çıkarımlar yapabilme"
+        },
+        {
+          "code": "T.O.8.8.",
+          "description": "Metnin derin anlamını belirlemeye yönelik üst düzey çıkarımlar yapabilme"
+        },
+        {
+          "code": "T.O.8.9.",
+          "description": "Metin içi karşılaştırma yapabilme"
+        }
+      ]
+    },
+    {
+      "name": "Yazma",
+      "outcomes": [
+        {
+          "code": "T.Y.8.1.",
+          "description": "Yazma sürecini yönetebilme"
+        },
+        {
+          "code": "T.Y.8.10.",
+          "description": "Yazısında sınıflandırma yapabilme"
+        },
+        {
+          "code": "T.Y.8.11.",
+          "description": "Yorumunu yazılı olarak ifade edebilme"
+        },
+        {
+          "code": "T.Y.8.12.",
+          "description": "Yazılı olarak özetleyebilme"
+        },
+        {
+          "code": "T.Y.8.13.",
+          "description": "Değerlendirmesini yazılı olarak ifade edebilme"
+        },
+        {
+          "code": "T.Y.8.14.",
+          "description": "Yazılı üretiminde ve yazılı etkileşiminde tartışabilme"
+        },
+        {
+          "code": "T.Y.8.15.",
+          "description": "Eleştirisini yazılı olarak ifade edebilme"
+        },
+        {
+          "code": "T.Y.8.16.",
+          "description": "Problem çözümüne yönelik yazabilme"
+        },
+        {
+          "code": "T.Y.8.17.",
+          "description": "Yazısında düşünceyi geliştirme yollarını kullanabilme"
+        },
+        {
+          "code": "T.Y.8.18.",
+          "description": "Yazısını zenginleştirecek biçimde söz varlığını kullanabilme"
+        },
+        {
+          "code": "T.Y.8.19.",
+          "description": "Yazısında açık ve örtük ifade etmeye yönelik yapıları kullanabilme"
+        },
+        {
+          "code": "T.Y.8.2.",
+          "description": "Yazma strateji, yöntem ve tekniklerine yönelik seçimlerini yönetebilme"
+        },
+        {
+          "code": "T.Y.8.20.",
+          "description": "Uygun geçiş ve bağlantı ifadelerini kullanabilme"
+        },
+        {
+          "code": "T.Y.8.21.",
+          "description": "Yazım kuralları ve noktalama işaretlerini uygulayabilme"
+        },
+        {
+          "code": "T.Y.8.22.",
+          "description": "Yazma sürecine yönelik öz yansıtma yapabilme/kendini uyarlayabilme"
+        },
+        {
+          "code": "T.Y.8.3.",
+          "description": "Yazısında içerik ve yapıya yönelik seçimlerini yönetebilme"
+        },
+        {
+          "code": "T.Y.8.4.",
+          "description": "Yazılı üretim ve yazılı etkileşiminde ön bilgilerinden yararlanabilme"
+        },
+        {
+          "code": "T.Y.8.5.",
+          "description": "Yazılı etkileşiminde uygun tepki verebilme"
+        },
+        {
+          "code": "T.Y.8.6.",
+          "description": "Yazısında çoklu ortam ögeleriyle içerik oluşturabilme"
+        },
+        {
+          "code": "T.Y.8.7.",
+          "description": "Yaratıcı yazı yazabilme"
+        },
+        {
+          "code": "T.Y.8.8.",
+          "description": "Yazılı üretim ve yazılı etkileşiminde tahminlerinden yararlanabilme"
+        },
+        {
+          "code": "T.Y.8.9.",
+          "description": "Yazısında karşılaştırma yapabilme"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "subject": "Matematik",
+  "grade": 7,
+  "topics": [
+    {
+      "unit": "Sayılar ve Nicelikler",
+      "name": "Tam Sayılar ve Rasyonel Sayılar",
+      "outcomes": [
+        {
+          "code": "MAT.7.1.1",
+          "description": "Karşılaştığı durumlarda doğal sayı, tam sayı ve rasyonel sayıları yorumlayabilme"
+        },
+        {
+          "code": "MAT.7.1.2",
+          "description": "Gerçek yaşam durumlarında rasyonel sayıların ondalık gösterimlerini yansıtabilme"
+        },
+        {
+          "code": "MAT.7.1.3",
+          "description": "Rasyonel sayıların sıralama ve karşılaştırma ilişkilerini yorumlayabilme"
+        },
+        {
+          "code": "MAT.7.1.4",
+          "description": "Rasyonel sayılar ve işlemler içeren gerçek yaşam problemlerini çözebilme"
+        }
+      ]
+    },
+    {
+      "unit": "Sayılar ve Nicelikler",
+      "name": "Oran ve Orantı",
+      "outcomes": [
+        {
+          "code": "MAT.7.1.5",
+          "description": "Gerçek yaşam durumları üzerinden oran ilişkileri hakkında muhakeme yapabilme"
+        },
+        {
+          "code": "MAT.7.1.6",
+          "description": "Gerçek yaşam durumları üzerinden orantısal çoklukları yorumlayabilme"
+        },
+        {
+          "code": "MAT.7.1.7",
+          "description": "Gerçek yaşam durumları üzerinden doğru orantılı çokluklara ilişkin problemleri çözebilme"
+        }
+      ]
+    },
+    {
+      "unit": "Cebirsel Düşünme ve Değişimler",
+      "name": "Cebirsel İfadeler",
+      "outcomes": [
+        {
+          "code": "MAT.7.2.1",
+          "description": "Gerçek yaşam ya da matematiksel durumlar üzerinden cebirsel ifadelerle toplama, çıkarma ve bir rasyonel sayıyla çarpma işlemi yapabilme"
+        }
+      ]
+    },
+    {
+      "unit": "Cebirsel Düşünme ve Değişimler",
+      "name": "Denklem ve Eşitsizlikler",
+      "outcomes": [
+        {
+          "code": "MAT.7.2.2",
+          "description": "Denklem ve eşitsizlik içeren gerçek yaşam problemlerini çözebilme"
+        }
+      ]
+    },
+    {
+      "unit": "Cebirsel Düşünme ve Değişimler",
+      "name": "Sayı Örüntüleri ve İspat",
+      "outcomes": [
+        {
+          "code": "MAT.7.2.3",
+          "description": "Sayılar ve özelliklerini içeren ispatlara ilişkin matematiksel muhakeme yapabilme"
+        }
+      ]
+    },
+    {
+      "unit": "Cebirsel Düşünme ve Değişimler",
+      "name": "Algoritmik Düşünme",
+      "outcomes": [
+        {
+          "code": "MAT.7.2.4",
+          "description": "Temel aritmetik ve cebirsel ifadelerle işlem içeren durumlardaki süreci algoritma dilini kullanarak yapılandırabilme"
+        }
+      ]
+    },
+    {
+      "unit": "Geometrik Şekiller",
+      "name": "Üçgenler",
+      "outcomes": [
+        {
+          "code": "MAT.7.3.1",
+          "description": "Matematiksel araç ve teknolojiden yararlanarak üçgende kenarortayı, açıortayı ve yüksekliği çözümleyebilme"
+        },
+        {
+          "code": "MAT.7.3.2",
+          "description": "Üçgenlerde kenarortay inşasını yansıtabilme"
+        }
+      ]
+    },
+    {
+      "unit": "Geometrik Nicelikler",
+      "name": "Yüzey Alanı ve Hacim",
+      "outcomes": [
+        {
+          "code": "MAT.7.4.1",
+          "description": "Geometrik cisimler ile görünümleri arasındaki ilişkiyi çözümleyebilme"
+        },
+        {
+          "code": "MAT.7.4.2",
+          "description": "Dikdörtgen prizmanın açınımını ve yüzey alanını matematiksel araç ve teknolojiden yararlanarak yorumlayabilme"
+        },
+        {
+          "code": "MAT.7.4.3",
+          "description": "Dikdörtgen prizmanın hacmini eş nesneler aracılığıyla yorumlayabilme"
+        },
+        {
+          "code": "MAT.7.4.4",
+          "description": "Dikdörtgen prizmanın hacim bağıntısını değerlendirebilme"
+        },
+        {
+          "code": "MAT.7.4.5",
+          "description": "Hacim ölçme birimleri arasındaki ilişkileri değerlendirebilme"
+        },
+        {
+          "code": "MAT.7.4.6",
+          "description": "Günlük yaşam durumlarında dikdörtgen prizmalar ile modellenen cisimlerin yüzey alanı ve hacmine yönelik problem çözebilme"
+        }
+      ]
+    },
+    {
+      "unit": "Geometrik Nicelikler",
+      "name": "Daire ve Çokgenlerin Alanı",
+      "outcomes": [
+        {
+          "code": "MAT.7.4.10",
+          "description": "Günlük yaşam durumlarında daire, daire dilimi, eşkenar dörtgen ve yamuğun alanına ilişkin problem çözebilme"
+        },
+        {
+          "code": "MAT.7.4.7",
+          "description": "Dikdörtgenin ve paralelkenarın alanına ilişkin deneyimlerini dairenin alan bağıntısına yansıtabilme"
+        },
+        {
+          "code": "MAT.7.4.8",
+          "description": "Çemberde merkez açıyla gördüğü yay uzunluğu arasındaki ilişkiden yola çıkarak daire ve daire diliminin alanına yönelik çıkarım yapabilme"
+        },
+        {
+          "code": "MAT.7.4.9",
+          "description": "Eşkenar dörtgen ve yamuğun alan bağıntılarına dair çıkarım yapabilme"
+        }
+      ]
+    },
+    {
+      "unit": "Dönüşüm",
+      "name": "Yansıma",
+      "outcomes": [
+        {
+          "code": "MAT.7.5.1",
+          "description": "Şekillerin yansıma dönüşümü altındaki görüntülerinin oluşturulmasına dair çıkarım yapabilme"
+        },
+        {
+          "code": "MAT.7.5.2",
+          "description": "Yansıma dönüşümündeki deneyimlerini orta dikme ve açıortay inşasına yansıtabilme"
+        }
+      ]
+    },
+    {
+      "unit": "İstatistiksel Araştırma Süreci",
+      "name": "İstatistik",
+      "outcomes": [
+        {
+          "code": "MAT.7.6.1",
+          "description": "Kategorik ve nicel (sürekli) veri ile çalışabilme ve veriye dayalı karar verebilme"
+        },
+        {
+          "code": "MAT.7.6.2",
+          "description": "Başkaları tarafından oluşturulan kategorik veya nicel (sürekli) veriye dayalı istatistiksel görsel, özet, sonuç ve yorumları eleştirel bakış açısıyla değerlendirebilme"
+        }
+      ]
+    },
+    {
+      "unit": "Veriden Olasılığa",
+      "name": "Olasılık",
+      "outcomes": [
+        {
+          "code": "MAT.7.7.1",
+          "description": "Basit bir olayın ve tümleyeninin olasılığına ilişkin tümevarımsal akıl yürütebilme"
+        },
+        {
+          "code": "MAT.7.7.2",
+          "description": "Aynı deneye ait basit olayların eşit olasılıklı olma durumlarını değerlendirebilme"
+        },
+        {
+          "code": "MAT.7.7.3",
+          "description": "Basit olayları ayrık olma ve ayrık olmama durumlarına göre sınıflandırabilme"
+        }
+      ]
+    }
+  ]
+}
