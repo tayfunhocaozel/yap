@@ -177,7 +177,7 @@ verisinin kaybolmaması kritik önemdedir.
 
 # 13. Kod Kalitesi
 
--   ESLint
+-   Oxlint (Rust tabanlı, hızlı linter; Vite scaffold varsayılanı)
 -   Prettier
 -   TypeScript Strict Mode
 

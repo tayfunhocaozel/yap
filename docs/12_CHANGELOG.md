@@ -44,6 +44,56 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.2.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+İlk çalışan geliştirme dilimi tamamlandı: proje iskeleti ve manuel
+Sınıf/Öğrenci Yönetimi uçtan uca çalışır durumda (Excel/CSV aktarımı
+hariç, bkz. 11_ROADMAP.md sonraki adımlar).
+
+### Added
+
+-   Vite + React + TypeScript proje iskeleti; Dexie, Zustand,
+    react-router-dom, MUI, Vitest, React Testing Library, Playwright
+    bağımlılıkları kuruldu.
+-   05_TECHNICAL_ARCHITECTURE.md'deki klasör yapısı uygulandı
+    (app, features, components, hooks, services, repositories,
+    database, types, utils).
+-   Dexie şeması (`src/database/db.ts`) 01_DATA_MODEL.md'deki tüm 11
+    varlık için tanımlandı (version 1).
+-   Teacher/Class/Student için Repository ve Service katmanları,
+    iş kurallarıyla birlikte (aynı isimde ikinci aktif sınıf
+    oluşturulamaz, sınıf içinde tekil okul no, vb.).
+-   Uygulama kabuğu (sol menü + üst çubuk), 03_UI_UX_GUIDELINES.md
+    renk sistemi ile MUI teması.
+-   Ayarlar (Öğretmen Profili), Sınıf Yönetimi, Öğrenci Yönetimi
+    (manuel CRUD) özellikleri.
+-   Unit testler (classService, studentService) ve altın yol için
+    Playwright e2e testi.
+
+### Changed
+
+-   05_TECHNICAL_ARCHITECTURE.md ve 06_CODING_STANDARDS.md: Vite
+    scaffold'unun getirdiği Oxlint kullanılacak şekilde güncellendi
+    (önceki "ESLint" referansı yerine).
+
+### Bilinen Sorunlar
+
+-   Excel/CSV öğrenci aktarımı (US-001, AC-003) bu dilime dahil değil.
+-   Kod bundle boyutu 500kB uyarı eşiğinin üzerinde; code-splitting
+    ileride ele alınacak (05_TECHNICAL_ARCHITECTURE.md §9).
+
+------------------------------------------------------------------------
+
 # v0.1.2
 
 ## Yayın Tarihi

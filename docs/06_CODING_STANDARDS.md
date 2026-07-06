@@ -168,7 +168,7 @@ Kod teslim edilmeden önce:
 
 -   Derleme hatası yok.
 -   TypeScript uyarısı yok.
--   Lint hatası yok.
+-   Lint hatası yok (Oxlint).
 -   Gereksiz import yok.
 -   Kullanılmayan değişken yok.
 

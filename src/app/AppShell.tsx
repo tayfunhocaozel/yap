@@ -1,0 +1,95 @@
+import { useState, type ReactNode } from 'react';
+import {
+  AppBar,
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import ClassIcon from '@mui/icons-material/Class';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { NavLink, useLocation } from 'react-router-dom';
+
+const DRAWER_WIDTH = 240;
+
+const NAV_ITEMS = [
+  { to: '/siniflar', label: 'Sınıflar', icon: <ClassIcon /> },
+  { to: '/ayarlar', label: 'Ayarlar', icon: <SettingsIcon /> },
+];
+
+function pageTitle(pathname: string): string {
+  const match = NAV_ITEMS.find((item) => pathname.startsWith(item.to));
+  return match?.label ?? 'YAP';
+}
+
+export function AppShell({ children }: { children: ReactNode }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+
+  const drawerContent = (
+    <List>
+      {NAV_ITEMS.map((item) => (
+        <ListItemButton
+          key={item.to}
+          component={NavLink}
+          to={item.to}
+          onClick={() => setMobileOpen(false)}
+        >
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.label} />
+        </ListItemButton>
+      ))}
+    </List>
+  );
+
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <AppBar position="fixed" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+        <Toolbar>
+          {isMobile && (
+            <IconButton
+              color="inherit"
+              edge="start"
+              onClick={() => setMobileOpen((open) => !open)}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
+          <Typography variant="h6" noWrap>
+            YAP — {pageTitle(location.pathname)}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer
+        variant={isMobile ? 'temporary' : 'permanent'}
+        open={isMobile ? mobileOpen : true}
+        onClose={() => setMobileOpen(false)}
+        sx={{
+          width: DRAWER_WIDTH,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
+        }}
+      >
+        <Toolbar />
+        {drawerContent}
+      </Drawer>
+
+      <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
+        <Toolbar />
+        {children}
+      </Box>
+    </Box>
+  );
+}
