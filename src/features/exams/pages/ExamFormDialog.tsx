@@ -15,15 +15,12 @@ import { useSubjects } from '../hooks/useSubjects';
 import { examService } from '../../../services/examService';
 import { ValidationError } from '../../../services/errors';
 import { ConfirmDialog } from '../../../components/ConfirmDialog';
+import { today } from '../../../utils/today';
 
 interface ExamFormDialogProps {
   open: boolean;
   onClose: () => void;
   onCreated: (examId: string) => void;
-}
-
-function today(): string {
-  return new Date().toISOString().slice(0, 10);
 }
 
 export function ExamFormDialog({ open, onClose, onCreated }: ExamFormDialogProps) {

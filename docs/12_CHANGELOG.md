@@ -44,6 +44,50 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.8.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Telafi Planlama eklendi (FR-009, AC-008).
+
+### Added
+
+-   `interventionService`: 04_ANALYSIS_ENGINE.md Bölüm 5'teki eşiklere
+    göre öneri üretimi (1 → Bireysel Destek, 2-4 → Küçük Grup, 5-10 →
+    Telafi Grubu, 10+ → Sınıf Tekrar Dersi). Öneri yalnızca
+    rehberdir; öğretmen dört seçenekten istediğini seçip
+    kaydedebilir.
+-   "Telafi Planlama" ekranı (`/yazililar/:examId/telafi`): yalnızca
+    başarısız öğrenci sayısı > 0 olan kazanımlar listelenir; her satır
+    sistem önerisiyle önceden doldurulur, öğretmen değiştirip tarih/not
+    ekleyip kaydedebilir. Telafi gerektiren kazanım yoksa bilgilendirme
+    mesajı gösterilir.
+-   Aynı kazanım için tekrar kayıt güncelleme yapar, kopya oluşturmaz.
+-   Analiz ekranına "Telafi Planlamasına Geç" butonu eklendi.
+-   Unit testler: öneri eşikleri, kayıt/güncelleme davranışı.
+
+### Doğrulama
+
+-   Tarayıcıda gerçek veriyle test edildi: başarısız öğrenci sayısı 0
+    olan kazanımlar için "telafi gerektiren kazanım yok" mesajı doğru
+    gösterildi; 3 başarısız öğrencili bir senaryoda sistem "Küçük
+    Grup" önerdi, öğretmen "Telafi Grubu" olarak değiştirip not
+    ekledi, kayıt sayfa yenilendikten sonra da korundu.
+-   Bu test sırasında, daha önce pasifleştirilmiş bir öğrencinin
+    (ASAL ERAMI) düşük puanının kazanım analizine hiç dahil
+    edilmediği doğrulandı — pasif öğrenciler analiz ve telafi
+    hesaplamalarının tamamen dışında tutuluyor, beklenen davranış.
+
+------------------------------------------------------------------------
+
 # v0.7.0
 
 ## Yayın Tarihi

@@ -105,10 +105,17 @@ export function AnalysisPage() {
         Puan Girişine Dön
       </Button>
 
-      <Typography variant="h5">{exam.title} — Analiz</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        {schoolClass?.name} — {subjectName} — {exam.examDate}
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+        <Box>
+          <Typography variant="h5">{exam.title} — Analiz</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {schoolClass?.name} — {subjectName} — {exam.examDate}
+          </Typography>
+        </Box>
+        <Button variant="contained" onClick={() => navigate(`/yazililar/${exam.id}/telafi`)}>
+          Telafi Planlamasına Geç
+        </Button>
+      </Box>
 
       <Grid container spacing={2}>
         {/* Sınıf Özeti */}
