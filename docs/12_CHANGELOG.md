@@ -44,6 +44,58 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.11.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Kullanım sırasında not edilen küçük iyileştirmeler (bkz. proje notu,
+V1.1 kapsamına girmeyen ama düşük riskli ve bağımsız 5 madde).
+
+### Added
+
+-   Sol menünün altına "© tayfunhoca" copyright metni eklendi.
+-   Öğrenci listesi artık okul numarasına göre sayısal sırada
+    (`localeCompare(..., { numeric: true })`) listeleniyor; önceden
+    veritabanı ekleme sırasına göre karışık görünüyordu.
+-   Sınıflar ekranına, sınıf adına göre (büyük/küçük harf duyarsız)
+    filtreleme yapan bir arama kutusu eklendi.
+-   Pasifleştirilen bir öğrenci artık tekrar aktif duruma alınabiliyor:
+    `studentService.activate` (aynı okul numarasını kullanan başka bir
+    aktif öğrenci varsa reddeder), Öğrenci Listesi'nde "Pasif
+    öğrencileri göster" anahtarı ve "Aktifleştir" işlemi.
+-   `Topic` entity'sine `order` alanı eklendi (01_DATA_MODEL.md);
+    konular artık veritabanı kayıt sırasına göre rastgele değil,
+    kaynak müfredat CSV'sindeki (kazanimlar_rows.csv) doğal sıraya
+    göre listeleniyor (Soru Tanımlama ekranındaki Konu seçimi dahil).
+    `curriculumSeedService`, `order` alanı olmayan önceden seed
+    edilmiş kayıtları uygulama her açıldığında geriye dönük doldurur
+    (ID'ler değişmediği için var olan Question/StudentScore
+    referansları bozulmaz).
+
+### Doğrulama
+
+-   Tarayıcıda test edildi: öğrenci listesi okul numarasına göre
+    sıralı; sınıf arama kutusu eşleşmeyen aramada "Aramanızla eşleşen
+    sınıf bulunamadı" mesajı gösterdi; daha önce pasifleştirilmiş
+    "ASAL ERAMI" öğrencisi "Pasif öğrencileri göster" açıkken listede
+    görüldü, "Aktifleştir" ile tekrar aktif listeye (okul numarası
+    sırasına uygun konumda) döndü; Matematik 7. sınıf konu listesi
+    artık "Sayılar ve Nicelikler → Cebirsel Düşünme ve Değişimler →
+    Geometrik Şekiller → ... → Veriden Olasılığa" şeklinde doğru
+    müfredat sırasında görüntülendi (önceden rastgele sıradaydı).
+-   `npx tsc -b`, `npx vitest run` (45 test), `npm run lint`,
+    `npm run build`, `npx playwright test` tamamı yeşil.
+
+------------------------------------------------------------------------
+
 # v0.10.0
 
 ## Yayın Tarihi

@@ -36,6 +36,8 @@ export interface Topic {
   grade: Grade;
   name: string;
   unit?: string;
+  /** Müfredat kaynak verisindeki (kazanimlar_rows.csv) doğal sıra; listelerde bu sıraya göre gösterilir. */
+  order: number;
 }
 
 export interface CurriculumOutcome {

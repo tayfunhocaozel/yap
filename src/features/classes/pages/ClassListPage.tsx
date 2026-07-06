@@ -10,11 +10,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
+import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import { useClasses } from '../hooks/useClasses';
 import { useTeacher } from '../../settings/hooks/useTeacher';
@@ -31,6 +33,11 @@ export function ClassListPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [editingClass, setEditingClass] = useState<SchoolClass | null>(null);
   const [archiving, setArchiving] = useState<SchoolClass | null>(null);
+  const [search, setSearch] = useState('');
+
+  const filteredClasses = classes?.filter((c) =>
+    c.name.toLocaleLowerCase('tr-TR').includes(search.trim().toLocaleLowerCase('tr-TR')),
+  );
 
   function openCreate() {
     setEditingClass(null);
@@ -58,6 +65,15 @@ export function ClassListPage() {
         </Button>
       </Box>
 
+      <TextField
+        size="small"
+        placeholder="Sınıf ara..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        slotProps={{ input: { startAdornment: <SearchIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} /> } }}
+        sx={{ mb: 2, width: 280 }}
+      />
+
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -69,7 +85,7 @@ export function ClassListPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {classes?.map((c) => (
+            {filteredClasses?.map((c) => (
               <TableRow
                 key={c.id}
                 hover
@@ -93,6 +109,13 @@ export function ClassListPage() {
               <TableRow>
                 <TableCell colSpan={4} align="center">
                   Henüz sınıf oluşturulmadı.
+                </TableCell>
+              </TableRow>
+            )}
+            {classes && classes.length > 0 && filteredClasses?.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={4} align="center">
+                  Aramanızla eşleşen sınıf bulunamadı.
                 </TableCell>
               </TableRow>
             )}

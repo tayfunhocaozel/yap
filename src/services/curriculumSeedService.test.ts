@@ -39,4 +39,30 @@ describe('curriculumSeedService', () => {
       .first();
     expect(inkilap).toBeUndefined();
   });
+
+  it('konulara müfredat kaynak sırasına göre artan order atar', async () => {
+    await seedCurriculum();
+
+    const matematik = await db.subjects.filter((s) => s.name === 'Matematik').first();
+    const topics = await db.topics
+      .filter((t) => t.subjectId === matematik!.id && t.grade === 7)
+      .toArray();
+
+    const orders = topics.map((t) => t.order).sort((a, b) => a - b);
+    expect(orders).toEqual(topics.map((_, i) => i));
+  });
+
+  it('order alanı olmayan eski kayıtları tekrar çalıştırıldığında geriye dönük doldurur', async () => {
+    await seedCurriculum();
+    const before = await db.topics.toArray();
+
+    // Eski (order eklenmeden önce) seed edilmiş veriyi simüle et.
+    await db.topics.toCollection().modify({ order: undefined });
+
+    await seedCurriculum();
+    const after = await db.topics.toArray();
+
+    expect(after.every((t) => typeof t.order === 'number')).toBe(true);
+    expect(after.map((t) => t.order).sort()).toEqual(before.map((t) => t.order).sort());
+  });
 });

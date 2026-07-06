@@ -42,20 +42,25 @@ export function AppShell({ children }: { children: ReactNode }) {
   const location = useLocation();
 
   const drawerContent = (
-    <List>
-      {NAV_ITEMS.map((item) => (
-        <ListItemButton
-          key={item.to}
-          component={NavLink}
-          to={item.to}
-          end={item.to === '/'}
-          onClick={() => setMobileOpen(false)}
-        >
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.label} />
-        </ListItemButton>
-      ))}
-    </List>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <List>
+        {NAV_ITEMS.map((item) => (
+          <ListItemButton
+            key={item.to}
+            component={NavLink}
+            to={item.to}
+            end={item.to === '/'}
+            onClick={() => setMobileOpen(false)}
+          >
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.label} />
+          </ListItemButton>
+        ))}
+      </List>
+      <Typography variant="caption" color="text.secondary" sx={{ mt: 'auto', px: 2, py: 1.5 }}>
+        © tayfunhoca
+      </Typography>
+    </Box>
   );
 
   return (

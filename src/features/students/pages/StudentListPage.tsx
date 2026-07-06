@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
+  Chip,
+  FormControlLabel,
   IconButton,
   Paper,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -16,16 +19,18 @@ import AddIcon from '@mui/icons-material/Add';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
+import PersonIcon from '@mui/icons-material/Person';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useStudents } from '../hooks/useStudents';
+import { useInactiveStudents, useStudents } from '../hooks/useStudents';
 import { StudentFormDialog } from './StudentFormDialog';
 import { StudentImportDialog } from './StudentImportDialog';
 import { ConfirmDialog } from '../../../components/ConfirmDialog';
 import { studentService } from '../../../services/studentService';
 import { classService } from '../../../services/classService';
 import { recordClassVisit } from '../../../utils/recentClasses';
+import { ValidationError } from '../../../services/errors';
 import type { Student } from '../../../types/entities';
 
 export function StudentListPage() {
@@ -33,11 +38,15 @@ export function StudentListPage() {
   const navigate = useNavigate();
   const schoolClass = useLiveQuery(() => classService.getById(classId!), [classId]);
   const students = useStudents(classId!);
+  const inactiveStudents = useInactiveStudents(classId!);
 
   const [formOpen, setFormOpen] = useState(false);
   const [importOpen, setImportOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
   const [deactivating, setDeactivating] = useState<Student | null>(null);
+  const [activating, setActivating] = useState<Student | null>(null);
+  const [activateError, setActivateError] = useState<string | null>(null);
+  const [showInactive, setShowInactive] = useState(false);
 
   useEffect(() => {
     if (classId) recordClassVisit(classId);
@@ -60,7 +69,28 @@ export function StudentListPage() {
     setDeactivating(null);
   }
 
+  function openActivate(student: Student) {
+    setActivateError(null);
+    setActivating(student);
+  }
+
+  async function confirmActivate() {
+    if (!activating || !classId) return;
+    try {
+      await studentService.activate(activating.id, classId, activating.schoolNumber);
+      setActivating(null);
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        setActivateError(err.message);
+      } else {
+        throw err;
+      }
+    }
+  }
+
   if (!classId) return null;
+
+  const visibleStudents = showInactive ? [...(students ?? []), ...(inactiveStudents ?? [])] : students;
 
   return (
     <Box>
@@ -72,7 +102,16 @@ export function StudentListPage() {
         <Typography variant="h5">
           {schoolClass ? `${schoolClass.name} — Öğrenciler` : 'Öğrenciler'}
         </Typography>
-        <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showInactive}
+                onChange={(e) => setShowInactive(e.target.checked)}
+              />
+            }
+            label="Pasif öğrencileri göster"
+          />
           <Button variant="outlined" startIcon={<UploadFileIcon />} onClick={() => setImportOpen(true)}>
             Excel / CSV İçe Aktar
           </Button>
@@ -92,21 +131,30 @@ export function StudentListPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {students?.map((s) => (
-              <TableRow key={s.id} hover>
+            {visibleStudents?.map((s) => (
+              <TableRow key={s.id} hover sx={!s.active ? { opacity: 0.6 } : undefined}>
                 <TableCell>{s.schoolNumber}</TableCell>
-                <TableCell>{s.fullName}</TableCell>
+                <TableCell>
+                  {s.fullName}
+                  {!s.active && <Chip size="small" label="Pasif" sx={{ ml: 1 }} />}
+                </TableCell>
                 <TableCell align="right">
                   <IconButton size="small" onClick={() => openEdit(s)} aria-label="düzenle">
                     <EditIcon fontSize="small" />
                   </IconButton>
-                  <IconButton size="small" onClick={() => setDeactivating(s)} aria-label="pasifleştir">
-                    <PersonOffIcon fontSize="small" />
-                  </IconButton>
+                  {s.active ? (
+                    <IconButton size="small" onClick={() => setDeactivating(s)} aria-label="pasifleştir">
+                      <PersonOffIcon fontSize="small" />
+                    </IconButton>
+                  ) : (
+                    <IconButton size="small" onClick={() => openActivate(s)} aria-label="aktifleştir">
+                      <PersonIcon fontSize="small" />
+                    </IconButton>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
-            {students && students.length === 0 && (
+            {visibleStudents && visibleStudents.length === 0 && (
               <TableRow>
                 <TableCell colSpan={3} align="center">
                   Henüz öğrenci eklenmedi.
@@ -132,6 +180,17 @@ export function StudentListPage() {
         description={`"${deactivating?.fullName}" öğrencisini pasif duruma almak istediğinize emin misiniz?`}
         onConfirm={confirmDeactivate}
         onCancel={() => setDeactivating(null)}
+      />
+
+      <ConfirmDialog
+        open={activating !== null}
+        title="Öğrenciyi Aktifleştir"
+        description={
+          activateError ??
+          `"${activating?.fullName}" öğrencisini tekrar aktif duruma almak istediğinize emin misiniz?`
+        }
+        onConfirm={confirmActivate}
+        onCancel={() => setActivating(null)}
       />
     </Box>
   );

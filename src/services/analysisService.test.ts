@@ -22,8 +22,8 @@ const questions: Question[] = [
 ];
 
 const topics: Topic[] = [
-  { id: 't1', subjectId: 'subj1', grade: 7, name: 'Konu A' },
-  { id: 't2', subjectId: 'subj1', grade: 7, name: 'Konu B' },
+  { id: 't1', subjectId: 'subj1', grade: 7, name: 'Konu A', order: 0 },
+  { id: 't2', subjectId: 'subj1', grade: 7, name: 'Konu B', order: 1 },
 ];
 
 const outcomes: CurriculumOutcome[] = [

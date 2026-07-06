@@ -114,6 +114,7 @@ Her öğrenci yalnızca bir sınıfa bağlıdır.
   grade       Integer
   name        Text      Konu (örn. "Çarpanlar ve Katlar")
   unit        Text      Opsiyonel; ünite adı (örn. "Sayılar ve İşlemler")
+  order       Integer   Müfredat kaynak verisindeki (kazanimlar_rows.csv) doğal sıra
 
 Bir konu yalnızca bir derse bağlıdır.
 
@@ -122,6 +123,12 @@ listesinde konuları ünite başlıkları altında göstermek için); analiz
 motoru ve iş kuralları hâlâ Topic seviyesinde çalışır. Bazı derslerde
 (örn. İngilizce) ünite ve konu aynı olduğu için bu alan boş
 bırakılabilir.
+
+`order` alanı, konuların soru tanımlama gibi ekranlarda rastgele
+(veritabanı id sırasına göre) değil, müfredattaki doğal sırayla
+listelenmesini sağlar. `curriculumSeedService` tarafından, kaynak
+CSV'deki satırların görülme sırasına göre atanır; `unit` gibi bu alan
+da yalnızca gösterim amaçlıdır, iş kurallarında kullanılmaz.
 
 ------------------------------------------------------------------------
 

@@ -22,6 +22,10 @@ export const studentService = {
     return studentRepository.getActiveByClass(classId);
   },
 
+  getInactiveByClass(classId: string): Promise<Student[]> {
+    return studentRepository.getInactiveByClass(classId);
+  },
+
   async create(input: StudentInput): Promise<void> {
     validate(input);
     const duplicate = await studentRepository.findActiveBySchoolNumber(
@@ -54,5 +58,15 @@ export const studentService = {
 
   async deactivate(id: string): Promise<void> {
     await studentRepository.update(id, { active: false });
+  },
+
+  async activate(id: string, classId: string, schoolNumber: string): Promise<void> {
+    const duplicate = await studentRepository.findActiveBySchoolNumber(classId, schoolNumber);
+    if (duplicate && duplicate.id !== id) {
+      throw new ValidationError(
+        `"${schoolNumber}" okul numarası bu sınıfta başka bir aktif öğrenciye ait. Aktifleştirmeden önce okul numarasını güncelleyin.`,
+      );
+    }
+    await studentRepository.update(id, { active: true });
   },
 };

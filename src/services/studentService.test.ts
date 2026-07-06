@@ -42,7 +42,16 @@ describe('studentService', () => {
     ).resolves.not.toThrow();
   });
 
-  it('pasifleştirilen öğrenci aktif listede görünmez', async () => {
+  it('okul numarasına göre sayısal sırada döner (2 önce, 10 sonra)', async () => {
+    await studentService.create({ classId: CLASS_ID, schoolNumber: '10', fullName: 'Zeynep' });
+    await studentService.create({ classId: CLASS_ID, schoolNumber: '2', fullName: 'Ayşe' });
+    await studentService.create({ classId: CLASS_ID, schoolNumber: '1', fullName: 'Ali' });
+
+    const active = await studentService.getActiveByClass(CLASS_ID);
+    expect(active.map((s) => s.schoolNumber)).toEqual(['1', '2', '10']);
+  });
+
+  it('pasifleştirilen öğrenci aktif listede görünmez, pasif listede görünür', async () => {
     await studentService.create({
       classId: CLASS_ID,
       schoolNumber: '101',
@@ -53,5 +62,46 @@ describe('studentService', () => {
 
     const active = await studentService.getActiveByClass(CLASS_ID);
     expect(active).toHaveLength(0);
+
+    const inactive = await studentService.getInactiveByClass(CLASS_ID);
+    expect(inactive.map((s) => s.id)).toEqual([created.id]);
+  });
+
+  it('pasif öğrenci tekrar aktifleştirilebilir', async () => {
+    await studentService.create({
+      classId: CLASS_ID,
+      schoolNumber: '101',
+      fullName: 'Ali Yılmaz',
+    });
+    const [created] = await studentService.getActiveByClass(CLASS_ID);
+    await studentService.deactivate(created.id);
+
+    await studentService.activate(created.id, CLASS_ID, created.schoolNumber);
+
+    const active = await studentService.getActiveByClass(CLASS_ID);
+    expect(active.map((s) => s.id)).toEqual([created.id]);
+    const inactive = await studentService.getInactiveByClass(CLASS_ID);
+    expect(inactive).toHaveLength(0);
+  });
+
+  it('okul numarası başka bir aktif öğrenciye aitse aktifleştirme reddedilir', async () => {
+    await studentService.create({
+      classId: CLASS_ID,
+      schoolNumber: '101',
+      fullName: 'Ali Yılmaz',
+    });
+    const [created] = await studentService.getActiveByClass(CLASS_ID);
+    await studentService.deactivate(created.id);
+
+    // Aynı okul numarasıyla yeni bir aktif öğrenci kaydedildi.
+    await studentService.create({
+      classId: CLASS_ID,
+      schoolNumber: '101',
+      fullName: 'Veli Kaya',
+    });
+
+    await expect(
+      studentService.activate(created.id, CLASS_ID, created.schoolNumber),
+    ).rejects.toThrow(ValidationError);
   });
 });

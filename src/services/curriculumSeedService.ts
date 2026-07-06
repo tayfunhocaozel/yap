@@ -49,27 +49,43 @@ export async function seedCurriculum(): Promise<void> {
     subjectId: string,
     grade: Grade,
     name: string,
-    unit?: string,
+    unit: string | undefined,
+    order: number,
   ): Promise<string> {
     const cacheKey = `${subjectId}|${grade}|${name}`;
     const cached = topicCache.get(cacheKey);
     if (cached) return cached;
     const existing = await topicRepository.findBySubjectGradeName(subjectId, grade, name);
-    const id = existing?.id ?? (await createTopic(subjectId, grade, name, unit));
+    let id: string;
+    if (existing) {
+      id = existing.id;
+      // Eski (order alanından önce) seed edilmiş kayıtları geriye dönük tamamlar.
+      if (existing.order !== order) {
+        await topicRepository.update(id, { order });
+      }
+    } else {
+      id = await createTopic(subjectId, grade, name, unit, order);
+    }
     topicCache.set(cacheKey, id);
     return id;
   }
 
-  async function createTopic(subjectId: string, grade: Grade, name: string, unit?: string): Promise<string> {
+  async function createTopic(
+    subjectId: string,
+    grade: Grade,
+    name: string,
+    unit: string | undefined,
+    order: number,
+  ): Promise<string> {
     const id = crypto.randomUUID();
-    await topicRepository.add({ id, subjectId, grade, name, unit });
+    await topicRepository.add({ id, subjectId, grade, name, unit, order });
     return id;
   }
 
   for (const seed of Object.values(seedModules)) {
     const subjectId = await resolveSubjectId(seed.subject);
-    for (const topicSeed of seed.topics) {
-      const topicId = await resolveTopicId(subjectId, seed.grade, topicSeed.name, topicSeed.unit);
+    for (const [order, topicSeed] of seed.topics.entries()) {
+      const topicId = await resolveTopicId(subjectId, seed.grade, topicSeed.name, topicSeed.unit, order);
       for (const outcomeSeed of topicSeed.outcomes) {
         if (existingCodes.has(outcomeSeed.code)) continue;
         existingCodes.add(outcomeSeed.code);
