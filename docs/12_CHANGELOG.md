@@ -44,6 +44,49 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.6.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Puan Girişi eklendi (FR-007, AC-006).
+
+### Added
+
+-   `studentScoreRepository`/`scoreService`: puan kaydı. Puan negatif
+    olamaz, soru puanını aşamaz; öğrenci-soru başına tek kayıt
+    (upsert).
+-   "Puan Girişi" ekranı (`/yazililar/:examId/puanlar`): Excel benzeri
+    hücresel tablo (öğrenci × soru). Enter/Ok Aşağı-Yukarı ile satırlar
+    arası gezinme, Tab ile doğal soldan sağa geçiş. Hücreden
+    ayrılınca (blur) otomatik kayıt — ayrı bir "Kaydet" butonu yok.
+    Geçersiz puan girildiğinde kaydedilmeden uyarı gösterilir, hücre
+    düzeltilene kadar değişmeden kalır.
+-   Satır bazlı otomatik toplam; tüm sorular doldurulmadan "eksik"
+    etiketiyle turuncu, tamamlanınca yeşil gösterilir.
+-   Soru Tanımlama ekranındaki "Puan Girişine Geç" butonu yalnızca
+    toplam puan 100 olduğunda aktif olur.
+-   Unit testler: puan doğrulama kuralları, aynı öğrenci-soru için
+    güncelleme (kopya oluşturmama), sınava ait olmayan soruların
+    puanlarının getirilmemesi.
+
+### Doğrulama
+
+-   Tarayıcıda uçtan uca test edildi: hücreye puan girme, Enter ile
+    aşağı satıra geçme, soru puanını aşan değerin reddedilip
+    kaydedilmemesi (sayfa yenilendikten sonra da doğrulandı), tüm
+    sorular doldurulunca satır toplamının "eksik" etiketinden çıkıp
+    yeşile dönmesi.
+
+------------------------------------------------------------------------
+
 # v0.5.0
 
 ## Yayın Tarihi

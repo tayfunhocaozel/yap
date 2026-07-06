@@ -154,6 +154,16 @@ export function QuestionListPage() {
         </Table>
       </TableContainer>
 
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+        <Button
+          variant="contained"
+          disabled={!isComplete}
+          onClick={() => navigate(`/yazililar/${examId}/puanlar`)}
+        >
+          Puan Girişine Geç
+        </Button>
+      </Box>
+
       {exam && (
         <QuestionFormDialog
           open={formOpen}
