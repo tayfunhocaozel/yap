@@ -44,6 +44,99 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.15.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Supabase'e kademeli offline-first senkron geçişinin **Faz 0 ve Faz 1'i**
+tamamlandı: referans veri id kararlılığı düzeltmesi + Supabase Auth
+(e-posta+şifre). Bu, çok daha büyük bir yol haritasının (7 faz) ilk
+iki adımı — sync motorunun kendisi (outbox, push/pull, çakışma
+çözümü) henüz yok, sonraki oturumlarda ayrı ayrı ele alınacak (bkz.
+05_TECHNICAL_ARCHITECTURE.md Bölüm 8.2).
+
+### Added — Faz 0 (referans veri id kararlılığı)
+
+-   `src/utils/deterministicId.ts`: RFC 4122 UUID v5 (SHA-1, Web
+    Crypto `SubtleCrypto.digest`) — aynı doğal anahtar (isim/kod) her
+    zaman aynı id'yi üretir.
+-   `curriculumSeedService.ts`: Subject/Topic/CurriculumOutcome id'leri
+    artık `crypto.randomUUID()` yerine deterministik üretiliyor.
+    Önceden rastgele id ile seed edilmiş kayıtlar otomatik olarak yeni
+    id'ye geçiriliyor (re-key); buna referans veren
+    `Question.topicId/outcomeId` ve `Intervention.outcomeId` alanları
+    da güncelleniyor. `subjectRepository`/`topicRepository`/
+    `curriculumOutcomeRepository`'ye bu geçiş için `delete`/`getAll`
+    metotları eklendi.
+-   Neden gerekli: bu referans veri ileride (Faz 4) Supabase'e paylaşılan/
+    salt-okunur bir tablo olarak taşınacak; tüm istemcilerin (ve
+    sunucunun) aynı id'leri üretmesi, `Question`/`Intervention`
+    kayıtlarının FK bütünlüğü için şart.
+
+### Added — Faz 1 (Supabase Auth)
+
+-   `@supabase/supabase-js` kuruldu; `.env`/`.env.example`
+    (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`); `.env` gitignore'a
+    eklendi.
+-   `src/lib/supabaseClient.ts`, `src/app/authContext.ts` +
+    `src/app/AuthProvider.tsx` (oturum durumu), `src/app/RequireAuth.tsx`
+    (route guard), `src/features/auth/pages/LoginPage.tsx` ve
+    `SignupPage.tsx` (e-posta+şifre).
+-   `src/App.tsx`: `/giris` ve `/kayit` genel erişime açık; kalan tüm
+    ekranlar `RequireAuth` ile korunuyor.
+-   `src/app/AppShell.tsx`: üst çubukta öğretmenin e-postası ve "Çıkış
+    Yap" butonu.
+-   `teacherService`/`teacherRepository`: `getActive()` (tek cihazda
+    tek "aktif" kayıt varsayımı) yerine `getById(id)`/
+    `createOrUpdate(id, input)` — `id` artık `auth.uid()` ile birebir
+    aynı. **Bu fazda veri hâlâ %100 yerel (IndexedDB) kalıyor**,
+    Supabase tablolarına henüz yazma yok.
+-   `supabase/migrations/0001_initial_schema.sql`: 11 tablo, RLS
+    politikaları (per-teacher tablolar `classes.teacher_id = auth.uid()`
+    zincirine `EXISTS` alt sorgusuyla bağlı; subjects/topics/
+    curriculum_outcomes paylaşılan referans verisi, herkes okuyabilir,
+    istemciden kimse yazamaz). service_role erişimi olmadığı için bu
+    dosya CI'dan otomatik uygulanmaz, kullanıcı tarafından Supabase
+    Dashboard → SQL Editor'a yapıştırılıp elle çalıştırılması gerekir.
+
+### Changed
+
+-   `e2e/golden-path.spec.ts`: auth eklenmesiyle sınıf/öğrenci
+    oluşturma akışı artık gerçek bir Supabase oturumu gerektiriyor
+    (henüz mock altyapısı yok, bkz. Faz 6). Test, route guard'ın
+    (oturumsuz erişimde `/giris`'e yönlendirme) ve giriş↔kayıt
+    ekranları arası geçişin doğruluğunu doğrulayan daha dar bir
+    kapsama indirgendi; tam uçtan uca akış testi Faz 6'da geri
+    gelecek.
+
+### Doğrulama
+
+-   `npx tsc -b`, `npx vitest run` (50 test — deterministik id + re-key
+    testleri dahil), `npm run lint`, `npm run build` (hem yerel `/`
+    hem `GITHUB_REPOSITORY` simülasyonuyla `/yap/` base path'i
+    doğrulandı), `npx playwright test` (2 test) tamamı yeşil.
+-   Manuel tarayıcı testi bu oturumda self-signed sertifika/CDP
+    kısıtı nedeniyle yapılamadı; unit testler ve Playwright yeterli
+    kanıt olarak kabul edildi.
+
+### Sonraki Adım
+
+-   Kullanıcının Supabase Dashboard'da `0001_initial_schema.sql`'i
+    çalıştırması gerekiyor (adımlar ayrıca iletildi).
+-   Faz 2 (POC: yalnızca Teacher+SchoolClass için uçtan uca sync —
+    outbox, push/pull, last-write-wins) ayrı bir oturumda, onaylandıktan
+    sonra kalan fazlara geçilecek.
+
+------------------------------------------------------------------------
+
 # v0.14.0
 
 ## Yayın Tarihi

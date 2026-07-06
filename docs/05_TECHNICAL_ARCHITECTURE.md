@@ -149,6 +149,49 @@ UI → Service → Repository → IndexedDB
 
 ------------------------------------------------------------------------
 
+# 8.2 Bulut Senkronu (Supabase) — Kademeli Geçiş
+
+Veri kaybı riskini azaltmak (cihaz kaybı/değişimi, tarayıcı verisi
+silinmesi) için uygulama, IndexedDB'yi yerel öncelikli (offline-first)
+tutarak arka planda Supabase'e (PostgreSQL + Auth) senkronize olacak
+şekilde kademeli olarak geçiriliyor. Bu, tek adımda değil, her biri
+ayrı test edilen fazlarla ilerliyor:
+
+-   **Faz 0 (tamamlandı)**: `curriculumSeedService.ts`, Subject/Topic/
+    CurriculumOutcome için `crypto.randomUUID()` yerine deterministik
+    UUID v5 (`src/utils/deterministicId.ts`, doğal anahtardan SHA-1
+    ile) üretir; böylece bu referans veri Supabase'e taşındığında tüm
+    istemciler aynı id'leri üretir. Önceden rastgele id ile seed
+    edilmiş kayıtlar, uygulama her açıldığında otomatik olarak yeni
+    id'ye geçirilir (re-key) ve buna referans veren `Question`/
+    `Intervention` kayıtları da güncellenir.
+-   **Faz 1 (tamamlandı)**: Supabase Auth (e-posta+şifre) eklendi.
+    `src/app/AuthProvider.tsx` + `src/app/authContext.ts` oturum
+    durumunu tutar; `src/app/RequireAuth.tsx` route guard'dır; giriş/
+    kayıt ekranları `src/features/auth/pages/`. `Teacher.id` artık
+    `auth.uid()` ile birebir aynıdır (`teacherService.getById`/
+    `createOrUpdate(id, input)`). **Bu fazda veri hâlâ %100 yerel
+    kalır** — Supabase tablolarına henüz hiçbir satır yazılmaz, sync
+    motoru sonraki fazların konusudur. SQL şeması ve RLS politikaları
+    `supabase/migrations/0001_initial_schema.sql`'de tanımlıdır;
+    service_role erişimi olmadığı için Supabase Dashboard → SQL
+    Editor'dan elle uygulanır.
+-   **Faz 2-6 (planlandı, henüz yapılmadı)**: outbox tabanlı senkron
+    kuyruğu, push/pull, `updated_at` bazlı last-write-wins çakışma
+    çözümü, kalan entity'lere pattern'in uygulanması, Realtime,
+    ilk-giriş rekey migrasyonu, test altyapısı (Supabase mock) ve e2e
+    güncellemesi. Detaylı plan ve riskler için proje geçmişindeki
+    plan dosyasına bakılabilir; bu bölüm her faz tamamlandıkça
+    güncellenecektir.
+
+**Bilinen sınır**: last-write-wins stratejisi tek öğretmen + çoklu
+cihaz senaryosunu hedefler; aynı kaydın iki cihazda offline değişip
+çakışması durumunda birleştirme arayüzü sunulmaz (geç senkronize olan
+kazanır). Gerçek çoklu-kullanıcı işbirlikli düzenleme bu stratejiyle
+desteklenmez (V3.0'da ayrıca ele alınmalı).
+
+------------------------------------------------------------------------
+
 # 9. Performans
 
 -   Lazy Loading
@@ -163,6 +206,11 @@ UI → Service → Repository → IndexedDB
 -   Yerel veri doğrulama
 -   Girdi kontrolleri
 -   Zararlı veri girişlerinin engellenmesi
+-   Supabase Auth (e-posta+şifre) ile kimlik doğrulama; Row Level
+    Security (RLS) politikaları her öğretmenin yalnızca kendi verisini
+    okuyup yazabilmesini sağlar (bkz. Bölüm 8.2,
+    `supabase/migrations/0001_initial_schema.sql`). `.env` dosyası
+    (Supabase URL/anon key) commit edilmez.
 
 ------------------------------------------------------------------------
 
@@ -178,7 +226,8 @@ UI → Service → Repository → IndexedDB
 
 V1: - JSON dışa aktarma - JSON içe aktarma
 
-V2: - Bulut yedekleme
+V2: - Bulut yedekleme (bkz. Bölüm 8.2 — Supabase senkronu, kademeli
+    olarak geliştiriliyor; JSON dışa/içe aktarma henüz eklenmedi)
 
 ------------------------------------------------------------------------
 

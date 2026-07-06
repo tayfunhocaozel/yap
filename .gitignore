@@ -21,6 +21,7 @@ playwright/.cache
 # Secrets (unrelated to this project, kept locally only)
 github_data.txt
 supabase_data.txt
+.env
 
 # Gerçek öğrenci kişisel verisi içeren dosyalar (yalnızca yerel test amaçlı)
 docs/classroom/

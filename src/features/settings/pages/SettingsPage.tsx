@@ -3,9 +3,11 @@ import { Alert, Box, Button, Paper, Stack, TextField, Typography } from '@mui/ma
 import { useTeacher } from '../hooks/useTeacher';
 import { teacherService } from '../../../services/teacherService';
 import { ValidationError } from '../../../services/errors';
+import { useAuth } from '../../../app/authContext';
 
 export function SettingsPage() {
   const teacher = useTeacher();
+  const { session } = useAuth();
   const [fullName, setFullName] = useState('');
   const [branch, setBranch] = useState('');
   const [schoolName, setSchoolName] = useState('');
@@ -21,10 +23,11 @@ export function SettingsPage() {
   }, [teacher]);
 
   async function handleSave() {
+    if (!session) return;
     setError(null);
     setSaved(false);
     try {
-      await teacherService.createOrUpdate({ fullName, branch, schoolName });
+      await teacherService.createOrUpdate(session.user.id, { fullName, branch, schoolName });
       setSaved(true);
     } catch (err) {
       if (err instanceof ValidationError) {

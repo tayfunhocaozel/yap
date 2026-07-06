@@ -25,4 +25,8 @@ export const topicRepository = {
     if (ids.length === 0) return Promise.resolve([]);
     return db.topics.where('id').anyOf(ids).toArray();
   },
+
+  delete(id: string): Promise<void> {
+    return db.topics.delete(id);
+  },
 };

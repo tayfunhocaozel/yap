@@ -18,19 +18,19 @@ function validate(input: TeacherInput): void {
 }
 
 export const teacherService = {
-  getActive(): Promise<Teacher | undefined> {
-    return teacherRepository.getActive();
+  getById(id: string): Promise<Teacher | undefined> {
+    return teacherRepository.getById(id);
   },
 
-  async createOrUpdate(input: TeacherInput): Promise<void> {
+  async createOrUpdate(id: string, input: TeacherInput): Promise<void> {
     validate(input);
-    const existing = await teacherRepository.getActive();
+    const existing = await teacherRepository.getById(id);
     if (existing) {
-      await teacherRepository.update(existing.id, input);
+      await teacherRepository.update(id, input);
       return;
     }
     await teacherRepository.add({
-      id: crypto.randomUUID(),
+      id,
       fullName: input.fullName,
       branch: input.branch,
       schoolName: input.schoolName,

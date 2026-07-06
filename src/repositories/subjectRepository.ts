@@ -13,4 +13,8 @@ export const subjectRepository = {
   add(subject: Subject): Promise<string> {
     return db.subjects.add(subject);
   },
+
+  delete(id: string): Promise<void> {
+    return db.subjects.delete(id);
+  },
 };

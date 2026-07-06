@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { theme } from './app/theme';
 import { AppShell } from './app/AppShell';
 import { AppRoutes } from './app/routes';
+import { AuthProvider } from './app/AuthProvider';
+import { RequireAuth } from './app/RequireAuth';
+import { LoginPage } from './features/auth/pages/LoginPage';
+import { SignupPage } from './features/auth/pages/SignupPage';
 import { seedCurriculum } from './services/curriculumSeedService';
 
 function App() {
@@ -20,9 +24,22 @@ function App() {
           olmadığı için (BrowserRouter'da doğrudan bir path'e gidilince
           404 alınır), HashRouter kullanılıyor. */}
       <HashRouter>
-        <AppShell>
-          <AppRoutes />
-        </AppShell>
+        <AuthProvider>
+          <Routes>
+            <Route path="/giris" element={<LoginPage />} />
+            <Route path="/kayit" element={<SignupPage />} />
+            <Route
+              path="/*"
+              element={
+                <RequireAuth>
+                  <AppShell>
+                    <AppRoutes />
+                  </AppShell>
+                </RequireAuth>
+              }
+            />
+          </Routes>
+        </AuthProvider>
       </HashRouter>
     </ThemeProvider>
   );

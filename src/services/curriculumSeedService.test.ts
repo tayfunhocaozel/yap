@@ -7,6 +7,8 @@ describe('curriculumSeedService', () => {
     await db.subjects.clear();
     await db.topics.clear();
     await db.curriculumOutcomes.clear();
+    await db.questions.clear();
+    await db.interventions.clear();
   });
 
   it('seed dosyalarından Subject/Topic/CurriculumOutcome oluşturur', async () => {
@@ -64,5 +66,78 @@ describe('curriculumSeedService', () => {
 
     expect(after.every((t) => typeof t.order === 'number')).toBe(true);
     expect(after.map((t) => t.order).sort()).toEqual(before.map((t) => t.order).sort());
+  });
+
+  it('iki bağımsız temiz kurulumda aynı id\'leri üretir (deterministik)', async () => {
+    await seedCurriculum();
+    const firstSubjects = await db.subjects.toArray();
+    const firstTopics = await db.topics.toArray();
+    const firstOutcomes = await db.curriculumOutcomes.toArray();
+
+    await db.subjects.clear();
+    await db.topics.clear();
+    await db.curriculumOutcomes.clear();
+    await seedCurriculum();
+    const secondSubjects = await db.subjects.toArray();
+    const secondTopics = await db.topics.toArray();
+    const secondOutcomes = await db.curriculumOutcomes.toArray();
+
+    expect(secondSubjects.map((s) => s.id).sort()).toEqual(firstSubjects.map((s) => s.id).sort());
+    expect(secondTopics.map((t) => t.id).sort()).toEqual(firstTopics.map((t) => t.id).sort());
+    expect(secondOutcomes.map((o) => o.id).sort()).toEqual(firstOutcomes.map((o) => o.id).sort());
+  });
+
+  it('eski rastgele id ile seed edilmiş kayıtları deterministik id\'ye geçirir (re-key) ve referansları günceller', async () => {
+    // Önce gerçek (deterministik id'li) bir kurulum yap, sonra bunun
+    // içeriğini "eski" (deterministik id öncesi) rastgele-id'li bir kurulum
+    // gibi göstermek için aynı alanlarla ama rastgele id'lerle yeniden ekle.
+    await seedCurriculum();
+    const realSubject = (await db.subjects.toArray())[0];
+    const realTopic = (await db.topics.filter((t) => t.subjectId === realSubject.id).toArray())[0];
+    const realOutcome = (
+      await db.curriculumOutcomes.filter((o) => o.topicId === realTopic.id).toArray()
+    )[0];
+
+    const oldSubjectId = crypto.randomUUID();
+    const oldTopicId = crypto.randomUUID();
+    const oldOutcomeId = crypto.randomUUID();
+    await db.subjects.clear();
+    await db.topics.clear();
+    await db.curriculumOutcomes.clear();
+    await db.subjects.add({ ...realSubject, id: oldSubjectId });
+    await db.topics.add({ ...realTopic, id: oldTopicId, subjectId: oldSubjectId });
+    await db.curriculumOutcomes.add({ ...realOutcome, id: oldOutcomeId, topicId: oldTopicId });
+
+    // Bu eski id'lere referans veren bir soru ve telafi kaydı.
+    await db.questions.add({
+      id: crypto.randomUUID(),
+      examId: 'exam-1',
+      questionNo: 1,
+      score: 10,
+      topicId: oldTopicId,
+      outcomeId: oldOutcomeId,
+    });
+    await db.interventions.add({
+      id: crypto.randomUUID(),
+      examId: 'exam-1',
+      outcomeId: oldOutcomeId,
+      type: 'individual',
+      targetType: 'individual',
+      interventionDate: '2026-01-01',
+    });
+
+    await seedCurriculum();
+
+    // Eski id'ler artık yok.
+    expect(await db.subjects.get(oldSubjectId)).toBeUndefined();
+    expect(await db.topics.get(oldTopicId)).toBeUndefined();
+    expect(await db.curriculumOutcomes.get(oldOutcomeId)).toBeUndefined();
+
+    // Referans veren kayıtlar, orijinal deterministik id'lere geri döndü.
+    const question = await db.questions.filter((q) => q.examId === 'exam-1').first();
+    const intervention = await db.interventions.filter((i) => i.examId === 'exam-1').first();
+    expect(question?.topicId).toBe(realTopic.id);
+    expect(question?.outcomeId).toBe(realOutcome.id);
+    expect(intervention?.outcomeId).toBe(realOutcome.id);
   });
 });

@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import {
   AppBar,
   Box,
+  Button,
   Drawer,
   IconButton,
   List,
@@ -18,7 +19,10 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ClassIcon from '@mui/icons-material/Class';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useAuth } from './authContext';
+import { supabase } from '../lib/supabaseClient';
 
 const DRAWER_WIDTH = 240;
 
@@ -40,6 +44,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { session } = useAuth();
 
   const drawerContent = (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -77,9 +82,24 @@ export function AppShell({ children }: { children: ReactNode }) {
               <MenuIcon />
             </IconButton>
           )}
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
             YAP — {pageTitle(location.pathname)}
           </Typography>
+          {session && (
+            <>
+              <Typography variant="body2" noWrap sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}>
+                {session.user.email}
+              </Typography>
+              <Button
+                color="inherit"
+                size="small"
+                startIcon={<LogoutIcon />}
+                onClick={() => supabase.auth.signOut()}
+              >
+                Çıkış Yap
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
 

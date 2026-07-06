@@ -2,8 +2,8 @@ import { db } from '../database/db';
 import type { Teacher } from '../types/entities';
 
 export const teacherRepository = {
-  getActive(): Promise<Teacher | undefined> {
-    return db.teachers.filter((t) => t.active).first();
+  getById(id: string): Promise<Teacher | undefined> {
+    return db.teachers.get(id);
   },
 
   add(teacher: Teacher): Promise<string> {

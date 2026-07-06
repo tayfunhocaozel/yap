@@ -2,8 +2,8 @@ import { db } from '../database/db';
 import type { CurriculumOutcome } from '../types/entities';
 
 export const curriculumOutcomeRepository = {
-  getAllCodes(): Promise<string[]> {
-    return db.curriculumOutcomes.orderBy('code').keys() as Promise<string[]>;
+  getAll(): Promise<CurriculumOutcome[]> {
+    return db.curriculumOutcomes.toArray();
   },
 
   getByTopic(topicId: string): Promise<CurriculumOutcome[]> {
@@ -17,5 +17,9 @@ export const curriculumOutcomeRepository = {
   async bulkAdd(outcomes: CurriculumOutcome[]): Promise<void> {
     if (outcomes.length === 0) return;
     await db.curriculumOutcomes.bulkAdd(outcomes);
+  },
+
+  delete(id: string): Promise<void> {
+    return db.curriculumOutcomes.delete(id);
   },
 };
