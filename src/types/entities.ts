@@ -51,6 +51,7 @@ export interface Exam {
   subjectId: string;
   title: string;
   examDate: string;
+  description?: string;
 }
 
 export interface Question {

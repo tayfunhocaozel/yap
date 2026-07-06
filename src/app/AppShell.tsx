@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClassIcon from '@mui/icons-material/Class';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { NavLink, useLocation } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ const DRAWER_WIDTH = 240;
 
 const NAV_ITEMS = [
   { to: '/siniflar', label: 'Sınıflar', icon: <ClassIcon /> },
+  { to: '/yazililar', label: 'Yazılılar', icon: <AssignmentIcon /> },
   { to: '/ayarlar', label: 'Ayarlar', icon: <SettingsIcon /> },
 ];
 

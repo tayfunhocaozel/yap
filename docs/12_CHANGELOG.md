@@ -44,6 +44,48 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.5.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Yazılı Oluşturma ve Soru Tanımlama eklendi (FR-005/006, AC-004/005).
+
+### Added
+
+-   `examService`/`examRepository`: Yazılı oluşturma. Aynı sınıfta aynı
+    isimli yazılı **engellenmez**, yalnızca onay istenir (bkz.
+    02_SYSTEM_REQUIREMENTS.md Doğrulama Kuralları — Sınıf'taki sert
+    engelden farklı olarak burada kural bilinçli olarak bir uyarıdır).
+-   `questionService`/`questionRepository`: Soru tanımlama. Aynı
+    sınavda soru numarası tekrar edemez, puan sıfır/negatif olamaz.
+-   01_DATA_MODEL.md: Exam entity'sine FR-005'te belirtilip veri
+    modelinde unutulmuş olan `description` (Açıklama) alanı eklendi.
+-   "Yazılılar" ekranı (liste + oluştur) ve "Soru Tanımlama" ekranı
+    (Konu/Kazanım seçimi müfredat verisinden, sınavın ders+sınıf
+    seviyesine göre filtreli; toplam puan göstergesi 100'e ulaşana
+    kadar turuncu, ulaşınca yeşil).
+-   Sol menüye "Yazılılar" eklendi.
+-   Unit testler: yazılı oluşturma, aynı isim uyarısının engellemediği,
+    soru numarası tekilliği, puan doğrulaması, toplam puan hesaplama.
+
+### Doğrulama
+
+-   Tarayıcıda uçtan uca test edildi: yazılı oluştur → soru ekle →
+    aynı soru numarasıyla tekrar deneme reddedildi → toplam 100
+    olunca gösterge yeşile döndü → soru silindiğinde gösterge tekrar
+    turuncuya döndü → aynı isimde ikinci yazılı oluşturma denemesi
+    onay istedi ve onaylanınca oluşturuldu (engellenmedi).
+
+------------------------------------------------------------------------
+
 # v0.4.0
 
 ## Yayın Tarihi

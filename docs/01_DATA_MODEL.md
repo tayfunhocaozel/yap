@@ -140,13 +140,14 @@ bırakılabilir.
 
 ## Exam
 
-  Alan         Tip
-  ------------ ---------------
-  id           UUID
-  classId      UUID
-  subjectId    UUID
-  title        Text
-  examDate     Date
+  Alan          Tip     Açıklama
+  ------------- ------- ----------
+  id            UUID
+  classId       UUID
+  subjectId     UUID
+  title         Text
+  examDate      Date
+  description   Text    Opsiyonel (FR-005)
 
 `totalScore` ayrı bir alan olarak **saklanmaz**. Toplam puan her zaman
 o yazılıya ait Question kayıtlarının `score` toplamından hesaplanır.
