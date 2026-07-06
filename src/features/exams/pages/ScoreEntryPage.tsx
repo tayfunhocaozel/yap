@@ -147,10 +147,17 @@ export function ScoreEntryPage() {
         Sorulara Dön
       </Button>
 
-      <Typography variant="h5">{exam.title} — Puan Girişi</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        {schoolClass?.name} — {subjectName} — {exam.examDate}
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+        <Box>
+          <Typography variant="h5">{exam.title} — Puan Girişi</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {schoolClass?.name} — {subjectName} — {exam.examDate}
+          </Typography>
+        </Box>
+        <Button variant="contained" onClick={() => navigate(`/yazililar/${exam.id}/analiz`)}>
+          Analizi Görüntüle
+        </Button>
+      </Box>
 
       <TableContainer component={Paper}>
         <Table size="small">

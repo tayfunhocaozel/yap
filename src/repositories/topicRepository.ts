@@ -15,4 +15,9 @@ export const topicRepository = {
   add(topic: Topic): Promise<string> {
     return db.topics.add(topic);
   },
+
+  getByIds(ids: string[]): Promise<Topic[]> {
+    if (ids.length === 0) return Promise.resolve([]);
+    return db.topics.where('id').anyOf(ids).toArray();
+  },
 };

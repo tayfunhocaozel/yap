@@ -44,6 +44,59 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.7.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Analiz Motoru eklendi (FR-008, AC-007).
+
+### Added
+
+-   `analysisService`: Sınıf, Öğrenci, Soru, Konu ve Kazanım analizleri
+    saf (pure) fonksiyonlar olarak yazıldı; risk seviyesi bantları
+    04_ANALYSIS_ENGINE.md Bölüm 4'teki eşiklerle (%85/%70/%50) birebir.
+    Henüz puanlanmamış hücreler ortalamalara 0 olarak değil, hiç dahil
+    edilmeden işlenir; eksiklik ayrı sayaçlarla (Konu: eksik öğrenci
+    sayısı, Öğrenci: "(eksik)" etiketi) raporlanır.
+-   "Analiz" ekranı (`/yazililar/:examId/analiz`): Sınıf Özeti, Riskli
+    Öğrenciler, Soru Analizi tablosu, Konu ve Kazanım analizleri
+    (Chart.js bar grafik + destekleyici tablo, "grafikler sayısal
+    tablolarla desteklenmeli" ilkesine uygun). Risk seviyesi hem renk
+    hem metin etiketiyle gösterilir (yalnızca renge dayanmama kuralı).
+-   `chart.js` + `react-chartjs-2` kuruldu (05_TECHNICAL_ARCHITECTURE.md'de
+    zaten kararlaştırılmıştı).
+-   Puan Girişi ekranına "Analizi Görüntüle" butonu eklendi.
+-   Unit testler: risk bantları, öğrenci/sınıf/soru/konu/kazanım
+    hesaplamaları küçük bir örnek veri setiyle doğrulandı.
+
+### Tasarım Notu
+
+-   Hiç puanlanmamış (sıfır soru girilmiş) öğrenciler "riskli" olarak
+    listelenmez — henüz değerlendirilmediler, bu risk değil eksik veri
+    anlamına gelir. En az bir puanı girilip toplamı düşük olan
+    öğrenciler "(eksik)" etiketiyle birlikte listelenir.
+-   Kazanım analizinde "başarısız öğrenci" eşiği %50 olarak alındı
+    (risk bantlarındaki "Kritik" sınırıyla tutarlı); dokümanda ayrı bir
+    sayısal eşik verilmediği için bu proje içi bir yorumdur.
+
+### Doğrulama
+
+-   Tarayıcıda gerçek 27 öğrencilik sınıf verisiyle test edildi:
+    farklı risk seviyelerinde (Kritik/Geliştirilmeli/İyi/Çok İyi)
+    öğrenciler doğru sınıflandırıldı, hiç puanlanmamış öğrenciler
+    riskli listede görünmedi, grafikler ve tablolar tutarlı sonuç
+    verdi.
+
+------------------------------------------------------------------------
+
 # v0.6.0
 
 ## Yayın Tarihi
