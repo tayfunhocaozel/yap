@@ -18,6 +18,7 @@ import type { Question, Topic } from '../../../types/entities';
 interface QuestionFormDialogProps {
   open: boolean;
   examId: string;
+  subjectName: string;
   topics: Topic[];
   editingQuestion: Question | null;
   suggestedQuestionNo: number;
@@ -27,6 +28,7 @@ interface QuestionFormDialogProps {
 export function QuestionFormDialog({
   open,
   examId,
+  subjectName,
   topics,
   editingQuestion,
   suggestedQuestionNo,
@@ -81,6 +83,7 @@ export function QuestionFormDialog({
       <DialogContent>
         <Stack spacing={2} sx={{ mt: 1 }}>
           {error && <Alert severity="error">{error}</Alert>}
+          <TextField label="Ders" value={subjectName} disabled fullWidth />
           <TextField
             label="Soru No"
             type="number"

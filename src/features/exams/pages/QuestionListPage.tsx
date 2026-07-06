@@ -158,6 +158,7 @@ export function QuestionListPage() {
         <QuestionFormDialog
           open={formOpen}
           examId={exam.id}
+          subjectName={subjectName}
           topics={topics}
           editingQuestion={editingQuestion}
           suggestedQuestionNo={nextQuestionNo}
