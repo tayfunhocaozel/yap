@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('öğretmen profili -> sınıf -> öğrenci -> arşivleme altın yolu', async ({ page }) => {
-  await page.goto('/ayarlar');
+  await page.goto('/#/ayarlar');
 
   await page.getByLabel('Ad Soyad *').fill('Ayşe Yılmaz');
   await page.getByLabel('Branş *').fill('Matematik');

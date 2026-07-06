@@ -4,8 +4,16 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
+// GitHub Pages, projeyi https://<kullanıcı>.github.io/<repo-adı>/ altında
+// sunar (kök domain değil); GitHub Actions build'inde GITHUB_REPOSITORY
+// otomatik sağlanır, buradan repo adını alıp base path'i ayarlıyoruz.
+// Yerel geliştirmede bu değişken yok, base '/' kalır.
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
+const base = repoName ? `/${repoName}/` : '/';
+
 // https://vite.dev/config/
 export default defineConfig({
+  base,
   // Telefon üzerinden LAN testi için HTTPS (self-signed sertifika).
   // PWA "Yükle" davranışı yalnızca güvenli bağlamda (HTTPS/localhost) çalışır.
   server: { host: true },
@@ -23,7 +31,8 @@ export default defineConfig({
         theme_color: '#1565C0',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '/',
+        start_url: base,
+        scope: base,
         lang: 'tr',
         icons: [
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { theme } from './app/theme';
 import { AppShell } from './app/AppShell';
 import { AppRoutes } from './app/routes';
@@ -16,11 +16,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      {/* GitHub Pages statik hosting üzerinde server-side rewrite
+          olmadığı için (BrowserRouter'da doğrudan bir path'e gidilince
+          404 alınır), HashRouter kullanılıyor. */}
+      <HashRouter>
         <AppShell>
           <AppRoutes />
         </AppShell>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 }

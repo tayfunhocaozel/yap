@@ -128,6 +128,27 @@ UI → Service → Repository → IndexedDB
 
 ------------------------------------------------------------------------
 
+# 8.1 Dağıtım (Deployment)
+
+-   Uygulama tamamen istemci tarafında çalışan (sunucu/backend
+    gerektirmeyen) bir SPA olduğu için GitHub Pages üzerinde statik
+    olarak barındırılır.
+-   `.github/workflows/deploy.yml`: `master` branch'e her push'ta
+    `npm ci && npm run build` çalıştırır ve `dist/` klasörünü GitHub
+    Pages'e yayınlar.
+-   Routing `HashRouter` ile yapılır (`.../#/siniflar` gibi); GitHub
+    Pages server-side rewrite desteklemediği için `BrowserRouter` ile
+    doğrudan bir alt sayfa açılması/yenilenmesi 404 ile sonuçlanırdı.
+-   `vite.config.ts`'teki `base` yolu, GitHub Actions'ın otomatik
+    sağladığı `GITHUB_REPOSITORY` değişkeninden türetilir
+    (`/repo-adı/`); yerel geliştirmede etkisi yoktur.
+-   Öğretmen tarafında "kurulum": bir dosya indirmek yerine, yayınlanan
+    URL'e tarayıcıdan gidip "Ana Ekrana Ekle" ile PWA olarak
+    yüklenir; sonraki her açılış (bkz. Bölüm 8) internetsiz çalışır ve
+    yeni bir sürüm yayınlandığında otomatik güncellenir.
+
+------------------------------------------------------------------------
+
 # 9. Performans
 
 -   Lazy Loading

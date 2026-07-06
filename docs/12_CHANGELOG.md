@@ -44,6 +44,63 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.14.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+GitHub Pages üzerinde yayına almak (deploy) için altyapı hazırlandı.
+
+### Changed
+
+-   `BrowserRouter` → `HashRouter` (`src/App.tsx`). GitHub Pages statik
+    dosya sunucusu olduğu ve server-side rewrite yapamadığı için,
+    BrowserRouter ile bir alt sayfa doğrudan açılırsa/yenilenirse 404
+    alınır. HashRouter ile routing tamamen istemci tarafında (`#/...`)
+    kalır, bu sorunu ortadan kaldırır. URL'ler artık
+    `.../#/siniflar` şeklinde görünür.
+-   `vite.config.ts`: `base` yolu, GitHub Actions build'inde otomatik
+    sağlanan `GITHUB_REPOSITORY` değişkeninden türetiliyor
+    (`/repo-adı/`); yerel geliştirmede etkisi yok (`/` kalır). PWA
+    manifest'indeki `start_url`/`scope` de aynı `base` değerini
+    kullanacak şekilde düzeltildi (önceden `start_url` sabit `/`
+    kalıyor, `scope` ile tutarsız oluyordu).
+-   `e2e/golden-path.spec.ts`: `page.goto('/ayarlar')` →
+    `page.goto('/#/ayarlar')`.
+
+### Added
+
+-   `.github/workflows/deploy.yml`: `master` branch'e her push'ta
+    otomatik `npm ci && npm run build` çalıştırıp `dist/` klasörünü
+    GitHub Pages'e deploy eden workflow.
+
+### Doğrulama
+
+-   `GITHUB_REPOSITORY` ortam değişkeni simüle edilerek build alındı;
+    `dist/index.html` ve `dist/manifest.webmanifest`'te tüm asset
+    yollarının, `start_url` ve `scope`'un doğru repo-adı önekiyle
+    (`/YAP/...`) üretildiği; bu değişken olmadan (yerel build) hâlâ
+    `/` kaldığı doğrulandı.
+-   `npx tsc -b`, `npx vitest run` (45 test), `npm run lint`,
+    `npm run build`, `npx playwright test` (HashRouter ile) tamamı
+    yeşil.
+
+### Sonraki Adım
+
+-   Depo henüz GitHub'a bağlı değil (`git remote` yok). Kullanıcı bir
+    GitHub deposu oluşturup bu depoyu push ettikten ve depo
+    ayarlarından "Settings → Pages → Source: GitHub Actions"
+    seçtikten sonra ilk deploy otomatik tetiklenecek.
+
+------------------------------------------------------------------------
+
 # v0.13.0
 
 ## Yayın Tarihi
