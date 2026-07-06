@@ -13,6 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -20,6 +21,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStudents } from '../hooks/useStudents';
 import { StudentFormDialog } from './StudentFormDialog';
+import { StudentImportDialog } from './StudentImportDialog';
 import { ConfirmDialog } from '../../../components/ConfirmDialog';
 import { studentService } from '../../../services/studentService';
 import { classService } from '../../../services/classService';
@@ -32,6 +34,7 @@ export function StudentListPage() {
   const students = useStudents(classId!);
 
   const [formOpen, setFormOpen] = useState(false);
+  const [importOpen, setImportOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
   const [deactivating, setDeactivating] = useState<Student | null>(null);
 
@@ -64,9 +67,14 @@ export function StudentListPage() {
         <Typography variant="h5">
           {schoolClass ? `${schoolClass.name} — Öğrenciler` : 'Öğrenciler'}
         </Typography>
-        <Button variant="contained" startIcon={<AddIcon />} onClick={openCreate}>
-          Yeni Öğrenci
-        </Button>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button variant="outlined" startIcon={<UploadFileIcon />} onClick={() => setImportOpen(true)}>
+            Excel / CSV İçe Aktar
+          </Button>
+          <Button variant="contained" startIcon={<AddIcon />} onClick={openCreate}>
+            Yeni Öğrenci
+          </Button>
+        </Box>
       </Box>
 
       <TableContainer component={Paper}>
@@ -110,6 +118,8 @@ export function StudentListPage() {
         editingStudent={editingStudent}
         onClose={() => setFormOpen(false)}
       />
+
+      <StudentImportDialog open={importOpen} classId={classId} onClose={() => setImportOpen(false)} />
 
       <ConfirmDialog
         open={deactivating !== null}

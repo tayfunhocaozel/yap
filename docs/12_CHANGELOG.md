@@ -44,6 +44,55 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.4.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Öğrenci Excel/CSV içe aktarımı eklendi (US-001, AC-003).
+
+### Added
+
+-   `xlsx` (SheetJS) bağımlılığı eklendi (.xls/.xlsx okumak için;
+    yalnızca öğretmenin kendi yüklediği dosyalar işlendiği için npm
+    paketindeki bilinen güvenlik uyarısı düşük risk olarak kabul edildi).
+-   `studentImportService`: .xls/.xlsx/.csv dosyalarını ayrıştırır.
+    Başlık satırı "Öğrenci No"/"Adı"/"Soyadı" sütun adlarına göre
+    bulunur (pozisyona değil metne dayalı, farklı rapor biçimlerine
+    dayanıklı). Öğrenci No sayısal olmayan ilk satırda durur (özet/
+    altbilgi satırlarını otomatik atlar). "Cinsiyeti" sütunu okunur
+    ama saklanmaz (veri modelinde yok).
+-   Öğrenci Yönetimi ekranına "Excel / CSV İçe Aktar" butonu ve
+    önizleme/onay dialogu: ayrıştırma hataları ve içe aktarım sırasında
+    oluşan iş kuralı hataları (ör. tekrar eden okul no) satır satır
+    raporlanır; başarılı kayıt sayısı gösterilir.
+-   Gerçek okul raporu örneğiyle (`docs/classroom/IOG02005_76.XLS`)
+    doğrulandı: 28 öğrencinin tamamı doğru okunup içe aktarıldı.
+
+### Doğrulama
+
+-   Unit testler: gerçek örnek dosyadan 28 satırın doğru okunduğu,
+    özet satırının öğrenci sayılmadığı, tekrar eden okul numarasının
+    ve eksik ad/soyadın hata olarak işaretlendiği doğrulandı.
+-   Tarayıcıda gerçek dosyayla iki kez içe aktarım denendi: ilkinde
+    28 öğrenci eklendi, ikincisinde 28 satırın tamamı "okul numarası
+    bu sınıfta zaten kayıtlı" hatasıyla reddedildi (kopya oluşmadı).
+
+### Bilinen Sorunlar
+
+-   Yalnızca tek sınıflık dosya formatı destekleniyor; birden fazla
+    sınıfı bir arada içeren "toplu" format örneği henüz yok, V1
+    kapsamına dahil değil.
+
+------------------------------------------------------------------------
+
 # v0.3.0
 
 ## Yayın Tarihi

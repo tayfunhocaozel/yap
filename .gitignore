@@ -22,6 +22,9 @@ playwright/.cache
 github_data.txt
 supabase_data.txt
 
+# Gerçek öğrenci kişisel verisi içeren dosyalar (yalnızca yerel test amaçlı)
+docs/classroom/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
