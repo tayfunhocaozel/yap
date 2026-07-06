@@ -44,6 +44,56 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.10.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Dashboard eklendi (FR-001, AC-001) — 11_ROADMAP.md'deki V1.0 MVP modül
+listesindeki son eksik parça.
+
+### Added
+
+-   "Dashboard" ekranı (`/`, uygulama açılış adresi): "Son Kullanılan
+    Sınıflar", "Son Analizler" ve tek tıklamayla "Yeni Yazılı"
+    kısayolu.
+-   `src/utils/recentClasses.ts`: veri modelinde bir "son erişim"
+    alanı olmadığı için, sınıf ziyaretleri `localStorage`'da
+    (en fazla 10 kayıt) izlenir. Bir sınıfın Öğrenci Listesi ekranı
+    her açıldığında kayıt güncellenir/başa alınır.
+-   "Son Analizler": mevcut `Exam` kayıtları `examDate`'e göre azalan
+    sırada listelenir (ayrı bir "görüntülenme" takibi eklenmedi);
+    her satırdan doğrudan ilgili yazılının Analiz sayfasına gidilir.
+-   "Yeni Yazılı" kısayolu, Yazılılar ekranına `?yeni=1` parametresiyle
+    yönlendirip oluşturma dialogunu otomatik açar; dialog
+    kapatıldığında parametre URL'den temizlenir.
+-   Sol menüye "Dashboard" eklendi; sayfa başlığı eşlemesi "/" için
+    özel olarak ele alınacak şekilde düzeltildi (aksi halde her rota
+    "/" ile başladığından her zaman "Dashboard" görünürdü).
+-   Unit testler: `recentClasses` — ziyaret kaydı, tekrar ziyarette
+    kopya oluşturmadan başa alma, limit uygulama.
+
+### Doğrulama
+
+-   Tarayıcıda test edildi: Dashboard'da hiç sınıf ziyaret edilmeden
+    "Henüz ziyaret edilen bir sınıf yok." mesajı gösterildi; bir
+    sınıfın öğrenci listesi açıldıktan sonra Dashboard'a dönüldüğünde
+    o sınıf "Son Kullanılan Sınıflar"da doğru bilgilerle (isim,
+    seviye, öğretim yılı) göründü. "Yeni Yazılı" butonuna tıklanınca
+    Yazılılar ekranına geçilip oluşturma dialogu otomatik açıldı;
+    "Vazgeç" ile kapatılınca URL'deki `?yeni=1` parametresi temizlendi.
+-   `npx tsc -b`, `npx vitest run` (40 test), `npm run lint`,
+    `npm run build`, `npx playwright test` tamamı yeşil.
+
+------------------------------------------------------------------------
+
 # v0.9.0
 
 ## Yayın Tarihi

@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { DashboardPage } from '../features/dashboard/pages/DashboardPage';
 import { SettingsPage } from '../features/settings/pages/SettingsPage';
 import { ClassListPage } from '../features/classes/pages/ClassListPage';
 import { StudentListPage } from '../features/students/pages/StudentListPage';
@@ -12,7 +13,7 @@ import { ReportsPage } from '../features/exams/pages/ReportsPage';
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/siniflar" replace />} />
+      <Route path="/" element={<DashboardPage />} />
       <Route path="/ayarlar" element={<SettingsPage />} />
       <Route path="/siniflar" element={<ClassListPage />} />
       <Route path="/siniflar/:classId/ogrenciler" element={<StudentListPage />} />

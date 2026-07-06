@@ -14,6 +14,7 @@ import {
   useTheme,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import ClassIcon from '@mui/icons-material/Class';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -22,13 +23,15 @@ import { NavLink, useLocation } from 'react-router-dom';
 const DRAWER_WIDTH = 240;
 
 const NAV_ITEMS = [
+  { to: '/', label: 'Dashboard', icon: <DashboardIcon /> },
   { to: '/siniflar', label: 'Sınıflar', icon: <ClassIcon /> },
   { to: '/yazililar', label: 'Yazılılar', icon: <AssignmentIcon /> },
   { to: '/ayarlar', label: 'Ayarlar', icon: <SettingsIcon /> },
 ];
 
 function pageTitle(pathname: string): string {
-  const match = NAV_ITEMS.find((item) => pathname.startsWith(item.to));
+  if (pathname === '/') return 'Dashboard';
+  const match = NAV_ITEMS.find((item) => item.to !== '/' && pathname.startsWith(item.to));
   return match?.label ?? 'YAP';
 }
 
@@ -45,6 +48,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           key={item.to}
           component={NavLink}
           to={item.to}
+          end={item.to === '/'}
           onClick={() => setMobileOpen(false)}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>

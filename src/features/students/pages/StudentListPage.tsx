@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -25,6 +25,7 @@ import { StudentImportDialog } from './StudentImportDialog';
 import { ConfirmDialog } from '../../../components/ConfirmDialog';
 import { studentService } from '../../../services/studentService';
 import { classService } from '../../../services/classService';
+import { recordClassVisit } from '../../../utils/recentClasses';
 import type { Student } from '../../../types/entities';
 
 export function StudentListPage() {
@@ -37,6 +38,10 @@ export function StudentListPage() {
   const [importOpen, setImportOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
   const [deactivating, setDeactivating] = useState<Student | null>(null);
+
+  useEffect(() => {
+    if (classId) recordClassVisit(classId);
+  }, [classId]);
 
   function openCreate() {
     setEditingStudent(null);

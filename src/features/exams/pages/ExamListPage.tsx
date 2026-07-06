@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useExams } from '../hooks/useExams';
 import { useSubjects } from '../hooks/useSubjects';
 import { useClasses } from '../../classes/hooks/useClasses';
@@ -57,7 +57,13 @@ export function ExamListPage() {
   const classes = useClasses();
   const subjects = useSubjects();
   const navigate = useNavigate();
-  const [formOpen, setFormOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [formOpen, setFormOpen] = useState(searchParams.get('yeni') === '1');
+
+  function closeForm() {
+    setFormOpen(false);
+    if (searchParams.get('yeni')) setSearchParams({}, { replace: true });
+  }
 
   const classNameById = new Map(classes?.map((c) => [c.id, c.name]));
   const subjectNameById = new Map(subjects?.map((s) => [s.id, s.name]));
@@ -104,7 +110,7 @@ export function ExamListPage() {
 
       <ExamFormDialog
         open={formOpen}
-        onClose={() => setFormOpen(false)}
+        onClose={closeForm}
         onCreated={(examId) => {
           setFormOpen(false);
           navigate(`/yazililar/${examId}/sorular`);
