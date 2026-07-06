@@ -112,9 +112,19 @@ UI → Service → Repository → IndexedDB
 # 8. Offline Stratejisi
 
 -   Tüm temel işlemler internet olmadan çalışır.
--   Veriler yerel cihazda saklanır.
+-   Veriler yerel cihazda (IndexedDB) saklanır.
 -   İnternet yalnızca isteğe bağlı güncelleme veya yedekleme için
     kullanılır.
+-   `vite-plugin-pwa` (Workbox `generateSW` modu) ile uygulama kabuğu
+    (HTML/CSS/JS/font) build sırasında service worker precache'ine
+    alınır; `registerType: 'autoUpdate'` ile yeni bir sürüm yayınlanınca
+    sekme kapatılıp açıldığında otomatik güncellenir. Uygulamanın
+    kendisi harici bir API'ye istek atmadığı için `runtimeCaching`
+    tanımlı değildir. Manifest ve ikonlar (`public/pwa-*.png`)
+    uygulamanın ana ekrana eklenebilir (installable) olmasını sağlar.
+-   PWA davranışı yalnızca production build'de (`npm run build` +
+    `npm run preview`) aktiftir; `npm run dev` service worker
+    kaydetmez.
 
 ------------------------------------------------------------------------
 

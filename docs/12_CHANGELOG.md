@@ -44,6 +44,58 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.12.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+PWA (offline-first) altyapısı eklendi (05_TECHNICAL_ARCHITECTURE.md
+Bölüm 8). Şimdiye kadar veriler zaten IndexedDB'de (internet
+gerektirmeden) tutuluyordu, ama uygulamanın kendisi (HTML/JS/CSS/font)
+gerçek bir "installable", tarayıcı kapansa/sunucuya erişilemese bile
+açılabilen bir PWA değildi — bu sürümde bu eksik giderildi.
+
+### Added
+
+-   `vite-plugin-pwa` kuruldu (Workbox `generateSW` modu,
+    `registerType: 'autoUpdate'`). Build çıktısı (JS/CSS/HTML/font)
+    service worker tarafından önceden önbelleğe alınıyor.
+-   `public/pwa-192x192.png`, `public/pwa-512x512.png`: mevcut
+    favicon.svg'den üretilen PWA ikonları (192x192 ve 512x512, biri
+    `maskable` amaçlı).
+-   `manifest.webmanifest`: uygulama adı, tema rengi (#1565C0, MUI
+    primary ile aynı), `display: standalone`, Türkçe `lang`.
+
+### Doğrulama
+
+-   `npm run build` sonrası `dist/sw.js` ve `dist/manifest.webmanifest`
+    oluştuğu doğrulandı (precache: 13 dosya, ~4.2 MB).
+-   `npm run preview` ile başlatılan sunucuya tarayıcıdan bağlanıldı,
+    service worker'ın kayıtlı olduğu (`navigator.serviceWorker.
+    getRegistrations()`) doğrulandı. Ardından **sunucu süreci
+    tamamen sonlandırıldı** ve sayfa yeniden yüklendi: uygulama
+    (Dashboard, sol menü, "Sınıflar" client-side route'u dahil)
+    sunucu hiç çalışmıyorken sorunsuz açıldı — gerçek offline çalışma
+    doğrulanmış oldu.
+-   `npx tsc -b`, `npx vitest run` (45 test), `npm run lint`,
+    `npm run build`, `npx playwright test` tamamı yeşil.
+
+### Not
+
+-   PWA/service worker davranışı yalnızca production build'de
+    (`npm run build` + `npm run preview`) aktiftir; `npm run dev`
+    sırasında service worker kaydedilmez (Vite dev sunucusu zaten
+    anlık yeniden derleme yaptığı için bu beklenen bir kısıtlamadır).
+
+------------------------------------------------------------------------
+
 # v0.11.0
 
 ## Yayın Tarihi

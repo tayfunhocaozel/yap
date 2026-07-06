@@ -1,10 +1,40 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.svg'],
+      manifest: {
+        name: 'YAP - Yazılı Analiz Programı',
+        short_name: 'YAP',
+        description: 'Yazılı sınav sonuçlarını analiz eden ve telafi planlaması yapan offline-first öğretmen aracı.',
+        theme_color: '#1565C0',
+        background_color: '#ffffff',
+        display: 'standalone',
+        start_url: '/',
+        lang: 'tr',
+        icons: [
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+      },
+      workbox: {
+        // Uygulama tamamen istemci tarafında (IndexedDB) çalışır; ağ isteği
+        // yapılmadığı için runtimeCaching gerekmez, yalnızca build çıktısı
+        // önceden önbelleğe alınır. Ana JS paketi (~3MB, PDF/Excel/Chart
+        // kütüphaneleri dahil) varsayılan 2MB sınırını aştığı için yükseltildi.
+        globPatterns: ['**/*.{js,css,html,svg,png,woff,woff2,ttf}'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+      },
+    }),
+  ],
   test: {
     environment: 'jsdom',
     globals: true,
