@@ -44,6 +44,51 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.13.0
+
+## Yayın Tarihi
+
+2026-07-06
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Geliştirme sunucusuna kalıcı HTTPS + LAN erişimi eklendi; gerçek bir
+telefonda PWA yükleme ve offline-first akış uçtan uca doğrulandı.
+
+### Added
+
+-   `@vitejs/plugin-basic-ssl` kuruldu: `npm run dev` ve
+    `npm run preview` artık self-signed sertifikayla HTTPS üzerinden
+    sunuluyor. Chrome'un tam PWA "Yükle" davranışı (service worker +
+    install banner) yalnızca güvenli bağlamda (HTTPS/localhost)
+    çalıştığı için, aynı Wi-Fi ağındaki bir telefondan gerçek PWA
+    testi yapabilmek adına kalıcı olarak eklenmesine karar verildi.
+-   `vite.config.ts`: `server.host` / `preview.host: true` ile
+    sunucular yalnızca localhost değil, yerel ağdaki diğer cihazlardan
+    (`https://<bilgisayarın LAN IP'si>:5173`) da erişilebilir hale
+    getirildi.
+-   `playwright.config.ts`: testler artık `https://localhost:5173`
+    adresini bekliyor (`ignoreHTTPSErrors: true` ile self-signed
+    sertifika hatası görmezden geliniyor).
+
+### Doğrulama
+
+-   Gerçek bir telefonda (aynı Wi-Fi ağı, `https://<LAN IP>:4173`)
+    self-signed sertifika uyarısı geçilip "Ana Ekrana Ekle" ile
+    uygulama yüklendi. Yüklenen PWA üzerinden uçtan uca gerçek bir
+    kullanım senaryosu denendi: öğretmen profili → sınıf → öğrenci →
+    yazılı → puan girişi → PDF rapor — tamamı telefonda sorunsuz
+    çalıştı.
+-   `npx tsc -b`, `npx vitest run` (45 test), `npm run lint`,
+    `npm run build`, `npx playwright test` (güncellenmiş HTTPS
+    baseURL ile) tamamı yeşil.
+
+------------------------------------------------------------------------
+
 # v0.12.0
 
 ## Yayın Tarihi

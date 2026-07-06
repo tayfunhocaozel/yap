@@ -2,10 +2,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Telefon üzerinden LAN testi için HTTPS (self-signed sertifika).
+  // PWA "Yükle" davranışı yalnızca güvenli bağlamda (HTTPS/localhost) çalışır.
+  server: { host: true },
+  preview: { host: true },
   plugins: [
+    basicSsl(),
     react(),
     VitePWA({
       registerType: 'autoUpdate',
