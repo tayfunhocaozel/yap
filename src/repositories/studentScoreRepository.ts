@@ -1,5 +1,8 @@
 import { db } from '../database/db';
+import { createSyncedTable } from '../sync/createSyncedTable';
 import type { StudentScore } from '../types/entities';
+
+const synced = createSyncedTable(db.studentScores, 'student_scores');
 
 export const studentScoreRepository = {
   getByQuestionIds(questionIds: string[]): Promise<StudentScore[]> {
@@ -13,11 +16,11 @@ export const studentScoreRepository = {
       .first();
   },
 
-  add(score: StudentScore): Promise<string> {
-    return db.studentScores.add(score);
+  add(score: Omit<StudentScore, 'updatedAt'>): Promise<string> {
+    return synced.add(score);
   },
 
-  update(id: string, changes: Partial<StudentScore>): Promise<number> {
-    return db.studentScores.update(id, changes);
+  update(id: string, changes: Partial<Omit<StudentScore, 'updatedAt'>>): Promise<number> {
+    return synced.update(id, changes);
   },
 };

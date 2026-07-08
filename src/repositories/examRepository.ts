@@ -1,5 +1,8 @@
 import { db } from '../database/db';
+import { createSyncedTable } from '../sync/createSyncedTable';
 import type { Exam } from '../types/entities';
+
+const synced = createSyncedTable(db.exams, 'exams');
 
 export const examRepository = {
   getAll(): Promise<Exam[]> {
@@ -14,7 +17,7 @@ export const examRepository = {
     return db.exams.filter((e) => e.classId === classId && e.title === title).first();
   },
 
-  add(exam: Exam): Promise<string> {
-    return db.exams.add(exam);
+  add(exam: Omit<Exam, 'updatedAt'>): Promise<string> {
+    return synced.add(exam);
   },
 };

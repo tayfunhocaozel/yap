@@ -7,6 +7,7 @@ vi.mock('./pullTable', () => ({ pullTable: vi.fn() }));
 import { isReachable } from './networkStatus';
 import { pushOutbox } from './pushOutbox';
 import { pullTable } from './pullTable';
+import { SYNC_TABLES } from './syncTables';
 import { kickSync } from './syncEngine';
 
 describe('kickSync', () => {
@@ -66,6 +67,6 @@ describe('kickSync', () => {
     await vi.advanceTimersByTimeAsync(500);
 
     expect(order[0]).toBe('push');
-    expect(order.slice(1)).toEqual(['pull', 'pull']);
+    expect(order.slice(1)).toEqual(Array(SYNC_TABLES.length).fill('pull'));
   });
 });

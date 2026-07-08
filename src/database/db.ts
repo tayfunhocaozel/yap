@@ -73,6 +73,56 @@ export class YapDatabase extends Dexie {
           }
         }
       });
+
+    // Faz 3: kalan entity'lerin senkrona bağlanması. `teachers`/`classes`
+    // burada TEKRAR backfill edilmez (v2'de zaten yapıldı — tekrarı
+    // duplicate outbox kaydı yaratırdı). Şema tarafında yeni index
+    // gerekmiyor (updatedAt hiçbir tabloda indekslenmiyor), bu yüzden
+    // `.stores()` çağrısı olmadan yalnızca `.upgrade()` yeterli.
+    //
+    // Backfill sırası kasıtlı: students → exams → questions. Push, outbox'a
+    // eklenme sırasına (localId) göre işlendiği için, FK zincirinin
+    // (questions.examId → exams.id, exams.classId → classes.id) bozulmaması
+    // için üst kayıtlar alt kayıtlardan önce outbox'a girmelidir. Dexie
+    // tablo adı ile Supabase tablo adı `students`/`exams`/`questions`
+    // için birebir aynı; sonraki entity'lerde (ör. studentScores/
+    // student_scores) farklılaşacağı için ayrı ayrı belirtilecek.
+    this.version(3).upgrade(async (tx) => {
+      const now = new Date().toISOString();
+
+      async function backfill(dexieTableName: string, supabaseTableName: SyncedTableName) {
+        const rows = await tx.table(dexieTableName).toArray();
+        for (const row of rows) {
+          await tx.table(dexieTableName).update(row.id, { updatedAt: now });
+          await tx.table('outbox').add({
+            tableName: supabaseTableName,
+            entityId: row.id,
+            operation: 'upsert',
+            payload: { ...row, updatedAt: now },
+            createdAt: now,
+            attempts: 0,
+          });
+        }
+      }
+
+      await backfill('students', 'students');
+      await backfill('exams', 'exams');
+      await backfill('questions', 'questions');
+
+      // Report.createdAt -> generatedAt rename (bkz. types/entities.ts):
+      // eski kayıtlarda veri hâlâ eski ad altında duruyor, backfill'den
+      // önce yeni alana taşınır ki gönderilecek payload doğru olsun.
+      const reportRows = await tx.table('reports').toArray();
+      for (const row of reportRows) {
+        if (row.generatedAt === undefined && row.createdAt !== undefined) {
+          await tx.table('reports').update(row.id, { generatedAt: row.createdAt });
+        }
+      }
+
+      await backfill('studentScores', 'student_scores');
+      await backfill('interventions', 'interventions');
+      await backfill('reports', 'reports');
+    });
   }
 }
 

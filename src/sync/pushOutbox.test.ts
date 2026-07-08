@@ -52,6 +52,31 @@ describe('pushOutbox', () => {
     expect(builder.upsert).toHaveBeenCalledWith({ id: 't1', full_name: 'Ali', school_name: 'Okul' });
   });
 
+  it('delete operasyonunu gerçek DELETE yerine deleted_at damgalayan update olarak gönderir', async () => {
+    await db.outbox.add({
+      tableName: 'questions',
+      entityId: 'q1',
+      operation: 'delete',
+      payload: { id: 'q1', deletedAt: '2026-01-01T00:00:00.000Z', updatedAt: '2026-01-01T00:00:00.000Z' },
+      createdAt: '2026-01-01T00:00:00.000Z',
+      attempts: 0,
+    });
+
+    const builder = createQueryBuilder({ data: [{ id: 'q1' }], error: null });
+    vi.mocked(supabase.from).mockReturnValue(builder as never);
+
+    await pushOutbox();
+
+    expect(builder.update).toHaveBeenCalledWith({
+      id: 'q1',
+      deleted_at: '2026-01-01T00:00:00.000Z',
+      updated_at: '2026-01-01T00:00:00.000Z',
+    });
+    expect(builder.eq).toHaveBeenCalledWith('id', 'q1');
+    expect(builder.upsert).not.toHaveBeenCalled();
+    expect(await db.outbox.count()).toBe(0);
+  });
+
   it('bir kayıt hata verince sıradaki (farklı tabloya ait olsa bile) kayıtları bekletir', async () => {
     await db.outbox.add({
       tableName: 'teachers',

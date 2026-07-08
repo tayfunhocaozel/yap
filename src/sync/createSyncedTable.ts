@@ -64,5 +64,29 @@ export function createSyncedTable<T extends { id: string; updatedAt: string }>(
     return result;
   }
 
-  return { add, update };
+  async function remove(id: string): Promise<void> {
+    const now = new Date().toISOString();
+
+    await db.transaction('rw', table, db.outbox, async () => {
+      // Yerelde hemen hard-delete (UX için anlık) — sunucuya "delete"
+      // operasyonu olarak bildirilir, pushOutbox bunu soft-delete
+      // (deleted_at damgalama) olarak gönderir; yerel Dexie'de tombstone
+      // tutulmaz, çünkü pull tarafı zaten sunucudaki deleted_at'i görüp
+      // yerel kaydı hard-delete edecek şekilde tasarlandı.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await table.delete(id as any);
+      await db.outbox.add({
+        tableName,
+        entityId: id,
+        operation: 'delete',
+        payload: { id, deletedAt: now, updatedAt: now },
+        createdAt: now,
+        attempts: 0,
+      });
+    });
+
+    kickSync();
+  }
+
+  return { add, update, remove };
 }

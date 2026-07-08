@@ -56,4 +56,28 @@ describe('createSyncedTable', () => {
 
     expect(kickSync).toHaveBeenCalledTimes(1);
   });
+
+  it('remove: yerelde hard-delete yapar ve outbox\'a delete kaydı ekler', async () => {
+    await synced.add({ id: 't1', fullName: 'Ali', branch: 'Matematik', active: true });
+    await db.outbox.clear();
+
+    await synced.remove('t1');
+
+    expect(await db.teachers.get('t1')).toBeUndefined();
+
+    const outboxEntries = await db.outbox.toArray();
+    expect(outboxEntries).toHaveLength(1);
+    expect(outboxEntries[0]).toMatchObject({ tableName: 'teachers', entityId: 't1', operation: 'delete' });
+    expect(outboxEntries[0].payload).toMatchObject({ id: 't1' });
+    expect(typeof outboxEntries[0].payload.deletedAt).toBe('string');
+  });
+
+  it('remove sonrası kickSync çağrılır', async () => {
+    await synced.add({ id: 't1', fullName: 'Ali', branch: 'Matematik', active: true });
+    vi.mocked(kickSync).mockClear();
+
+    await synced.remove('t1');
+
+    expect(kickSync).toHaveBeenCalledTimes(1);
+  });
 });

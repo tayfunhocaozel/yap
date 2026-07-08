@@ -27,6 +27,8 @@ export interface Student {
   fullName: string;
   classId: string;
   active: boolean;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export interface Subject {
@@ -58,6 +60,8 @@ export interface Exam {
   title: string;
   examDate: string;
   description?: string;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export interface Question {
@@ -67,6 +71,8 @@ export interface Question {
   score: number;
   topicId: string;
   outcomeId: string;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export interface StudentScore {
@@ -74,6 +80,8 @@ export interface StudentScore {
   studentId: string;
   questionId: string;
   earnedScore: number;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export type InterventionType = 'individual' | 'group' | 'class';
@@ -86,11 +94,16 @@ export interface Intervention {
   targetType: InterventionType;
   notes?: string;
   interventionDate: string;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export interface Report {
   id: string;
   examId: string;
   reportType: string;
-  createdAt: string;
+  /** İş anlamlı oluşturulma zamanı — Supabase şemasında `generated_at`, sync-only `created_at` ile karışmasın diye ayrıştırıldı. */
+  generatedAt: string;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }

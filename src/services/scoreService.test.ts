@@ -18,6 +18,7 @@ describe('scoreService', () => {
       score: 10,
       topicId: 't1',
       outcomeId: 'o1',
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
   });
 
@@ -50,6 +51,7 @@ describe('scoreService', () => {
       score: 10,
       topicId: 't1',
       outcomeId: 'o1',
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
     await scoreService.setScore({
       studentId: STUDENT_ID,

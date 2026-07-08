@@ -1,7 +1,7 @@
-import { db } from '../database/db';
 import { isReachable } from './networkStatus';
 import { pushOutbox } from './pushOutbox';
 import { pullTable } from './pullTable';
+import { SYNC_TABLES } from './syncTables';
 
 const DEBOUNCE_MS = 500;
 const PERIODIC_INTERVAL_MS = 2 * 60 * 1000;
@@ -22,8 +22,9 @@ async function runSync(): Promise<void> {
       // (pull, outbox'ta bekleyen kayıtları atlıyor; push'un outbox'ı
       // boşaltmasından SONRA pull çalışırsa daha güncel bir görüntü alınır).
       await pushOutbox();
-      await pullTable('teachers', db.teachers);
-      await pullTable('classes', db.classes);
+      for (const { tableName, table } of SYNC_TABLES) {
+        await pullTable(tableName, table);
+      }
     }
   } finally {
     syncing = false;

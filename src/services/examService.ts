@@ -35,9 +35,9 @@ export const examService = {
     return examRepository.findByClassAndTitle(classId, title.trim());
   },
 
-  async create(input: ExamInput): Promise<Exam> {
+  async create(input: ExamInput): Promise<Omit<Exam, 'updatedAt'>> {
     validate(input);
-    const exam: Exam = {
+    const exam: Omit<Exam, 'updatedAt'> = {
       id: crypto.randomUUID(),
       classId: input.classId,
       subjectId: input.subjectId,

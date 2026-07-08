@@ -39,6 +39,36 @@ describe('pullTable', () => {
     expect(saved).not.toHaveProperty('deletedAt');
   });
 
+  it('deleted_at dolu gelen satırı yerelde hard-delete eder (tombstone)', async () => {
+    await db.teachers.add({
+      id: 't1',
+      fullName: 'Ali',
+      branch: 'Matematik',
+      active: true,
+      updatedAt: '2026-01-01T00:00:00.000Z',
+    });
+
+    vi.mocked(supabase.from).mockReturnValue(
+      createQueryBuilder({
+        data: [
+          {
+            id: 't1',
+            full_name: 'Ali',
+            branch: 'Matematik',
+            active: true,
+            updated_at: '2026-01-02T00:00:00.000Z',
+            deleted_at: '2026-01-02T00:00:00.000Z',
+          },
+        ],
+        error: null,
+      }) as never,
+    );
+
+    await pullTable('teachers', db.teachers);
+
+    expect(await db.teachers.get('t1')).toBeUndefined();
+  });
+
   it('id\'si outbox\'ta bekleyen bir satırı atlar', async () => {
     await db.outbox.add({
       tableName: 'teachers',

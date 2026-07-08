@@ -16,6 +16,7 @@ export function createQueryBuilder(result: MockQueryResult = { data: [], error: 
   const builder = {
     select: vi.fn(() => builder),
     upsert: vi.fn(() => builder),
+    update: vi.fn(() => builder),
     delete: vi.fn(() => builder),
     eq: vi.fn(() => builder),
     gt: vi.fn(() => builder),

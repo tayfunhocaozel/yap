@@ -116,6 +116,7 @@ describe('curriculumSeedService', () => {
       score: 10,
       topicId: oldTopicId,
       outcomeId: oldOutcomeId,
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
     await db.interventions.add({
       id: crypto.randomUUID(),
@@ -124,6 +125,7 @@ describe('curriculumSeedService', () => {
       type: 'individual',
       targetType: 'individual',
       interventionDate: '2026-01-01',
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
     await seedCurriculum();

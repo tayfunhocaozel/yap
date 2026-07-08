@@ -1,5 +1,8 @@
 import { db } from '../database/db';
+import { createSyncedTable } from '../sync/createSyncedTable';
 import type { Intervention } from '../types/entities';
+
+const synced = createSyncedTable(db.interventions, 'interventions');
 
 export const interventionRepository = {
   getByExam(examId: string): Promise<Intervention[]> {
@@ -12,11 +15,11 @@ export const interventionRepository = {
       .first();
   },
 
-  add(intervention: Intervention): Promise<string> {
-    return db.interventions.add(intervention);
+  add(intervention: Omit<Intervention, 'updatedAt'>): Promise<string> {
+    return synced.add(intervention);
   },
 
-  update(id: string, changes: Partial<Intervention>): Promise<number> {
-    return db.interventions.update(id, changes);
+  update(id: string, changes: Partial<Omit<Intervention, 'updatedAt'>>): Promise<number> {
+    return synced.update(id, changes);
   },
 };

@@ -193,13 +193,45 @@ ayrı test edilen fazlarla ilerliyor:
     `src/test-setup.ts`'te global `vi.mock('./lib/supabaseClient', ...)`
     ile testler gerçek ağa çıkmaz. Push, düz `upsert` kullanır — DB
     seviyesinde atomik LWW garantisi Faz 5'e bırakıldı.
--   **Faz 3-6 (planlandı, henüz yapılmadı)**: kalan 9 entity'ye sync
-    pattern'inin uygulanması (delete/tombstone dahil), Subject/Topic/
-    CurriculumOutcome için ayrı salt-okunur senkron stratejisi, atomik
-    LWW (Postgres RPC), Realtime, ilk-giriş rekey migrasyonu, sync
-    durum göstergesi, e2e güncellemesi. Detaylı plan ve riskler için
-    proje geçmişindeki plan dosyasına bakılabilir; bu bölüm her faz
-    tamamlandıkça güncellenecektir.
+-   **Faz 3 (tamamlandı)**: Kalan 6 entity (`Student`, `Exam`,
+    `Question`, `StudentScore`, `Intervention`, `Report`) sync'e
+    bağlandı. `SyncedTableName`/`SYNC_TABLES` (`src/sync/syncTables.ts`)
+    artık 8 tablo taşıyor; `syncEngine.ts`'in pull döngüsü bu registry'i
+    geziyor. `createSyncedTable.ts`'e `remove(id)` eklendi — **tombstone
+    (soft-delete) stratejisi**: yerelde hard `delete`, ama outbox'a
+    `operation:'delete'` kaydı; `pushOutbox.ts` bunu gerçek Postgres
+    `DELETE` yerine `update({deleted_at, updated_at})` olarak gönderir;
+    `pullTable.ts` gelen satırda `deletedAt` doluysa yerel kaydı
+    hard-delete eder. Yalnızca `Question.delete()` bu yolu kullanıyor
+    (diğerleri hard-delete kullanmıyor).
+    **Kritik ön koşul**: `exams.subject_id`/`questions.topic_id`/
+    `questions.outcome_id`, salt-okunur `subjects`/`topics`/
+    `curriculum_outcomes` tablolarına FK'li ve bu tablolar istemciden
+    yazılamıyor — `scripts/generate-curriculum-seed-sql.ts`
+    (`deterministicUuid`'i gerçek kaynaktan import ederek id paritesini
+    garanti eder) `supabase/seed/0001_curriculum_reference_data.sql`
+    üretir; bu dosya deploy'dan önce Dashboard SQL Editor'da bir kez
+    çalıştırılmalı — aksi halde ilk push denemesi FK violation ile
+    döner ve outbox'un "ilk hatada dur" tasarımı gereği **tüm**
+    tabloların senkronu tıkanır.
+    `Report.createdAt` → `Report.generatedAt` rename edildi (Supabase
+    şemasındaki iş-anlamlı `generated_at` ile sync-only `created_at`
+    arasındaki isim çakışmasını gidermek için).
+    `curriculumSeedService.ts`'teki re-key mantığı artık doğrudan Dexie
+    yazmak yerine `questionRepository`/`interventionRepository`
+    üzerinden yazıyor (aksi halde outbox'ı bypass edip sessiz senkron
+    sapmasına yol açardı). `db.ts` version(3) migration'ı, sırasıyla
+    students → exams → questions → (student_scores, interventions,
+    reports) mevcut kullanıcı verisini backfill eder (FK zincirinin
+    push sırasında bozulmaması için sıra önemli).
+-   **Faz 4-6 (planlandı, henüz yapılmadı)**: Subject/Topic/
+    CurriculumOutcome için ayrı, pull-only/idari senkron stratejisi;
+    atomik LWW (Postgres RPC), Realtime, ilk-giriş rekey migrasyonu,
+    sync durum göstergesi, StudentScore öksüz temizliği (soft-delete
+    trade-off'unun sonucu); test altyapısı iyileştirmeleri, e2e
+    güncellemesi. Detaylı plan ve riskler için proje geçmişindeki plan
+    dosyasına bakılabilir; bu bölüm her faz tamamlandıkça
+    güncellenecektir.
 
 **Bilinen sınır**: last-write-wins stratejisi tek öğretmen + çoklu
 cihaz senaryosunu hedefler; aynı kaydın iki cihazda offline değişip

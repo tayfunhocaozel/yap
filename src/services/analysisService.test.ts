@@ -11,14 +11,14 @@ import {
 import type { Question, Student, StudentScore, Topic, CurriculumOutcome } from '../types/entities';
 
 const students: Student[] = [
-  { id: 's1', schoolNumber: '1', fullName: 'Ali', classId: 'c1', active: true },
-  { id: 's2', schoolNumber: '2', fullName: 'Veli', classId: 'c1', active: true },
-  { id: 's3', schoolNumber: '3', fullName: 'Ayşe', classId: 'c1', active: true },
+  { id: 's1', schoolNumber: '1', fullName: 'Ali', classId: 'c1', active: true, updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 's2', schoolNumber: '2', fullName: 'Veli', classId: 'c1', active: true, updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 's3', schoolNumber: '3', fullName: 'Ayşe', classId: 'c1', active: true, updatedAt: '2026-01-01T00:00:00.000Z' },
 ];
 
 const questions: Question[] = [
-  { id: 'q1', examId: 'e1', questionNo: 1, score: 40, topicId: 't1', outcomeId: 'o1' },
-  { id: 'q2', examId: 'e1', questionNo: 2, score: 60, topicId: 't2', outcomeId: 'o2' },
+  { id: 'q1', examId: 'e1', questionNo: 1, score: 40, topicId: 't1', outcomeId: 'o1', updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 'q2', examId: 'e1', questionNo: 2, score: 60, topicId: 't2', outcomeId: 'o2', updatedAt: '2026-01-01T00:00:00.000Z' },
 ];
 
 const topics: Topic[] = [
@@ -35,11 +35,11 @@ const outcomes: CurriculumOutcome[] = [
 // Veli: q1=20 (yarım), q2 eksik -> toplam 20, eksik
 // Ayşe: q1=0, q2=15 (60'ta 15 -> %25) -> toplam 15
 const scores: StudentScore[] = [
-  { id: 'sc1', studentId: 's1', questionId: 'q1', earnedScore: 40 },
-  { id: 'sc2', studentId: 's1', questionId: 'q2', earnedScore: 60 },
-  { id: 'sc3', studentId: 's2', questionId: 'q1', earnedScore: 20 },
-  { id: 'sc4', studentId: 's3', questionId: 'q1', earnedScore: 0 },
-  { id: 'sc5', studentId: 's3', questionId: 'q2', earnedScore: 15 },
+  { id: 'sc1', studentId: 's1', questionId: 'q1', earnedScore: 40, updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 'sc2', studentId: 's1', questionId: 'q2', earnedScore: 60, updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 'sc3', studentId: 's2', questionId: 'q1', earnedScore: 20, updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 'sc4', studentId: 's3', questionId: 'q1', earnedScore: 0, updatedAt: '2026-01-01T00:00:00.000Z' },
+  { id: 'sc5', studentId: 's3', questionId: 'q2', earnedScore: 15, updatedAt: '2026-01-01T00:00:00.000Z' },
 ];
 
 describe('riskLevelFor', () => {

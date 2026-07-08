@@ -8,7 +8,7 @@ export const reportService = {
       id: crypto.randomUUID(),
       examId,
       reportType,
-      createdAt: new Date().toISOString(),
+      generatedAt: new Date().toISOString(),
     });
   },
 };

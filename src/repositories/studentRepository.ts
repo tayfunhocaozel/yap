@@ -1,4 +1,5 @@
 import { db } from '../database/db';
+import { createSyncedTable } from '../sync/createSyncedTable';
 import type { Student } from '../types/entities';
 
 function sortBySchoolNumber(students: Student[]): Student[] {
@@ -6,6 +7,8 @@ function sortBySchoolNumber(students: Student[]): Student[] {
     a.schoolNumber.localeCompare(b.schoolNumber, undefined, { numeric: true }),
   );
 }
+
+const synced = createSyncedTable(db.students, 'students');
 
 export const studentRepository = {
   async getActiveByClass(classId: string): Promise<Student[]> {
@@ -24,11 +27,11 @@ export const studentRepository = {
       .first();
   },
 
-  add(student: Student): Promise<string> {
-    return db.students.add(student);
+  add(student: Omit<Student, 'updatedAt'>): Promise<string> {
+    return synced.add(student);
   },
 
-  update(id: string, changes: Partial<Student>): Promise<number> {
-    return db.students.update(id, changes);
+  update(id: string, changes: Partial<Omit<Student, 'updatedAt'>>): Promise<number> {
+    return synced.update(id, changes);
   },
 };

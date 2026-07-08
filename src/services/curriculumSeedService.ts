@@ -2,6 +2,8 @@ import { db } from '../database/db';
 import { subjectRepository } from '../repositories/subjectRepository';
 import { topicRepository } from '../repositories/topicRepository';
 import { curriculumOutcomeRepository } from '../repositories/curriculumOutcomeRepository';
+import { questionRepository } from '../repositories/questionRepository';
+import { interventionRepository } from '../repositories/interventionRepository';
 import { deterministicUuid } from '../utils/deterministicId';
 import type { Grade } from '../types/entities';
 
@@ -73,7 +75,13 @@ export async function seedCurriculum(): Promise<void> {
     if (!existing) {
       await topicRepository.add({ id: newId, subjectId, grade, name, unit, order });
     } else if (existing.id !== newId) {
-      await db.questions.where('topicId').equals(existing.id).modify({ topicId: newId });
+      // Repository (ve dolayısıyla outbox) üzerinden güncellenir — doğrudan
+      // Dexie yazımı Question artık senkronize olduğu için sessizce
+      // cihazlar arası veri sapmasına yol açardı.
+      const affectedQuestions = await db.questions.where('topicId').equals(existing.id).toArray();
+      for (const q of affectedQuestions) {
+        await questionRepository.update(q.id, { topicId: newId });
+      }
       await topicRepository.delete(existing.id);
       await topicRepository.add({ id: newId, subjectId, grade, name, unit, order });
     } else if (existing.order !== order) {
@@ -94,8 +102,17 @@ export async function seedCurriculum(): Promise<void> {
         if (!existing) {
           newOutcomes.push({ id: newId, topicId, code: outcomeSeed.code, description: outcomeSeed.description });
         } else if (existing.id !== newId) {
-          await db.questions.where('outcomeId').equals(existing.id).modify({ outcomeId: newId });
-          await db.interventions.where('outcomeId').equals(existing.id).modify({ outcomeId: newId });
+          // Repository üzerinden güncellenir — doğrudan Dexie yazımı Question/
+          // Intervention artık senkronize olduğu için sessizce cihazlar arası
+          // veri sapmasına yol açardı.
+          const affectedQuestions = await db.questions.where('outcomeId').equals(existing.id).toArray();
+          for (const q of affectedQuestions) {
+            await questionRepository.update(q.id, { outcomeId: newId });
+          }
+          const affectedInterventions = await db.interventions.where('outcomeId').equals(existing.id).toArray();
+          for (const iv of affectedInterventions) {
+            await interventionRepository.update(iv.id, { outcomeId: newId });
+          }
           await curriculumOutcomeRepository.delete(existing.id);
           newOutcomes.push({ id: newId, topicId, code: outcomeSeed.code, description: outcomeSeed.description });
         }

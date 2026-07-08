@@ -44,6 +44,106 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.17.0
+
+## Yayın Tarihi
+
+2026-07-08
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Supabase geçişinin **Faz 3**'ü tamamlandı: kalan 6 entity (`Student`,
+`Exam`, `Question`, `StudentScore`, `Intervention`, `Report`) sync
+motoruna bağlandı. **Bu sürüm, referans veri SQL'i Supabase'e elle
+yüklenene kadar deploy edilmemeli** (bkz. Bilinen Sınırlar/Ön Koşul).
+
+### Added
+
+-   `scripts/generate-curriculum-seed-sql.ts` (yeni): `src/utils/
+    deterministicId.ts`'i gerçek kaynaktan import ederek (kopyalamadan)
+    `src/database/seeds/curriculum/*.json`'dan `supabase/seed/
+    0001_curriculum_reference_data.sql` üretir — 5 subject, 163 topic,
+    1310 outcome, id'ler istemcininkiyle birebir eşleşir.
+-   `src/sync/syncTables.ts` (yeni): senkronize tüm tabloların merkezi
+    kaydı (`SYNC_TABLES`); `syncEngine.ts`'in pull döngüsü artık
+    hardcoded liste yerine bunu geziyor.
+-   Tombstone (soft-delete) desteği: `sync/types.ts`'te
+    `OutboxEntry.operation: 'upsert' | 'delete'`; `createSyncedTable.ts`'e
+    `remove(id)` eklendi (yerelde hard-delete, outbox'a `delete` kaydı);
+    `pushOutbox.ts` bunu Postgres'te gerçek `DELETE` yerine
+    `update({deleted_at, updated_at})` olarak gönderir (`student_scores
+    ... on delete cascade` yerelde işlemediği için — diğer cihazların
+    pull'u silinmiş satırı da görebilsin diye); `pullTable.ts` gelen
+    `deletedAt` dolu satırları yerelde hard-delete eder. Yalnızca
+    `questionRepository.delete()` bu yolu kullanıyor.
+-   `types/entities.ts`: `Student`/`Exam`/`Question`/`StudentScore`/
+    `Intervention`/`Report`'a `updatedAt: string`.
+-   `examRepository.ts`/`questionRepository.ts`/`studentRepository.ts`/
+    `studentScoreRepository.ts`/`interventionRepository.ts`/
+    `reportRepository.ts`: `add`/`update`(/`delete`) artık
+    `createSyncedTable`'a devrediliyor (`examRepository`'ye `update`
+    eklenmedi — kod tabanında Exam'ın gerçekten create-only olduğu
+    teyit edildi, YAGNI).
+-   `db.ts` version(3): mevcut kullanıcı verisini backfill eder, sıra
+    kasıtlı — students → exams → questions → (student_scores,
+    interventions, reports) — FK zincirinin push sırasında
+    bozulmaması için.
+
+### Changed
+
+-   **`Report.createdAt` → `Report.generatedAt` rename** (`reportService.ts`,
+    `reportRepository.ts`): Supabase şemasında iş-anlamlı `generated_at`
+    ile sync-only `created_at` bilinçli ayrıştırılmıştı ama istemci
+    kodu hâlâ eski adı kullanıyordu — isim çakışması, pull'un sync-only
+    alan filtresiyle iş verisini silmesine ya da push'un Postgres'in
+    audit alanının üzerine yazmasına yol açabilirdi.
+-   `curriculumSeedService.ts`: re-key sırasında `db.questions`/
+    `db.interventions`'a doğrudan yazan `.modify()` çağrıları
+    `questionRepository.update(...)`/`interventionRepository.update(...)`'a
+    taşındı — aksi halde bu yazılar outbox'ı bypass edip cihazlar arası
+    sessiz senkron sapmasına yol açardı.
+
+### Bilinçli sınırlar / Ön koşul (kritik)
+
+-   **Deploy'dan önce şart**: `supabase/seed/0001_curriculum_reference_data.sql`
+    Supabase Dashboard SQL Editor'da çalıştırılmalı. `exams.subject_id`/
+    `questions.topic_id`/`questions.outcome_id` FK'leri `subjects`/
+    `topics`/`curriculum_outcomes`'a bağlı ve bu tablolar hâlâ boşsa,
+    version(3) migration'ının ürettiği ilk push denemesi FK violation
+    ile döner — `pushOutbox`'ın "ilk hatada dur" tasarımı gereği bu tek
+    hata, o andan sonra **Teacher/Class dahil tüm** tabloların senkronunu
+    tıkar.
+-   `subjects`/`topics`/`curriculum_outcomes` `SyncedTableName`'e
+    eklenmedi — bir kerelik SQL ile dolduruluyor, pull/push mekanizmasına
+    dahil değil (Faz 4'ün konusu: idari güncelleme + pull-only senkron).
+-   Supabase'de gerçek `DELETE`/cascade tetiklenmiyor → silinen bir
+    Question'a bağlı StudentScore satırları Supabase'de kalıcı öksüz
+    kalır. Bilinçli trade-off, temizlik Faz 5+'a bırakıldı.
+-   **Ben (Claude) gerçek bir Supabase oturumu açıp gerçek cihazlar
+    arası senkronu uçtan uca test edemedim** — kullanıcı tarafından
+    yapılacak.
+
+### Doğrulama
+
+-   `npx tsc -b`, `npx vitest run` (78 test — 4 yeni: `remove`/tombstone
+    davranışları), `npm run lint`, `npm run build`, `npx playwright test`
+    (2 test) tamamı yeşil.
+
+### Sonraki Adım
+
+-   Kullanıcının referans veri SQL'ini Supabase'de doğrulaması (satır
+    sayısı: 5/163/1310), sonra deploy, sonra gerçek cihazlar arası
+    Exam/Question senkronunun (ve bir soru silme/tombstone testinin)
+    doğrulanması.
+-   Onay sonrası Faz 4 (Subject/Topic/CurriculumOutcome pull-only
+    senkron) başka bir oturumda ele alınacak.
+
+------------------------------------------------------------------------
+
 # v0.16.0
 
 ## Yayın Tarihi

@@ -12,6 +12,7 @@ const SYNC_ONLY_FIELDS = ['createdAt', 'deletedAt'];
  * `syncMeta.lastPulledAt` cursor'ından itibaren değişen satırları çeker.
  * O satırın id'si için outbox'ta bekleyen bir yerel değişiklik varsa, o
  * satır atlanır (henüz gönderilmemiş yerel değişikliğin ezilmemesi için).
+ * `deletedAt` dolu gelen satırlar (tombstone) yerelde hard-delete edilir.
  */
 export async function pullTable<T extends { id: string }>(
   tableName: SyncedTableName,
@@ -36,6 +37,12 @@ export async function pullTable<T extends { id: string }>(
 
     const pending = await db.outbox.where('entityId').equals(id).first();
     if (pending) continue;
+
+    if (camelRow.deletedAt) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await table.delete(id as any);
+      continue;
+    }
 
     for (const field of SYNC_ONLY_FIELDS) {
       delete camelRow[field];
