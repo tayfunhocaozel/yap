@@ -1,6 +1,6 @@
 -- Otomatik üretildi: scripts/generate-curriculum-seed-sql.ts
 -- Kaynak: src/database/seeds/curriculum/*.json
--- Bu dosyayı Supabase Dashboard > SQL Editor'da bir kez çalıştırın.
+-- Bu dosyayı Supabase Dashboard > SQL Editor'da çalıştırın (tekrar çalıştırmak güvenlidir).
 -- id'ler deterministicUuid ile üretildi; istemci tarafındaki id'lerle birebir eşleşir.
 
 insert into subjects (id, name) values
@@ -175,7 +175,12 @@ insert into topics (id, subject_id, grade, name, unit, "order") values
   ('01c8ede5-7057-57d5-98f6-c4b04af124bd', 'd3e2c45f-07aa-5707-bd46-05b7805af5f7', 8, 'Konuşma', null, 1),
   ('4108ba3b-9c29-5bab-8816-0394747f79ce', 'd3e2c45f-07aa-5707-bd46-05b7805af5f7', 8, 'Okuma', null, 2),
   ('4299188c-de71-5433-8fca-34cc6c4fe723', 'd3e2c45f-07aa-5707-bd46-05b7805af5f7', 8, 'Yazma', null, 3)
-on conflict (id) do nothing;
+on conflict (id) do update set
+  unit = excluded.unit,
+  "order" = excluded."order",
+  updated_at = now()
+where topics.unit is distinct from excluded.unit
+   or topics."order" is distinct from excluded."order";
 
 insert into curriculum_outcomes (id, topic_id, code, description) values
   ('9238fa6f-ba08-5fc9-8b3e-2b1c516cffbe', '81fd55ae-a8bf-5143-b4bb-3d8cecae1a91', 'FB.5.1.1.1', 'Güneş’in yapısı ve dönme hareketi ile ilgili bilgileri toplayabilme'),
@@ -1488,4 +1493,9 @@ insert into curriculum_outcomes (id, topic_id, code, description) values
   ('fc8307f9-c218-56e1-8cf3-a167492af440', '4299188c-de71-5433-8fca-34cc6c4fe723', 'T.Y.8.7.', 'Yaratıcı yazı yazabilme'),
   ('e364e622-659e-59c4-8240-ec8698f4e41e', '4299188c-de71-5433-8fca-34cc6c4fe723', 'T.Y.8.8.', 'Yazılı üretim ve yazılı etkileşiminde tahminlerinden yararlanabilme'),
   ('03076b97-925e-52ef-9280-b5a657df1709', '4299188c-de71-5433-8fca-34cc6c4fe723', 'T.Y.8.9.', 'Yazısında karşılaştırma yapabilme')
-on conflict (id) do nothing;
+on conflict (id) do update set
+  topic_id = excluded.topic_id,
+  description = excluded.description,
+  updated_at = now()
+where curriculum_outcomes.topic_id is distinct from excluded.topic_id
+   or curriculum_outcomes.description is distinct from excluded.description;

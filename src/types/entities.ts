@@ -34,6 +34,8 @@ export interface Student {
 export interface Subject {
   id: string;
   name: string;
+  /** Supabase'den pull edilen satırlarda dolu olur; yerel seed kaynaklı kayıtlarda `undefined` kalabilir (bu tablo yalnızca pull edilir, hiç push edilmez). */
+  updatedAt?: string;
 }
 
 export interface Topic {
@@ -44,6 +46,8 @@ export interface Topic {
   unit?: string;
   /** Müfredat kaynak verisindeki (kazanimlar_rows.csv) doğal sıra; listelerde bu sıraya göre gösterilir. */
   order: number;
+  /** Supabase'den pull edilen satırlarda dolu olur; yerel seed kaynaklı kayıtlarda `undefined` kalabilir (bu tablo yalnızca pull edilir, hiç push edilmez). */
+  updatedAt?: string;
 }
 
 export interface CurriculumOutcome {
@@ -51,6 +55,8 @@ export interface CurriculumOutcome {
   topicId: string;
   code: string;
   description: string;
+  /** Supabase'den pull edilen satırlarda dolu olur; yerel seed kaynaklı kayıtlarda `undefined` kalabilir (bu tablo yalnızca pull edilir, hiç push edilmez). */
+  updatedAt?: string;
 }
 
 export interface Exam {

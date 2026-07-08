@@ -44,6 +44,99 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.18.0
+
+## Yayın Tarihi
+
+2026-07-08
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Supabase geçişinin **Faz 4**'ü tamamlandı: `Subject`/`Topic`/
+`CurriculumOutcome` (ders/konu/kazanım) için **pull-only** senkron +
+idari güncelleme akışı. **Bu sürüm deploy edilmeden önce
+`supabase/migrations/0002_reference_data_sync_columns.sql`'in
+Dashboard'da çalıştırılması gerekiyor** (bkz. Bilinen Sınırlar).
+
+### Added
+
+-   `supabase/migrations/0002_reference_data_sync_columns.sql` (yeni):
+    `subjects`/`topics`/`curriculum_outcomes`'a `updated_at` ekler (pull
+    cursor'ı için şart — bu üç tabloda daha önce hiç sync-alanı yoktu).
+    `created_at`/`deleted_at` bilinçli olarak eklenmedi.
+-   `sync/types.ts`/`sync/syncTables.ts`: bu üç tablo `SyncedTableName`'e
+    ve `SYNC_TABLES`'e eklendi — **yalnızca pull için**, hiç push
+    edilmiyorlar (RLS zaten yazmaya izin vermiyor; repository'ler düz
+    Dexie kaldı, `createSyncedTable`'a bağlanmadılar).
+-   `types/entities.ts`: `Subject`/`Topic`/`CurriculumOutcome`'a
+    **opsiyonel** `updatedAt?: string` (diğer sync'li entity'lerin
+    aksine — bu üç tablo hiç push edilmediğinden zorunlu olması
+    gerekmiyor, mevcut `curriculumSeedService.ts` çağrılarına dokunmayı
+    gereksiz kılıyor).
+-   `curriculumSeedService.ts`: `addIgnoringConflict` sarmalayıcısı —
+    `seedCurriculum()` (oturumdan bağımsız her açılışta) ile referans
+    veri pull'u (yalnızca oturum açıkken) aynı deterministik id'lere
+    aynı anda yazabildiğinden, taze-ekleme çağrıları artık Dexie
+    `ConstraintError`/`BulkError`'ı yutuyor ("zaten varsa muhtemelen
+    pull yazdı, güvenle atla").
+
+### Changed
+
+-   `scripts/generate-curriculum-seed-sql.ts`: "bir kerelik" bir
+    araçtan **tekrar çalıştırılabilir idari güncelleme aracına**
+    dönüştürüldü. `topics`/`curriculum_outcomes` insert'leri artık
+    `on conflict do update ... where ... is distinct from ...`
+    kullanıyor (içerik değişmediyse no-op — guard'sız her re-run tüm
+    ~1478 satırın `updated_at`'ini bump edip istemcilerde gereksiz tam
+    re-pull tetiklerdi). `subjects` hâlâ `do nothing` (tek alanı `name`,
+    id'nin kaynağı — bir dersin adını değiştirmek "update" değil
+    "re-key"). Script'e JSON'daki tekrarlanan `code`/`(subject,grade,
+    name)` için bir doğrulama (throw) eklendi — daha önce sessizce
+    yutuluyordu, tekrar-çalıştırılabilir bir araçta bu risklidir.
+    `supabase/seed/0001_curriculum_reference_data.sql` yeni `on
+    conflict` cümleleriyle yeniden üretildi (içerik aynı, 5/163/1310).
+
+### Bilinçli sınırlar / Ön koşul
+
+-   **Deploy'dan önce önerilir**: `0002_reference_data_sync_columns.sql`
+    Dashboard SQL Editor'da çalıştırılmalı. Faz 3'ten farklı olarak bu
+    sefer **kritik bir blocker değil** — `pullTable`'ın hata işleme
+    mantığı (`if (error || !data) return;`) istisna fırlatmaz, migration
+    olmadan sadece bu üç tablonun pull'u sessizce başarısız olur, diğer
+    tabloların senkronu etkilenmez. Yine de migration olmadan özellik
+    hiç çalışmaz.
+-   Admin UI/panel kurulmadı — tek geliştirici, nadir (yılda birkaç
+    kez) güncelleme senaryosu için aşırı mühendislik olurdu; script +
+    manuel SQL runbook'u (JSON düzenle → script çalıştır → SQL'i
+    Dashboard'da çalıştır → JSON'u commit'le) bu ölçek için tercih
+    edildi.
+-   Bu tablolara idari olarak asla `delete from` çalıştırılmamalı —
+    `deleted_at` olmadığından pull cursor'ı silinmeyi hiç göremez.
+-   **Ben (Claude) gerçek bir Supabase oturumu açıp gerçek cihazlar
+    arası senkronu uçtan uca test edemedim** — kullanıcı tarafından
+    yapılacak.
+
+### Doğrulama
+
+-   `npx tsc -b`, `npx vitest run` (81 test — 3 yeni: seed/pull
+    ConstraintError sağlamlaştırması, topics/curriculum_outcomes pull
+    smoke testleri), `npm run lint`, `npm run build`, `npx playwright
+    test` (2 test) tamamı yeşil.
+
+### Sonraki Adım
+
+-   Kullanıcının migration'ı Supabase'de çalıştırması, sonra deploy,
+    sonra bir müfredat JSON düzeltmesiyle idari güncelleme akışının
+    uçtan uca doğrulanması.
+-   Onay sonrası Faz 5 (atomik LWW, Realtime, sync durum göstergesi)
+    başka bir oturumda ele alınacak.
+
+------------------------------------------------------------------------
+
 # v0.17.0
 
 ## Yayın Tarihi

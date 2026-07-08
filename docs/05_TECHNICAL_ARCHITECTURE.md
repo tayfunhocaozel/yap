@@ -224,14 +224,37 @@ ayrı test edilen fazlarla ilerliyor:
     students → exams → questions → (student_scores, interventions,
     reports) mevcut kullanıcı verisini backfill eder (FK zincirinin
     push sırasında bozulmaması için sıra önemli).
--   **Faz 4-6 (planlandı, henüz yapılmadı)**: Subject/Topic/
-    CurriculumOutcome için ayrı, pull-only/idari senkron stratejisi;
-    atomik LWW (Postgres RPC), Realtime, ilk-giriş rekey migrasyonu,
-    sync durum göstergesi, StudentScore öksüz temizliği (soft-delete
-    trade-off'unun sonucu); test altyapısı iyileştirmeleri, e2e
-    güncellemesi. Detaylı plan ve riskler için proje geçmişindeki plan
-    dosyasına bakılabilir; bu bölüm her faz tamamlandıkça
-    güncellenecektir.
+-   **Faz 4 (tamamlandı)**: `Subject`/`Topic`/`CurriculumOutcome` için
+    **pull-only** senkron. Bu üç tablo RLS'de yalnızca `select` ile
+    okunabilir (yazma politikası hiç yok, istemciden asla yazılamaz),
+    bu yüzden `createSyncedTable`'a hiç bağlanmadı — repository'ler
+    (`subjectRepository`/`topicRepository`/`curriculumOutcomeRepository`)
+    düz Dexie kaldı, `SYNC_TABLES`'e yalnızca **pull** için eklendiler
+    (`students`'ten sonra, `exams`'ten önce — Exam/Question bu id'lere
+    referans verdiği için). `supabase/migrations/0002_reference_data_
+    sync_columns.sql` bu üç tabloya `updated_at` ekledi (`created_at`/
+    `deleted_at` bilinçli olarak eklenmedi — bu veri hiç silinmiyor,
+    düzeltmeler id'yi değiştiren "re-key" yoluyla yapılıyor).
+    `scripts/generate-curriculum-seed-sql.ts`, "bir kerelik" bir araçtan
+    **tekrar çalıştırılabilir idari güncelleme aracına** dönüştürüldü:
+    `topics`/`curriculum_outcomes` insert'leri artık `on conflict do
+    update ... where ... is distinct from ...` kullanıyor (içerik
+    değişmediyse no-op — gereksiz `updated_at` bump'ı ve tüm
+    istemcilerde gereksiz re-pull'u önler); `subjects` hâlâ `do nothing`
+    (tek alanı `name`, id'nin kaynağı — değişikliği update değil
+    re-key). Script'e JSON'daki tekrarlanan `code`/`(subject,grade,
+    name)` için bir doğrulama (throw) eklendi.
+    `seedCurriculum()` (oturumdan bağımsız her açılışta) ile pull
+    (yalnızca oturum açıkken) aynı deterministik id'lere aynı anda
+    yazabildiğinden, `curriculumSeedService.ts`'teki taze-ekleme
+    çağrıları Dexie `ConstraintError`/`BulkError`'ı yutan bir
+    `addIgnoringConflict` sarmalayıcıyla korunuyor.
+-   **Faz 5-6 (planlandı, henüz yapılmadı)**: atomik LWW (Postgres
+    RPC), Realtime, ilk-giriş rekey migrasyonu, sync durum göstergesi,
+    StudentScore öksüz temizliği (soft-delete trade-off'unun sonucu);
+    test altyapısı iyileştirmeleri, e2e güncellemesi. Detaylı plan ve
+    riskler için proje geçmişindeki plan dosyasına bakılabilir; bu
+    bölüm her faz tamamlandıkça güncellenecektir.
 
 **Bilinen sınır**: last-write-wins stratejisi tek öğretmen + çoklu
 cihaz senaryosunu hedefler; aynı kaydın iki cihazda offline değişip

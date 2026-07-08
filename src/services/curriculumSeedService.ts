@@ -1,3 +1,4 @@
+import Dexie from 'dexie';
 import { db } from '../database/db';
 import { subjectRepository } from '../repositories/subjectRepository';
 import { topicRepository } from '../repositories/topicRepository';
@@ -22,6 +23,24 @@ interface CurriculumSeedFile {
 const seedModules = import.meta.glob('../database/seeds/curriculum/*.json', {
   eager: true,
 }) as Record<string, CurriculumSeedFile>;
+
+/**
+ * `seedCurriculum()` (oturumdan bağımsız her açılışta) ve referans veri
+ * pull'u (yalnızca oturum açıkken, `startPeriodicSync`) aynı deterministik
+ * id'lere aynı anda yazabilir. Pull `table.put()` (sessiz üzerine yazma)
+ * kullanırken buradaki taze-ekleme çağrıları `.add()`/`bulkAdd()` kullanır
+ * (var olan key'de Dexie `ConstraintError`/`BulkError` fırlatır). Bu dar
+ * yarış durumunda "zaten varsa muhtemelen pull yazdı" varsayımıyla hatayı
+ * yutuyoruz — pull zaten aynı veriyi doğru içerikle yazmış oluyor.
+ */
+async function addIgnoringConflict(fn: () => Promise<unknown>): Promise<void> {
+  try {
+    await fn();
+  } catch (error) {
+    if (error instanceof Dexie.ConstraintError || error instanceof Dexie.BulkError) return;
+    throw error;
+  }
+}
 
 /**
  * Müfredat seed dosyalarını (bkz. 01_DATA_MODEL.md Bölüm 7) Subject/Topic/
@@ -50,11 +69,11 @@ export async function seedCurriculum(): Promise<void> {
     const newId = await deterministicUuid(`subject|${name}`);
     const existing = await subjectRepository.findByName(name);
     if (!existing) {
-      await subjectRepository.add({ id: newId, name });
+      await addIgnoringConflict(() => subjectRepository.add({ id: newId, name }));
     } else if (existing.id !== newId) {
       await db.topics.where('subjectId').equals(existing.id).modify({ subjectId: newId });
       await subjectRepository.delete(existing.id);
-      await subjectRepository.add({ id: newId, name });
+      await addIgnoringConflict(() => subjectRepository.add({ id: newId, name }));
     }
     subjectCache.set(name, newId);
     return newId;
@@ -73,7 +92,7 @@ export async function seedCurriculum(): Promise<void> {
     const newId = await deterministicUuid(`topic|${subjectId}|${grade}|${name}`);
     const existing = await topicRepository.findBySubjectGradeName(subjectId, grade, name);
     if (!existing) {
-      await topicRepository.add({ id: newId, subjectId, grade, name, unit, order });
+      await addIgnoringConflict(() => topicRepository.add({ id: newId, subjectId, grade, name, unit, order }));
     } else if (existing.id !== newId) {
       // Repository (ve dolayısıyla outbox) üzerinden güncellenir — doğrudan
       // Dexie yazımı Question artık senkronize olduğu için sessizce
@@ -83,7 +102,7 @@ export async function seedCurriculum(): Promise<void> {
         await questionRepository.update(q.id, { topicId: newId });
       }
       await topicRepository.delete(existing.id);
-      await topicRepository.add({ id: newId, subjectId, grade, name, unit, order });
+      await addIgnoringConflict(() => topicRepository.add({ id: newId, subjectId, grade, name, unit, order }));
     } else if (existing.order !== order) {
       // Eski (order alanından önce) seed edilmiş kayıtları geriye dönük tamamlar.
       await topicRepository.update(newId, { order });
@@ -120,5 +139,5 @@ export async function seedCurriculum(): Promise<void> {
     }
   }
 
-  await curriculumOutcomeRepository.bulkAdd(newOutcomes);
+  await addIgnoringConflict(() => curriculumOutcomeRepository.bulkAdd(newOutcomes));
 }

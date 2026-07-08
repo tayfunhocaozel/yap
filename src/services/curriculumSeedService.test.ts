@@ -1,6 +1,8 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import Dexie from 'dexie';
 import { db } from '../database/db';
 import { seedCurriculum } from './curriculumSeedService';
+import { subjectRepository } from '../repositories/subjectRepository';
 
 describe('curriculumSeedService', () => {
   beforeEach(async () => {
@@ -141,5 +143,24 @@ describe('curriculumSeedService', () => {
     expect(question?.topicId).toBe(realTopic.id);
     expect(question?.outcomeId).toBe(realOutcome.id);
     expect(intervention?.outcomeId).toBe(realOutcome.id);
+  });
+
+  it('taze ekleme sırasında eşzamanlı bir pull yazdıysa (ConstraintError) çakışmadan devam eder', async () => {
+    // Faz 4: seedCurriculum() (oturumdan bağımsız) ve referans veri pull'u
+    // (yalnızca oturum açıkken) aynı deterministik id'ye aynı anda
+    // yazabilir. Bu, subjectRepository.add()'in az önce bir pull tarafından
+    // yazılmış bir kayıtla çakışıp ConstraintError fırlattığı durumu simüle
+    // eder — seedCurriculum() bunu yutup hatasız tamamlanmalı.
+    const addSpy = vi.spyOn(subjectRepository, 'add').mockRejectedValueOnce(
+      new Dexie.ConstraintError('Key already exists'),
+    );
+
+    await expect(seedCurriculum()).resolves.toBeUndefined();
+
+    expect(addSpy).toHaveBeenCalled();
+    // Diğer derslerin/konuların/kazanımların normal şekilde işlendiğini doğrula.
+    expect(await db.curriculumOutcomes.count()).toBeGreaterThan(0);
+
+    addSpy.mockRestore();
   });
 });

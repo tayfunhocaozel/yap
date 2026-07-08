@@ -7,6 +7,8 @@ import { pullTable } from './pullTable';
 describe('pullTable', () => {
   beforeEach(async () => {
     await db.teachers.clear();
+    await db.topics.clear();
+    await db.curriculumOutcomes.clear();
     await db.outbox.clear();
     await db.syncMeta.clear();
     vi.mocked(supabase.from).mockReset();
@@ -140,5 +142,56 @@ describe('pullTable', () => {
     await pullTable('teachers', db.teachers);
 
     expect(builder.gt).toHaveBeenCalledWith('updated_at', '2026-01-05T00:00:00.000Z');
+  });
+
+  it('Faz 4: topics tablosunda "order" ve subject_id alanlarını doğru camelCase\'e çevirir', async () => {
+    vi.mocked(supabase.from).mockReturnValue(
+      createQueryBuilder({
+        data: [
+          {
+            id: 'topic-1',
+            subject_id: 'subject-1',
+            grade: 7,
+            name: 'Tam Sayılar',
+            unit: null,
+            order: 3,
+            updated_at: '2026-01-01T00:00:00.000Z',
+          },
+        ],
+        error: null,
+      }) as never,
+    );
+
+    await pullTable('topics', db.topics);
+
+    const saved = await db.topics.get('topic-1');
+    expect(saved).toMatchObject({ id: 'topic-1', subjectId: 'subject-1', grade: 7, name: 'Tam Sayılar', order: 3 });
+  });
+
+  it('Faz 4: curriculum_outcomes tablosunda topic_id alanını doğru camelCase\'e çevirir', async () => {
+    vi.mocked(supabase.from).mockReturnValue(
+      createQueryBuilder({
+        data: [
+          {
+            id: 'outcome-1',
+            topic_id: 'topic-1',
+            code: 'M.7.1.1.1',
+            description: 'Örnek kazanım açıklaması.',
+            updated_at: '2026-01-01T00:00:00.000Z',
+          },
+        ],
+        error: null,
+      }) as never,
+    );
+
+    await pullTable('curriculum_outcomes', db.curriculumOutcomes);
+
+    const saved = await db.curriculumOutcomes.get('outcome-1');
+    expect(saved).toMatchObject({
+      id: 'outcome-1',
+      topicId: 'topic-1',
+      code: 'M.7.1.1.1',
+      description: 'Örnek kazanım açıklaması.',
+    });
   });
 });

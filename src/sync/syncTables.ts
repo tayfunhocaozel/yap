@@ -21,6 +21,14 @@ export const SYNC_TABLES: SyncTableDescriptor[] = [
   { tableName: 'teachers', table: db.teachers },
   { tableName: 'classes', table: db.classes },
   { tableName: 'students', table: db.students },
+  // subjects/topics/curriculum_outcomes: salt-okunur paylaşılan referans
+  // veri, yalnızca pull edilir (hiç push edilmez — RLS zaten yazmaya
+  // izin vermiyor). exams/questions bu id'lere referans verdiğinden,
+  // pull sırası UI'da kısa ömürlü "konu/kazanım bulunamadı" tutarsızlığını
+  // engellemek için bunlardan önce yerleştirildi.
+  { tableName: 'subjects', table: db.subjects },
+  { tableName: 'topics', table: db.topics },
+  { tableName: 'curriculum_outcomes', table: db.curriculumOutcomes },
   { tableName: 'exams', table: db.exams },
   { tableName: 'questions', table: db.questions },
   { tableName: 'student_scores', table: db.studentScores },
