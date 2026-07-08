@@ -176,13 +176,30 @@ ayrı test edilen fazlarla ilerliyor:
     `supabase/migrations/0001_initial_schema.sql`'de tanımlıdır;
     service_role erişimi olmadığı için Supabase Dashboard → SQL
     Editor'dan elle uygulanır.
--   **Faz 2-6 (planlandı, henüz yapılmadı)**: outbox tabanlı senkron
-    kuyruğu, push/pull, `updated_at` bazlı last-write-wins çakışma
-    çözümü, kalan entity'lere pattern'in uygulanması, Realtime,
-    ilk-giriş rekey migrasyonu, test altyapısı (Supabase mock) ve e2e
-    güncellemesi. Detaylı plan ve riskler için proje geçmişindeki
-    plan dosyasına bakılabilir; bu bölüm her faz tamamlandıkça
-    güncellenecektir.
+-   **Faz 2 (tamamlandı)**: POC — yalnızca `Teacher` ve `SchoolClass`
+    için uçtan uca senkron. `src/sync/` altında: `createSyncedTable.ts`
+    (add/update'i hem Dexie tablosuna hem `outbox` push kuyruğuna aynı
+    transaction'da yazan factory), `pushOutbox.ts` (outbox'u ekleme
+    sırasına — `localId` — göre boşaltır, ilk hatada durur; FK sırası
+    bozulmasın diye), `pullTable.ts` (`syncMeta.lastPulledAt` cursor'lı
+    delta pull; outbox'ta bekleyen bir yerel değişiklik varsa o satırı
+    atlar), `syncEngine.ts` (`kickSync`: debounce + reentrancy guard;
+    `startPeriodicSync`: oturum açılışı + 2 dakikada bir + `online`
+    event'i), `networkStatus.ts` (`isReachable`, gerçek bir Supabase
+    isteğiyle), `caseConverter.ts` (camelCase↔snake_case). `db.ts`
+    version(2) `.upgrade()` adımı, Faz 1'den kalma mevcut kullanıcı
+    verisine `updatedAt` damgalar ve ilk senkron için outbox kaydı
+    oluşturur (aksi halde bu veri hiç Supabase'e gitmezdi).
+    `src/test-setup.ts`'te global `vi.mock('./lib/supabaseClient', ...)`
+    ile testler gerçek ağa çıkmaz. Push, düz `upsert` kullanır — DB
+    seviyesinde atomik LWW garantisi Faz 5'e bırakıldı.
+-   **Faz 3-6 (planlandı, henüz yapılmadı)**: kalan 9 entity'ye sync
+    pattern'inin uygulanması (delete/tombstone dahil), Subject/Topic/
+    CurriculumOutcome için ayrı salt-okunur senkron stratejisi, atomik
+    LWW (Postgres RPC), Realtime, ilk-giriş rekey migrasyonu, sync
+    durum göstergesi, e2e güncellemesi. Detaylı plan ve riskler için
+    proje geçmişindeki plan dosyasına bakılabilir; bu bölüm her faz
+    tamamlandıkça güncellenecektir.
 
 **Bilinen sınır**: last-write-wins stratejisi tek öğretmen + çoklu
 cihaz senaryosunu hedefler; aynı kaydın iki cihazda offline değişip

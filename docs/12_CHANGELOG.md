@@ -44,6 +44,89 @@ YYYY-MM-DD
 
 ------------------------------------------------------------------------
 
+# v0.16.0
+
+## Yayın Tarihi
+
+2026-07-08
+
+## Durum
+
+Draft
+
+## Açıklama
+
+Supabase geçişinin **Faz 2**'si tamamlandı: yalnızca `Teacher` ve
+`SchoolClass` için uçtan uca offline-first senkron (POC). Kalan 9
+entity'ye aynı pattern'in uygulanması Faz 3'ün konusu.
+
+### Added
+
+-   `src/sync/` yeni klasör: `caseConverter.ts` (camelCase↔snake_case),
+    `createSyncedTable.ts` (add/update'i hem Dexie tablosuna hem
+    `outbox` push kuyruğuna aynı transaction'da yazan factory),
+    `networkStatus.ts` (`isReachable`, gerçek bir Supabase isteğiyle
+    bağlantı testi — `navigator.onLine` güvenilmez olduğu için),
+    `pushOutbox.ts` (outbox'u `localId` ekleme sırasına göre boşaltır;
+    FK sırası bozulmasın diye ilk hatada durur), `pullTable.ts`
+    (`syncMeta.lastPulledAt` cursor'lı delta pull; outbox'ta bekleyen
+    bir yerel değişiklik varsa o satırı atlayarak ezilmesini önler),
+    `syncEngine.ts` (`kickSync`: 500ms debounce + reentrancy guard;
+    `startPeriodicSync`: oturum açılışında + 2 dakikada bir + `online`
+    event'inde tetiklenir).
+-   `src/database/db.ts`: `outbox`/`syncMeta` Dexie tabloları
+    (`version(2)`). Bu sürüme özel bir `.upgrade()` adımı, Faz 1'den
+    kalma (bu sürümden önce oluşturulmuş) `Teacher`/`SchoolClass`
+    kayıtlarına `updatedAt` damgalar ve her biri için bir "ilk senkron"
+    outbox kaydı oluşturur — aksi halde zaten var olan kullanıcı
+    verisi hiçbir zaman Supabase'e gönderilmezdi.
+-   `src/types/entities.ts`: `Teacher`/`SchoolClass`'a `updatedAt: string`
+    eklendi.
+-   `src/repositories/teacherRepository.ts` / `classRepository.ts`:
+    `add`/`update` artık `createSyncedTable`'a devrediliyor; okuma
+    metotları değişmedi.
+-   `src/app/AuthProvider.tsx`: oturum açıldığında `startPeriodicSync()`
+    çağrılıyor.
+-   `src/test-utils/supabaseMock.ts` + `src/test-setup.ts`: **kritik**
+    global `vi.mock('./lib/supabaseClient', ...)` — bunsuz testler
+    gerçek `.env` kimlik bilgileriyle prod Supabase'e ağ isteği atmaya
+    çalışırdı (mevcut `classService.test.ts` dahil, her `add`/`update`
+    çağrısı `kickSync` tetiklediği için).
+
+### Bilinçli sınırlar (Faz 2 kapsamında değil)
+
+-   Push düz `upsert` kullanır — DB seviyesinde atomik last-write-wins
+    (Postgres RPC ile koşullu upsert) garantisi yok, Faz 5'e bırakıldı.
+-   `outbox`'a `delete` operasyonu eklenmedi (Teacher/SchoolClass hard
+    delete kullanmıyor).
+-   Kullanıcıya görünür bir senkron durumu göstergesi yok (Faz 5).
+-   **Ben (Claude) gerçek bir Supabase oturumu açıp gerçek cihazlar
+    arası senkronu uçtan uca test edemedim** (kimlik bilgisi girmek
+    benim için yasak bir eylem) — bu doğrulama kullanıcı tarafından
+    yapılacak.
+
+### Doğrulama
+
+-   `npx tsc -b`, `npx vitest run` (74 test — 20 yeni sync testi
+    dahil, `vi.useFakeTimers`/`vi.mocked` ile debounce ve outbox
+    davranışları test edildi), `npm run lint`, `npm run build`,
+    `npx playwright test` (2 test, route guard regresyonu yok) tamamı
+    yeşil.
+-   `classService.test.ts` gibi mevcut testlerin mock sayesinde hâlâ
+    hızlı (< 50ms) çalıştığı doğrulandı — gerçek ağa çıkmadıklarının
+    kanıtı.
+
+### Sonraki Adım
+
+-   Kullanıcının gerçek cihazlar arası senkronu doğrulaması gerekiyor
+    (adımlar ayrıca iletildi): var olan verinin ilk kez Supabase'e
+    gönderilmesi, ikinci bir cihazda görünmesi, offline değişiklik →
+    online olunca senkron.
+-   Onay sonrası Faz 3 (kalan entity'ler) başka bir oturumda ele
+    alınacak.
+
+------------------------------------------------------------------------
+
 # v0.15.0
 
 ## Yayın Tarihi

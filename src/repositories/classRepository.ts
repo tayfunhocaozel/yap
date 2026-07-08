@@ -1,5 +1,8 @@
 import { db } from '../database/db';
+import { createSyncedTable } from '../sync/createSyncedTable';
 import type { SchoolClass } from '../types/entities';
+
+const synced = createSyncedTable(db.classes, 'classes');
 
 export const classRepository = {
   getAllActive(): Promise<SchoolClass[]> {
@@ -14,11 +17,11 @@ export const classRepository = {
     return db.classes.filter((c) => c.active && c.name === name).first();
   },
 
-  add(schoolClass: SchoolClass): Promise<string> {
-    return db.classes.add(schoolClass);
+  add(schoolClass: Omit<SchoolClass, 'updatedAt'>): Promise<string> {
+    return synced.add(schoolClass);
   },
 
-  update(id: string, changes: Partial<SchoolClass>): Promise<number> {
-    return db.classes.update(id, changes);
+  update(id: string, changes: Partial<Omit<SchoolClass, 'updatedAt'>>): Promise<number> {
+    return synced.update(id, changes);
   },
 };

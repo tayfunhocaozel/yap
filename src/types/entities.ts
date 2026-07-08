@@ -6,6 +6,8 @@ export interface Teacher {
   branch: string;
   schoolName?: string;
   active: boolean;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export interface SchoolClass {
@@ -15,6 +17,8 @@ export interface SchoolClass {
   grade: Grade;
   academicYear: string;
   active: boolean;
+  /** Supabase senkronu için son değişiklik zaman damgası (ISO string). */
+  updatedAt: string;
 }
 
 export interface Student {
