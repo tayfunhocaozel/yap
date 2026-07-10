@@ -93,8 +93,8 @@ export function ClassReportDocument({
             <Text style={styles.sectionTitle}>Konu Analizi</Text>
             {analysis.topicAnalyses.length <= MAX_CHART_BARS && (
               <BarColumnChart
-                data={analysis.topicAnalyses.map((t, i) => ({
-                  label: String(i + 1),
+                data={analysis.topicAnalyses.map((t) => ({
+                  label: t.shortName,
                   value: t.successRate,
                   color: DURUM_STYLES[t.durum].color,
                 }))}
@@ -109,9 +109,9 @@ export function ClassReportDocument({
                 <Text style={styles.cellRight}>Eksik</Text>
                 <Text style={styles.cellRight}>Durum</Text>
               </View>
-              {analysis.topicAnalyses.map((t, i) => (
+              {analysis.topicAnalyses.map((t) => (
                 <View style={styles.row} key={t.topicId}>
-                  <Text style={styles.cell}>{i + 1}</Text>
+                  <Text style={styles.cell}>{t.shortName}</Text>
                   <Text style={styles.cellRight}>{t.successRate.toFixed(0)}%</Text>
                   <Text style={styles.cellRight}>{t.missingStudentCount}</Text>
                   <View style={styles.durumCell}>
@@ -170,13 +170,17 @@ export function ClassReportDocument({
           </View>
         </View>
 
-        <View style={styles.footnote}>
-          {analysis.topicAnalyses.map((t, i) => (
-            <Text key={t.topicId} style={styles.footnoteItem}>
-              {i + 1} — {t.topicName}
-            </Text>
-          ))}
-        </View>
+        {analysis.topicAnalyses.some((t) => t.shortName !== t.topicName) && (
+          <View style={styles.footnote}>
+            {analysis.topicAnalyses
+              .filter((t) => t.shortName !== t.topicName)
+              .map((t) => (
+                <Text key={t.topicId} style={styles.footnoteItem}>
+                  {t.shortName} — {t.topicName}
+                </Text>
+              ))}
+          </View>
+        )}
 
         <Text style={styles.sectionTitle}>Öğrenci Analizi</Text>
         <View style={styles.table}>

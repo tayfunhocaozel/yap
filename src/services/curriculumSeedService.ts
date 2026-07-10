@@ -11,6 +11,7 @@ import type { Grade } from '../types/entities';
 interface CurriculumSeedTopic {
   unit?: string;
   name: string;
+  shortName?: string;
   outcomes: { code: string; description: string }[];
 }
 
@@ -84,6 +85,7 @@ export async function seedCurriculum(): Promise<void> {
     grade: Grade,
     name: string,
     unit: string | undefined,
+    shortName: string | undefined,
     order: number,
   ): Promise<string> {
     const cacheKey = `${subjectId}|${grade}|${name}`;
@@ -92,7 +94,7 @@ export async function seedCurriculum(): Promise<void> {
     const newId = await deterministicUuid(`topic|${subjectId}|${grade}|${name}`);
     const existing = await topicRepository.findBySubjectGradeName(subjectId, grade, name);
     if (!existing) {
-      await addIgnoringConflict(() => topicRepository.add({ id: newId, subjectId, grade, name, unit, order }));
+      await addIgnoringConflict(() => topicRepository.add({ id: newId, subjectId, grade, name, unit, shortName, order }));
     } else if (existing.id !== newId) {
       // Repository (ve dolayısıyla outbox) üzerinden güncellenir — doğrudan
       // Dexie yazımı Question artık senkronize olduğu için sessizce
@@ -102,10 +104,13 @@ export async function seedCurriculum(): Promise<void> {
         await questionRepository.update(q.id, { topicId: newId });
       }
       await topicRepository.delete(existing.id);
-      await addIgnoringConflict(() => topicRepository.add({ id: newId, subjectId, grade, name, unit, order }));
-    } else if (existing.order !== order) {
-      // Eski (order alanından önce) seed edilmiş kayıtları geriye dönük tamamlar.
-      await topicRepository.update(newId, { order });
+      await addIgnoringConflict(() => topicRepository.add({ id: newId, subjectId, grade, name, unit, shortName, order }));
+    } else {
+      // Eski (order/shortName alanından önce) seed edilmiş kayıtları geriye dönük tamamlar.
+      const changes: Partial<{ order: number; shortName: string }> = {};
+      if (existing.order !== order) changes.order = order;
+      if (shortName && existing.shortName !== shortName) changes.shortName = shortName;
+      if (Object.keys(changes).length > 0) await topicRepository.update(newId, changes);
     }
     topicCache.set(cacheKey, newId);
     return newId;
@@ -114,7 +119,14 @@ export async function seedCurriculum(): Promise<void> {
   for (const seed of Object.values(seedModules)) {
     const subjectId = await resolveSubjectId(seed.subject);
     for (const [order, topicSeed] of seed.topics.entries()) {
-      const topicId = await resolveTopicId(subjectId, seed.grade, topicSeed.name, topicSeed.unit, order);
+      const topicId = await resolveTopicId(
+        subjectId,
+        seed.grade,
+        topicSeed.name,
+        topicSeed.unit,
+        topicSeed.shortName,
+        order,
+      );
       for (const outcomeSeed of topicSeed.outcomes) {
         const newId = await deterministicUuid(`outcome|${outcomeSeed.code}`);
         const existing = existingOutcomesByCode.get(outcomeSeed.code);

@@ -408,6 +408,7 @@
     },
     {
       "name": "Life in the Neighbourhood & City and Social Life",
+      "shortName": "Neighbourhood & Social Life",
       "outcomes": [
         {
           "code": "ENG.7.5.1.1.",

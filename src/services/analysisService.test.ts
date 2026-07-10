@@ -143,6 +143,33 @@ describe('calculateTopicAnalyses', () => {
     // Konu B (q2) sadece Ali ve Ayşe'de var, Veli'de eksik
     expect(topicB.missingStudentCount).toBe(1);
   });
+
+  it('shortName tanımlıysa onu, tanımlı değilse kelime sınırında kısaltılmış adı döner', () => {
+    const withExplicitShortName: Topic = {
+      id: 't1',
+      subjectId: 'subj1',
+      grade: 7,
+      name: 'Cebirsel Düşünme: Eşitliğin Korunumu, Değişme-Birleşme ve Dağılma Özellikleri',
+      shortName: 'İşlem Özellikleri',
+      order: 0,
+    };
+    const withoutShortName: Topic = {
+      id: 't2',
+      subjectId: 'subj1',
+      grade: 7,
+      name: 'İki Paralel Doğrunun Bir Kesen ile Oluşturduğu Açılar',
+      order: 1,
+    };
+
+    const result = calculateTopicAnalyses(students, questions, scores, [withExplicitShortName, withoutShortName]);
+    const t1 = result.find((r) => r.topicId === 't1')!;
+    const t2 = result.find((r) => r.topicId === 't2')!;
+
+    expect(t1.shortName).toBe('İşlem Özellikleri');
+    // Fallback: kelime sınırında kesilir (kelime ortasından kesmez), 26 karakteri aşmaz.
+    expect(t2.shortName).toBe('İki Paralel Doğrunun Bir');
+    expect(t2.shortName.length).toBeLessThanOrEqual(26);
+  });
 });
 
 describe('calculateOutcomeAnalyses', () => {

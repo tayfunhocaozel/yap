@@ -25,6 +25,7 @@
     {
       "unit": "1. Tema: Sayılar ve Nicelikler (1)",
       "name": "Asal Sayılar ve Asal Çarpanlar",
+      "shortName": "Asal Sayı ve Çarpanlar",
       "outcomes": [
         {
           "code": "MAT.6.1.3.",
@@ -75,6 +76,7 @@
     {
       "unit": "1. Tema: Sayılar ve Nicelikler (2)",
       "name": "Kesirlerle Dört İşlem İçeren Problem Çözme",
+      "shortName": "Kesirlerle Problemler",
       "outcomes": [
         {
           "code": "MAT.6.1.8.",
@@ -85,6 +87,7 @@
     {
       "unit": "2. Tema: İşlemlerle Cebirsel Düşünme ve Değişimler",
       "name": "Cebirsel İfadeler: Bilinmeyen Nicelikler",
+      "shortName": "Bilinmeyen Nicelikler",
       "outcomes": [
         {
           "code": "MAT.6.2.1.",
@@ -115,6 +118,7 @@
     {
       "unit": "3. Tema: Geometrik Şekiller",
       "name": "İki Paralel Doğrunun Bir Kesen ile Oluşturduğu Açılar",
+      "shortName": "Paralel Doğru Açıları",
       "outcomes": [
         {
           "code": "MAT.6.3.1.",
@@ -125,6 +129,7 @@
     {
       "unit": "3. Tema: Geometrik Şekiller",
       "name": "Üçgenin Açıları ve Dörtgenlerin Özellikleri",
+      "shortName": "Üçgen-Dörtgen Açıları",
       "outcomes": [
         {
           "code": "MAT.6.3.2.",
@@ -155,6 +160,7 @@
     {
       "unit": "4. Tema: Geometrik Nicelikler",
       "name": "Uzunluk ve Alan Ölçme Birimleri Arasındaki İlişki",
+      "shortName": "Uzunluk-Alan Birimleri",
       "outcomes": [
         {
           "code": "MAT.6.4.1.",
@@ -185,6 +191,7 @@
     {
       "unit": "4. Tema: Geometrik Nicelikler",
       "name": "Çemberin ve Çapın Uzunlukları Arasındaki İlişki",
+      "shortName": "Çember-Çap İlişkisi",
       "outcomes": [
         {
           "code": "MAT.6.4.4.",
@@ -215,6 +222,7 @@
     {
       "unit": "5. Tema: İstatistiksel Araştırma Süreci",
       "name": "Kategorik ve Nicel (Kesikli) Veri Dağılımları",
+      "shortName": "Veri Dağılımları",
       "outcomes": [
         {
           "code": "MAT.6.5.1.",

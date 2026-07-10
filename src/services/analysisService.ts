@@ -38,6 +38,7 @@ export type Durum = 'Zayif' | 'Gecer' | 'Orta' | 'Iyi' | 'Pekiyi';
 export interface TopicAnalysis {
   topicId: string;
   topicName: string;
+  shortName: string;
   successRate: number;
   missingStudentCount: number;
   durum: Durum;
@@ -254,6 +255,23 @@ export function calculateQuestionAnalyses(
   });
 }
 
+const SHORT_NAME_MAX_LENGTH = 26;
+
+// Topic.shortName tanımlı değilse geçici bir fallback: adın kelime
+// sınırında (kelime ortasından kesmeden) sığan ilk bölümü kullanılır.
+// Kalıcı çözüm, müfredat sahibinin `shortName`'i seed verisine girmesidir.
+function deriveShortName(name: string): string {
+  if (name.length <= SHORT_NAME_MAX_LENGTH) return name;
+  const words = name.split(' ');
+  let result = '';
+  for (const word of words) {
+    const next = result ? `${result} ${word}` : word;
+    if (next.length > SHORT_NAME_MAX_LENGTH) break;
+    result = next;
+  }
+  return result || words[0];
+}
+
 export function calculateTopicAnalyses(
   students: Student[],
   questions: Question[],
@@ -288,6 +306,7 @@ export function calculateTopicAnalyses(
     return {
       topicId,
       topicName: topic ? (topic.unit ? `${topic.unit} — ${topic.name}` : topic.name) : '-',
+      shortName: topic ? (topic.shortName ?? deriveShortName(topic.name)) : '-',
       successRate,
       missingStudentCount,
       durum: getDurum(successRate),

@@ -44,6 +44,8 @@ export interface Topic {
   grade: Grade;
   name: string;
   unit?: string;
+  /** Grafik/rapor etiketleri için kısa ad (örn. "Kesir Gösterimleri"). Tanımlı değilse `name` baz alınarak otomatik türetilir. */
+  shortName?: string;
   /** Müfredat kaynak verisindeki (kazanimlar_rows.csv) doğal sıra; listelerde bu sıraya göre gösterilir. */
   order: number;
   /** Supabase'den pull edilen satırlarda dolu olur; yerel seed kaynaklı kayıtlarda `undefined` kalabilir (bu tablo yalnızca pull edilir, hiç push edilmez). */
