@@ -27,9 +27,10 @@ import {
 import { Bar } from 'react-chartjs-2';
 import {
   getExamAnalysis,
-  RISK_HEX_COLOR,
+  getDurum,
+  isAtRiskStudent,
+  DURUM_STYLES,
   type ExamAnalysis,
-  type RiskLevel,
 } from '../../../services/analysisService';
 import { examService } from '../../../services/examService';
 import { classService } from '../../../services/classService';
@@ -37,13 +38,6 @@ import { subjectRepository } from '../../../repositories/subjectRepository';
 import type { Exam, SchoolClass } from '../../../types/entities';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const RISK_COLOR: Record<RiskLevel, 'success' | 'info' | 'warning' | 'error'> = {
-  'Çok İyi': 'success',
-  İyi: 'info',
-  Geliştirilmeli: 'warning',
-  Kritik: 'error',
-};
 
 function successBarOptions(title: string) {
   return {
@@ -94,10 +88,8 @@ export function AnalysisPage() {
 
   if (loading || !exam || !analysis) return null;
 
-  // Hiç puanlanmamış öğrenci "henüz değerlendirilmedi" demektir, "riskli" değil;
-  // en az bir soru puanlanmış ve toplamı düşük olan öğrenciler listelenir.
   const riskyStudents = analysis.studentAnalyses
-    .filter((s) => s.gradedCount > 0 && s.totalScore < 70)
+    .filter(isAtRiskStudent)
     .sort((a, b) => a.totalScore - b.totalScore);
 
   return (
@@ -157,7 +149,7 @@ export function AnalysisPage() {
                   </TableHead>
                   <TableBody>
                     {riskyStudents.map((s) => {
-                      const risk = s.totalScore < 50 ? 'Kritik' : 'Geliştirilmeli';
+                      const durum = getDurum(s.totalScore);
                       return (
                         <TableRow key={s.studentId}>
                           <TableCell>{s.schoolNumber}</TableCell>
@@ -167,7 +159,11 @@ export function AnalysisPage() {
                           </TableCell>
                           <TableCell align="right">{s.totalScore}</TableCell>
                           <TableCell align="right">
-                            <Chip size="small" label={risk} color={RISK_COLOR[risk]} />
+                            <Chip
+                              size="small"
+                              label={DURUM_STYLES[durum].label}
+                              sx={{ bgcolor: DURUM_STYLES[durum].color, color: DURUM_STYLES[durum].textColor }}
+                            />
                           </TableCell>
                         </TableRow>
                       );
@@ -228,7 +224,7 @@ export function AnalysisPage() {
                   {
                     label: 'Başarı %',
                     data: analysis.topicAnalyses.map((t) => Math.round(t.successRate)),
-                    backgroundColor: '#1565C0',
+                    backgroundColor: analysis.topicAnalyses.map((t) => DURUM_STYLES[t.durum].color),
                   },
                 ],
               }}
@@ -240,6 +236,7 @@ export function AnalysisPage() {
                     <TableCell>Konu</TableCell>
                     <TableCell align="right">Başarı %</TableCell>
                     <TableCell align="right">Eksik Öğrenci</TableCell>
+                    <TableCell align="right">Durum</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -248,6 +245,13 @@ export function AnalysisPage() {
                       <TableCell>{t.topicName}</TableCell>
                       <TableCell align="right">{t.successRate.toFixed(0)}%</TableCell>
                       <TableCell align="right">{t.missingStudentCount}</TableCell>
+                      <TableCell align="right">
+                        <Chip
+                          size="small"
+                          label={DURUM_STYLES[t.durum].label}
+                          sx={{ bgcolor: DURUM_STYLES[t.durum].color, color: DURUM_STYLES[t.durum].textColor }}
+                        />
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -270,7 +274,7 @@ export function AnalysisPage() {
                   {
                     label: 'Başarı %',
                     data: analysis.outcomeAnalyses.map((o) => Math.round(o.successRate)),
-                    backgroundColor: analysis.outcomeAnalyses.map((o) => RISK_HEX_COLOR[o.riskLevel]),
+                    backgroundColor: analysis.outcomeAnalyses.map((o) => DURUM_STYLES[o.durum].color),
                   },
                 ],
               }}
@@ -282,7 +286,7 @@ export function AnalysisPage() {
                     <TableCell>Kazanım</TableCell>
                     <TableCell align="right">Başarı %</TableCell>
                     <TableCell align="right">Başarısız Öğrenci</TableCell>
-                    <TableCell align="right">Risk</TableCell>
+                    <TableCell align="right">Durum</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -292,7 +296,11 @@ export function AnalysisPage() {
                       <TableCell align="right">{o.successRate.toFixed(0)}%</TableCell>
                       <TableCell align="right">{o.failingStudentCount}</TableCell>
                       <TableCell align="right">
-                        <Chip size="small" label={o.riskLevel} color={RISK_COLOR[o.riskLevel]} />
+                        <Chip
+                          size="small"
+                          label={DURUM_STYLES[o.durum].label}
+                          sx={{ bgcolor: DURUM_STYLES[o.durum].color, color: DURUM_STYLES[o.durum].textColor }}
+                        />
                       </TableCell>
                     </TableRow>
                   ))}

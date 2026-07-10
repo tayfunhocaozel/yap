@@ -21,6 +21,7 @@ export interface ClassAnalysis {
   average: number;
   max: number;
   min: number;
+  stdDeviation: number;
 }
 
 export interface QuestionAnalysis {
@@ -32,13 +33,14 @@ export interface QuestionAnalysis {
   gradedCount: number;
 }
 
-export type RiskLevel = 'Çok İyi' | 'İyi' | 'Geliştirilmeli' | 'Kritik';
+export type Durum = 'Zayif' | 'Gecer' | 'Orta' | 'Iyi' | 'Pekiyi';
 
 export interface TopicAnalysis {
   topicId: string;
   topicName: string;
   successRate: number;
   missingStudentCount: number;
+  durum: Durum;
 }
 
 export interface OutcomeAnalysis {
@@ -47,7 +49,7 @@ export interface OutcomeAnalysis {
   successRate: number;
   averageScore: number;
   failingStudentCount: number;
-  riskLevel: RiskLevel;
+  durum: Durum;
 }
 
 export interface StudentTopicBreakdown {
@@ -71,6 +73,21 @@ export interface StudentDetail extends StudentAnalysis {
   weakOutcomes: string[];
 }
 
+export interface StudentQuestionRow {
+  studentId: string;
+  schoolNumber: string;
+  fullName: string;
+  questionScores: (number | null)[];
+  totalScore: number;
+  durum: Durum;
+}
+
+export interface ScoreDistributionBucket {
+  durum: Durum;
+  label: string;
+  count: number;
+}
+
 export interface ExamAnalysis {
   classAnalysis: ClassAnalysis;
   studentAnalyses: StudentAnalysis[];
@@ -78,21 +95,32 @@ export interface ExamAnalysis {
   questionAnalyses: QuestionAnalysis[];
   topicAnalyses: TopicAnalysis[];
   outcomeAnalyses: OutcomeAnalysis[];
+  questionNumbers: number[];
+  studentQuestionBreakdown: StudentQuestionRow[];
+  scoreDistribution: ScoreDistributionBucket[];
 }
 
 // 04_ANALYSIS_ENGINE.md Bölüm 4'teki eşikler.
-export function riskLevelFor(successRate: number): RiskLevel {
-  if (successRate >= 85) return 'Çok İyi';
-  if (successRate >= 70) return 'İyi';
-  if (successRate >= 50) return 'Geliştirilmeli';
-  return 'Kritik';
+export function getDurum(successRate: number): Durum {
+  if (successRate >= 85) return 'Pekiyi';
+  if (successRate >= 70) return 'Iyi';
+  if (successRate >= 55) return 'Orta';
+  if (successRate >= 45) return 'Gecer';
+  return 'Zayif';
 }
 
-export const RISK_HEX_COLOR: Record<RiskLevel, string> = {
-  'Çok İyi': '#2E7D32',
-  İyi: '#0288D1',
-  Geliştirilmeli: '#EF6C00',
-  Kritik: '#C62828',
+export interface DurumInfo {
+  label: string;
+  color: string;
+  textColor: string;
+}
+
+export const DURUM_STYLES: Record<Durum, DurumInfo> = {
+  Zayif: { label: 'Zayıf', color: '#F09595', textColor: '#791F1F' },
+  Gecer: { label: 'Geçer', color: '#FAC775', textColor: '#633806' },
+  Orta: { label: 'Orta', color: '#85B7EB', textColor: '#0C447C' },
+  Iyi: { label: 'İyi', color: '#97C459', textColor: '#27500A' },
+  Pekiyi: { label: 'Pekiyi', color: '#AFA9EC', textColor: '#3C3489' },
 };
 
 function buildScoreLookup(scores: StudentScore[]): Map<string, number> {
@@ -131,17 +159,75 @@ export function calculateStudentAnalyses(
   });
 }
 
+// Ortalama/en yüksek/en düşük/std. sapma yalnızca tam puanlanmış öğrenciler
+// üzerinden hesaplanır; kısmi puanlı bir öğrencinin eksik toplamı bu
+// istatistikleri yapay olarak aşağı çeker (bkz. 2. tur düzeltme notu).
 export function calculateClassAnalysis(studentAnalyses: StudentAnalysis[]): ClassAnalysis {
-  if (studentAnalyses.length === 0) {
-    return { studentCount: 0, average: 0, max: 0, min: 0 };
+  const graded = studentAnalyses.filter((s) => s.isFullyGraded);
+  if (graded.length === 0) {
+    return { studentCount: studentAnalyses.length, average: 0, max: 0, min: 0, stdDeviation: 0 };
   }
-  const totals = studentAnalyses.map((s) => s.totalScore);
+  const totals = graded.map((s) => s.totalScore);
+  const average = totals.reduce((a, b) => a + b, 0) / totals.length;
+  const variance = totals.reduce((sum, t) => sum + (t - average) ** 2, 0) / totals.length;
   return {
     studentCount: studentAnalyses.length,
-    average: totals.reduce((a, b) => a + b, 0) / totals.length,
+    average,
     max: Math.max(...totals),
     min: Math.min(...totals),
+    stdDeviation: Math.sqrt(variance),
   };
+}
+
+// "Riskli" = en az bir soru puanlanmış ve toplamı düşük; hiç puanlanmamış
+// öğrenci "henüz değerlendirilmedi" demektir, riskli değil.
+export function isAtRiskStudent(s: StudentAnalysis): boolean {
+  return s.gradedCount > 0 && s.totalScore < 70;
+}
+
+const SCORE_BANDS: ReadonlyArray<{ durum: Durum; label: string; min: number; max: number }> = [
+  { durum: 'Zayif', label: '0-44', min: 0, max: 44 },
+  { durum: 'Gecer', label: '45-54', min: 45, max: 54 },
+  { durum: 'Orta', label: '55-69', min: 55, max: 69 },
+  { durum: 'Iyi', label: '70-84', min: 70, max: 84 },
+  { durum: 'Pekiyi', label: '85-100', min: 85, max: 100 },
+];
+
+// Sınıf ortalamasıyla tutarlı olması için aynı popülasyon (tam puanlanmış
+// öğrenciler) kullanılır.
+export function calculateScoreDistribution(studentAnalyses: StudentAnalysis[]): ScoreDistributionBucket[] {
+  const graded = studentAnalyses.filter((s) => s.isFullyGraded);
+  return SCORE_BANDS.map((band) => ({
+    durum: band.durum,
+    label: band.label,
+    count: graded.filter((s) => s.totalScore >= band.min && s.totalScore <= band.max).length,
+  }));
+}
+
+export function calculateStudentQuestionBreakdown(
+  students: Student[],
+  questions: Question[],
+  scores: StudentScore[],
+): StudentQuestionRow[] {
+  const lookup = buildScoreLookup(scores);
+  const sortedQuestions = [...questions].sort((a, b) => a.questionNo - b.questionNo);
+
+  return students.map((student) => {
+    let totalScore = 0;
+    const questionScores = sortedQuestions.map((q) => {
+      const earned = lookup.get(`${student.id}:${q.id}`);
+      if (earned !== undefined) totalScore += earned;
+      return earned ?? null;
+    });
+    return {
+      studentId: student.id,
+      schoolNumber: student.schoolNumber,
+      fullName: student.fullName,
+      questionScores,
+      totalScore,
+      durum: getDurum(totalScore),
+    };
+  });
 }
 
 export function calculateQuestionAnalyses(
@@ -198,11 +284,13 @@ export function calculateTopicAnalyses(
     }
 
     const topic = topics.find((t) => t.id === topicId);
+    const successRate = maxSum > 0 ? (earnedSum / maxSum) * 100 : 0;
     return {
       topicId,
       topicName: topic ? (topic.unit ? `${topic.unit} — ${topic.name}` : topic.name) : '-',
-      successRate: maxSum > 0 ? (earnedSum / maxSum) * 100 : 0,
+      successRate,
       missingStudentCount,
+      durum: getDurum(successRate),
     };
   });
 }
@@ -240,7 +328,7 @@ export function calculateOutcomeAnalyses(
         earnedSum += studentEarned;
         maxSum += studentMax;
         const studentRate = studentMax > 0 ? (studentEarned / studentMax) * 100 : 0;
-        // "Başarısız" eşiği, risk bantlarındaki "Kritik" sınırıyla (50) tutarlı tutulmuştur.
+        // "Başarısız" eşiği (50), Durum bantlarından bağımsız ayrı bir iş kuralıdır.
         if (studentRate < 50) failingStudentCount++;
       }
     }
@@ -253,7 +341,7 @@ export function calculateOutcomeAnalyses(
       successRate,
       averageScore: gradedStudentCount > 0 ? earnedSum / gradedStudentCount : 0,
       failingStudentCount,
-      riskLevel: riskLevelFor(successRate),
+      durum: getDurum(successRate),
     };
   });
 }
@@ -365,5 +453,8 @@ export async function getExamAnalysis(examId: string): Promise<ExamAnalysis | nu
     questionAnalyses: calculateQuestionAnalyses(students, questions, scores),
     topicAnalyses: calculateTopicAnalyses(students, questions, scores, topics),
     outcomeAnalyses: calculateOutcomeAnalyses(students, questions, scores, outcomes),
+    questionNumbers: [...questions].map((q) => q.questionNo).sort((a, b) => a - b),
+    studentQuestionBreakdown: calculateStudentQuestionBreakdown(students, questions, scores),
+    scoreDistribution: calculateScoreDistribution(studentAnalyses),
   };
 }

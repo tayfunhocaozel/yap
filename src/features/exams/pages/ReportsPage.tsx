@@ -3,16 +3,11 @@ import { Box, Button, ToggleButton, ToggleButtonGroup, Typography } from '@mui/m
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
-import {
-  getExamAnalysis,
-  RISK_HEX_COLOR,
-  type ExamAnalysis,
-} from '../../../services/analysisService';
+import { getExamAnalysis, type ExamAnalysis } from '../../../services/analysisService';
 import { examService } from '../../../services/examService';
 import { classService } from '../../../services/classService';
 import { subjectRepository } from '../../../repositories/subjectRepository';
 import { interventionService } from '../../../services/interventionService';
-import { renderBarChartToImage } from '../../../services/chartImageService';
 import { reportService, type ReportType } from '../../../services/reportService';
 import { ClassReportDocument } from '../pdf/ClassReportDocument';
 import { StudentReportDocument } from '../pdf/StudentReportDocument';
@@ -29,7 +24,6 @@ export function ReportsPage() {
   const [subjectName, setSubjectName] = useState('-');
   const [analysis, setAnalysis] = useState<ExamAnalysis | null>(null);
   const [interventions, setInterventions] = useState<Intervention[]>([]);
-  const [chartImages, setChartImages] = useState<{ topic?: string; outcome?: string }>({});
   const [reportType, setReportType] = useState<ReportType>('sinif');
 
   useEffect(() => {
@@ -56,26 +50,11 @@ export function ReportsPage() {
       setAnalysis(examAnalysis);
       setInterventions(interventionsData);
 
-      const [topicImage, outcomeImage] = await Promise.all([
-        renderBarChartToImage({
-          labels: examAnalysis.topicAnalyses.map((t) => t.topicName),
-          data: examAnalysis.topicAnalyses.map((t) => Math.round(t.successRate)),
-          backgroundColor: '#1565C0',
-          title: 'Konu Bazlı Başarı %',
-        }),
-        renderBarChartToImage({
-          labels: examAnalysis.outcomeAnalyses.map((o) => o.code),
-          data: examAnalysis.outcomeAnalyses.map((o) => Math.round(o.successRate)),
-          backgroundColor: examAnalysis.outcomeAnalyses.map((o) => RISK_HEX_COLOR[o.riskLevel]),
-          title: 'Kazanım Bazlı Başarı %',
-        }),
-        // Font tam yüklenmeden PDF render edilirse react-pdf glyph
-        // altkümelemesini eksik veriyle yapar (bkz. registerFonts.ts).
-        ensureFontsLoaded(),
-      ]);
+      // Font tam yüklenmeden PDF render edilirse react-pdf glyph
+      // altkümelemesini eksik veriyle yapar (bkz. registerFonts.ts).
+      await ensureFontsLoaded();
       if (cancelled) return;
 
-      setChartImages({ topic: topicImage, outcome: outcomeImage });
       setLoading(false);
     })();
 
@@ -94,8 +73,6 @@ export function ReportsPage() {
         subjectName={subjectName}
         analysis={analysis}
         interventions={interventions}
-        topicChartImage={chartImages.topic}
-        outcomeChartImage={chartImages.outcome}
       />
     ) : (
       <StudentReportDocument

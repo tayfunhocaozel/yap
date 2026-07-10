@@ -91,27 +91,28 @@ Her kazanım için
 -   Başarı yüzdesi
 -   Ortalama puan
 -   Başarısız öğrenci sayısı
--   Risk seviyesi
+-   Durum seviyesi
 
 Bu analiz telafi planlamasının temelidir.
 
 ------------------------------------------------------------------------
 
-# 4. Risk Analizi
+# 4. Durum Analizi
 
 Önerilen seviyeler
 
--   %85-100 → Çok İyi
+-   %85-100 → Pekiyi
 -   %70-84 → İyi
--   %50-69 → Geliştirilmeli
--   %0-49 → Kritik
+-   %55-69 → Orta
+-   %45-54 → Geçer
+-   %0-44 → Zayıf
 
 Eşik değerleri ayarlardan değiştirilebilir (ileri sürüm).
 
 ## Bilinen Kısıt
 
-V1'de risk seviyesi yalnızca başarı yüzdesine dayanır; bir kazanıma
-bağlı soru sayısı çok azsa (örn. tek soru) risk etiketinin
+V1'de durum seviyesi yalnızca başarı yüzdesine dayanır; bir kazanıma
+bağlı soru sayısı çok azsa (örn. tek soru) durum etiketinin
 güvenilirliği düşük olabilir. Bu bilinçli bir V1 kapsam kararıdır;
 minimum örneklem eşiği eklenmesi Bölüm 9'daki gelecek geliştirmeler
 kapsamında değerlendirilebilir.
@@ -152,7 +153,7 @@ hesaplanacaktır.
 -   Puan dağılımı
 -   Konu başarı grafiği
 -   Kazanım başarı grafiği
--   Risk dağılımı
+-   Durum dağılımı
 -   Öğrenci karşılaştırması
 
 ------------------------------------------------------------------------
@@ -174,7 +175,7 @@ hesaplanacaktır.
 -   Kazanım trend analizi
 -   Yıllık gelişim grafikleri
 -   Yapay zekâ destekli yorumlar
--   Risk seviyesinde minimum örneklem (soru sayısı) eşiği
+-   Durum seviyesinde minimum örneklem (soru sayısı) eşiği
 
 ------------------------------------------------------------------------
 

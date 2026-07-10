@@ -1,6 +1,6 @@
 import { Document, Page, Text, View } from '@react-pdf/renderer';
 import { reportStyles as styles } from './reportStyles';
-import type { StudentDetail } from '../../../services/analysisService';
+import { getDurum, DURUM_STYLES, type StudentDetail } from '../../../services/analysisService';
 import type { Exam, SchoolClass } from '../../../types/entities';
 
 interface StudentReportDocumentProps {
@@ -43,6 +43,7 @@ export function StudentReportDocument({
             <View style={styles.headerRow}>
               <Text style={styles.cell}>Konu</Text>
               <Text style={styles.cellRight}>Başarı %</Text>
+              <Text style={styles.cellRight}>Durum</Text>
             </View>
             {student.topicBreakdown.map((t) => (
               <View style={styles.row} key={t.topicId}>
@@ -50,6 +51,21 @@ export function StudentReportDocument({
                 <Text style={styles.cellRight}>
                   {t.successRate === null ? '-' : `${t.successRate.toFixed(0)}%`}
                 </Text>
+                <View style={styles.durumCell}>
+                  {t.successRate !== null && (
+                    <Text
+                      style={[
+                        styles.durumBadge,
+                        {
+                          backgroundColor: DURUM_STYLES[getDurum(t.successRate)].color,
+                          color: DURUM_STYLES[getDurum(t.successRate)].textColor,
+                        },
+                      ]}
+                    >
+                      {DURUM_STYLES[getDurum(t.successRate)].label}
+                    </Text>
+                  )}
+                </View>
               </View>
             ))}
           </View>
@@ -59,6 +75,7 @@ export function StudentReportDocument({
             <View style={styles.headerRow}>
               <Text style={styles.cell}>Kazanım</Text>
               <Text style={styles.cellRight}>Başarı %</Text>
+              <Text style={styles.cellRight}>Durum</Text>
             </View>
             {student.outcomeBreakdown.map((o) => (
               <View style={styles.row} key={o.outcomeId}>
@@ -66,6 +83,21 @@ export function StudentReportDocument({
                 <Text style={styles.cellRight}>
                   {o.successRate === null ? '-' : `${o.successRate.toFixed(0)}%`}
                 </Text>
+                <View style={styles.durumCell}>
+                  {o.successRate !== null && (
+                    <Text
+                      style={[
+                        styles.durumBadge,
+                        {
+                          backgroundColor: DURUM_STYLES[getDurum(o.successRate)].color,
+                          color: DURUM_STYLES[getDurum(o.successRate)].textColor,
+                        },
+                      ]}
+                    >
+                      {DURUM_STYLES[getDurum(o.successRate)].label}
+                    </Text>
+                  )}
+                </View>
               </View>
             ))}
           </View>

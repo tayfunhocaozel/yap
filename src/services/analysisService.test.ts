@@ -6,7 +6,10 @@ import {
   calculateTopicAnalyses,
   calculateOutcomeAnalyses,
   calculateStudentDetails,
-  riskLevelFor,
+  calculateScoreDistribution,
+  calculateStudentQuestionBreakdown,
+  isAtRiskStudent,
+  getDurum,
 } from './analysisService';
 import type { Question, Student, StudentScore, Topic, CurriculumOutcome } from '../types/entities';
 
@@ -42,16 +45,18 @@ const scores: StudentScore[] = [
   { id: 'sc5', studentId: 's3', questionId: 'q2', earnedScore: 15, updatedAt: '2026-01-01T00:00:00.000Z' },
 ];
 
-describe('riskLevelFor', () => {
+describe('getDurum', () => {
   it('eşik değerlerine göre doğru seviyeyi döner', () => {
-    expect(riskLevelFor(90)).toBe('Çok İyi');
-    expect(riskLevelFor(85)).toBe('Çok İyi');
-    expect(riskLevelFor(84)).toBe('İyi');
-    expect(riskLevelFor(70)).toBe('İyi');
-    expect(riskLevelFor(69)).toBe('Geliştirilmeli');
-    expect(riskLevelFor(50)).toBe('Geliştirilmeli');
-    expect(riskLevelFor(49)).toBe('Kritik');
-    expect(riskLevelFor(0)).toBe('Kritik');
+    expect(getDurum(90)).toBe('Pekiyi');
+    expect(getDurum(85)).toBe('Pekiyi');
+    expect(getDurum(84)).toBe('Iyi');
+    expect(getDurum(70)).toBe('Iyi');
+    expect(getDurum(69)).toBe('Orta');
+    expect(getDurum(55)).toBe('Orta');
+    expect(getDurum(54)).toBe('Gecer');
+    expect(getDurum(45)).toBe('Gecer');
+    expect(getDurum(44)).toBe('Zayif');
+    expect(getDurum(0)).toBe('Zayif');
   });
 });
 
@@ -69,14 +74,52 @@ describe('calculateStudentAnalyses', () => {
 });
 
 describe('calculateClassAnalysis', () => {
-  it('ortalama, en yüksek ve en düşük değerleri hesaplar', () => {
+  it('ortalama/en yüksek/en düşük/std.sapma yalnızca tam puanlanmış öğrencilerden hesaplanır', () => {
     const studentAnalyses = calculateStudentAnalyses(students, questions, scores);
     const result = calculateClassAnalysis(studentAnalyses);
 
+    // Veli tam puanlanmamış (1/2 soru) -> hesaplamaya dahil edilmez.
+    // Sadece Ali (100) ve Ayşe (15) kalır.
     expect(result.studentCount).toBe(3);
     expect(result.max).toBe(100);
     expect(result.min).toBe(15);
-    expect(result.average).toBeCloseTo((100 + 20 + 15) / 3);
+    expect(result.average).toBeCloseTo((100 + 15) / 2);
+    expect(result.stdDeviation).toBeCloseTo(42.5);
+  });
+});
+
+describe('isAtRiskStudent', () => {
+  it('en az bir soru puanlanmış ve toplamı 70 altında olan öğrenciyi riskli sayar', () => {
+    const studentAnalyses = calculateStudentAnalyses(students, questions, scores);
+    const ali = studentAnalyses.find((s) => s.studentId === 's1')!;
+    const veli = studentAnalyses.find((s) => s.studentId === 's2')!;
+    const ayse = studentAnalyses.find((s) => s.studentId === 's3')!;
+
+    expect(isAtRiskStudent(ali)).toBe(false);
+    expect(isAtRiskStudent(veli)).toBe(true);
+    expect(isAtRiskStudent(ayse)).toBe(true);
+  });
+});
+
+describe('calculateScoreDistribution', () => {
+  it('tam puanlanmış öğrencileri Durum bantlarına göre sayar', () => {
+    const studentAnalyses = calculateStudentAnalyses(students, questions, scores);
+    const result = calculateScoreDistribution(studentAnalyses);
+
+    expect(result.find((b) => b.durum === 'Pekiyi')?.count).toBe(1); // Ali (100)
+    expect(result.find((b) => b.durum === 'Zayif')?.count).toBe(1); // Ayşe (15)
+    expect(result.find((b) => b.durum === 'Orta')?.count).toBe(0); // Veli tam puanlanmamış, dahil değil
+  });
+});
+
+describe('calculateStudentQuestionBreakdown', () => {
+  it('soru numarasına göre sıralı puanları ve eksik hücreleri null olarak döner', () => {
+    const result = calculateStudentQuestionBreakdown(students, questions, scores);
+    const veli = result.find((r) => r.studentId === 's2')!;
+
+    expect(veli.questionScores).toEqual([20, null]);
+    expect(veli.totalScore).toBe(20);
+    expect(veli.durum).toBe('Zayif');
   });
 });
 
@@ -103,13 +146,13 @@ describe('calculateTopicAnalyses', () => {
 });
 
 describe('calculateOutcomeAnalyses', () => {
-  it('risk seviyesini ve başarısız öğrenci sayısını hesaplar', () => {
+  it('durum seviyesini ve başarısız öğrenci sayısını hesaplar', () => {
     const result = calculateOutcomeAnalyses(students, questions, scores, outcomes);
     const o2 = result.find((r) => r.outcomeId === 'o2')!;
 
-    // o2 (q2, max 60): Ali 60/60=%100, Ayşe 15/60=%25 -> ortalama %62.5 -> Geliştirilmeli
+    // o2 (q2, max 60): Ali 60/60=%100, Ayşe 15/60=%25 -> ortalama %62.5 -> Orta
     // Ayşe %25 < %50 -> başarısız
-    expect(o2.riskLevel).toBe('Geliştirilmeli');
+    expect(o2.durum).toBe('Orta');
     expect(o2.failingStudentCount).toBe(1);
   });
 });
