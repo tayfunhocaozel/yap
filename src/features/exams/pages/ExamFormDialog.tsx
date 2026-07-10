@@ -115,6 +115,7 @@ export function ExamFormDialog({ open, onClose, onCreated }: ExamFormDialogProps
             <TextField
               label="Yazılı Adı"
               placeholder="Örn. 1. Yazılı"
+              helperText="Sınıf ve öğrenci raporlarında başlık olarak görünecek."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required

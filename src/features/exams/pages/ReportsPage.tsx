@@ -12,11 +12,16 @@ import { reportService, type ReportType } from '../../../services/reportService'
 import { ClassReportDocument } from '../pdf/ClassReportDocument';
 import { StudentReportDocument } from '../pdf/StudentReportDocument';
 import { ensureFontsLoaded } from '../pdf/registerFonts';
+import { useTeacher } from '../../settings/hooks/useTeacher';
 import type { Exam, Intervention, SchoolClass } from '../../../types/entities';
 
 export function ReportsPage() {
   const { examId } = useParams<{ examId: string }>();
   const navigate = useNavigate();
+  // Rapor başlığındaki "Öğretmen" bilgisi: bu offline-first mimaride her
+  // hesap tek bir öğretmene ait, dolayısıyla oturum sahibinin adı sınıfın
+  // atanmış öğretmeniyle aynı kabul edilir (ayrı bir sorgu gerekmez).
+  const teacher = useTeacher();
 
   const [loading, setLoading] = useState(true);
   const [exam, setExam] = useState<Exam | null>(null);
@@ -73,6 +78,7 @@ export function ReportsPage() {
         subjectName={subjectName}
         analysis={analysis}
         interventions={interventions}
+        teacherName={teacher?.fullName}
       />
     ) : (
       <StudentReportDocument
@@ -80,6 +86,7 @@ export function ReportsPage() {
         schoolClass={schoolClass}
         subjectName={subjectName}
         studentDetails={analysis.studentDetails}
+        teacherName={teacher?.fullName}
       />
     );
 

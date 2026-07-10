@@ -8,6 +8,7 @@ interface StudentReportDocumentProps {
   schoolClass: SchoolClass | null;
   subjectName: string;
   studentDetails: StudentDetail[];
+  teacherName?: string;
 }
 
 export function StudentReportDocument({
@@ -15,6 +16,7 @@ export function StudentReportDocument({
   schoolClass,
   subjectName,
   studentDetails,
+  teacherName,
 }: StudentReportDocumentProps) {
   return (
     <Document>
@@ -23,6 +25,7 @@ export function StudentReportDocument({
           <Text style={styles.title}>{exam.title} — Öğrenci Analiz Raporu</Text>
           <Text style={styles.subtitle}>
             {schoolClass?.name} — {subjectName} — {exam.examDate}
+            {teacherName ? ` · Öğretmen: ${teacherName}` : ''}
           </Text>
 
           <Text style={styles.sectionTitle}>

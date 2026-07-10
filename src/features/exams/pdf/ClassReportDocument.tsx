@@ -10,6 +10,7 @@ interface ClassReportDocumentProps {
   subjectName: string;
   analysis: ExamAnalysis;
   interventions: Intervention[];
+  teacherName?: string;
 }
 
 export function ClassReportDocument({
@@ -18,6 +19,7 @@ export function ClassReportDocument({
   subjectName,
   analysis,
   interventions,
+  teacherName,
 }: ClassReportDocumentProps) {
   const riskCount = analysis.studentAnalyses.filter(isAtRiskStudent).length;
   const questionCount = analysis.questionNumbers.length;
@@ -28,7 +30,8 @@ export function ClassReportDocument({
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>{exam.title} — Sınıf Analiz Raporu</Text>
         <Text style={styles.subtitle}>
-          {schoolClass?.name} — {subjectName} — {exam.examDate}
+          {schoolClass?.name} — {subjectName} — {exam.examDate} · {analysis.classAnalysis.studentCount} öğrenci
+          {teacherName ? ` · Öğretmen: ${teacherName}` : ''}
         </Text>
 
         <Text style={styles.sectionTitle}>Sınıf Özeti</Text>
